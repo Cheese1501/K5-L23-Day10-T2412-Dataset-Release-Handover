@@ -1,0 +1,7 @@
+﻿image,type,verdict,note
+000000006012,instance_merge,confirmed,"TV3 — Hoàng Quang Trường · Hai nải chuối tách rời trái/phải. Detection có 2 box banana, panoptic chỉ 1 segment phủ cả hai, nên mask gộp hai vật."
+000000009891,class_swap,confirmed,"TV1 — Lê Quang Khải · box sai lớp và chưa ôm sát vật. Detection cam ghi là bus, nhưng thực chất là car."
+000000018491,category_swap,confirmed,"TV2 — Nguyễn Đức Anh · Vật trong box nhỏ phía trên bên trái là người. Detection ghi person đúng, panoptic ghi toilet sai."
+000000023023,category_swap,confirmed,"TV4 — Dương Quốc Huy · Vật ở giữa ảnh là túi xách. Detection ghi handbag đúng, panoptic ghi suitcase sai. Xem chéo TV7 — Hoàng Kim Chi · Vật bị bị nhầm class"
+000000023781,bbox_drift,confirmed,"TV5 — Đặng Trung Hiếu · Củ cà rốt nằm dưới chùm củ cải đỏ, đầu bên phải chếch lên luồn dưới củ cải. Box detection (carrot) trùng mép trái/dưới với segment nhưng hụt ~15px mép trên và mép phải, đoạn đầu củ phía trên bên phải nằm ngoài box. Phần chênh là thân chính củ đó, không phải lá hay củ khác."
+000000025386,class_swap,confirmed,"TV6 — Nguyễn Nhân Thành Long · Ghế bọc sọc ở mé trái ảnh; panoptic ghi chair, detection gán keyboard."

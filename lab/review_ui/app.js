@@ -82,7 +82,8 @@ function renderCase(item, isHash) {
   article.querySelector(".saved").textContent = saved ? "Đã có kết quả · " + saved : "Chờ người xem";
   article.querySelector(".summary").textContent = isHash
     ? "Mở ảnh, kiểm nội dung có nguyên vẹn và ghi lại quan sát."
-    : item.reason + " · " + (item.owner || "TV4 phân công");
+    : item.reason + " · " + (item.owner || "TV4 phân công")
+      + (item.cross ? " · xem chéo " + item.cross : "");
   const viewer = article.querySelector(".viewer");
   const image = document.createElement("img");
   image.src = "/asset/image?id=" + encodeURIComponent(item.image);
@@ -204,8 +205,7 @@ function render() {
   const queue = byId("queue");
   queue.replaceChildren();
   const all = byId("filter").value === "all";
-  const selected = state.cases.filter(c => all || c.owner === current
-    || (current === "TV7" && c.owner === "TV4"));
+  const selected = state.cases.filter(c => all || c.owner === current || c.cross === current);
   for (const item of selected) queue.append(renderCase(item, false));
   for (const item of state.hash_cases.filter(c => all || c.owner === current))
     queue.append(renderCase(item, true));

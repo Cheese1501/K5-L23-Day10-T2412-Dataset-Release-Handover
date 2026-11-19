@@ -17,6 +17,36 @@ Màn hình chọn sẵn TV1 và ảnh `000000009891`. Phóng to ảnh, bật mas
 
 TV4 dùng nút gộp khi đủ review. TV1 dùng nút kiểm bàn giao sau khi nhận các đầu ra. Dữ liệu hiện tại đã có 1/6 ca gán nhãn, còn 5 ca và 1 ca hash chờ người xem. Mỗi máy lưu CSV trong lô của máy đó. Người làm trên máy khác gửi CSV cho TV4 gộp và chuyển về máy tích hợp theo hướng dẫn TV1. Giữ Terminal chạy khi sử dụng màn hình này. Khi mở lại launcher, công cụ dùng lại server cùng lô nếu đang chạy.
 
+## Chia ảnh và gộp review (TV4)
+
+Bảng chia nằm trong `assignments.csv` của từng lô (`image,kind,owner,cross`), không ghi cứng trong code, nên dùng được cho seed khác và đề ẩn. Chưa có file thì bàn làm việc tự chia đều theo tải: ảnh lệch hash giao TV5, mỗi ca một người xem, ca bất đồng lớp thêm một người xem chéo. Người xem chéo thấy ca đó trong mục "Việc được giao cho tôi". TV4 có thể sửa tay file CSV.
+
+```sh
+python3 lab/split_review.py --workdir runs/r2412007        # in bảng chia, không ghi đè file đã có
+```
+
+Thành viên xem ảnh trên máy riêng thì xuất phần của mình rồi commit hoặc gửi TV4. TV4 nhập tất cả vào lô. Ca hai người kết luận khác nhau được báo `XUNG ĐỘT` và giữ nguyên để TV4 hỏi lại người xem.
+
+```sh
+python3 lab/collect_reviews.py --run runs/r2412007 --export TV3          # → submission/reviews/TV3.csv
+python3 lab/collect_reviews.py --run runs/r2412007 --import --dry-run    # TV4 xem trước
+python3 lab/collect_reviews.py --run runs/r2412007 --import              # TV4 ghi, có sao lưu
+```
+
+**Windows.** Nhấp đúp `lab\MO_LAB_WINDOWS.cmd`, hoặc đặt `$env:PYTHONUTF8=1` trước khi chạy `py scripts/...`. Thiếu biến này, `run_lab.py` và `inject_release.py` dừng giữa chừng vì lỗi in tiếng Việt và để lại `runs/r<seed>` dở dang. Khi đó xoá thư mục dở rồi chạy lại.
+
+**Đề ẩn (delivery ở gốc repo).** Thư mục làm việc tách khỏi `delivery/`. Ba lệnh đầu chạy khoảng 15 giây.
+
+```sh
+python3 validator/validate.py delivery --out runs/de_an_work/rules.json --candidates runs/de_an_work/candidates.json
+python3 lab/prepare_review.py delivery --workdir runs/de_an_work
+python3 lab/split_review.py --workdir runs/de_an_work
+python3 lab/review_server.py --run runs/de_an_work --delivery delivery --open
+# Sau khi đủ kết luận: bấm "Gộp review" rồi chép sang bộ nộp.
+mkdir -p submission/de_an
+cp runs/de_an_work/{candidates.json,review_log.csv,errors.json} submission/de_an/
+```
+
 ## Mở lô luyện tập nhóm T2412
 
 ```sh
