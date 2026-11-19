@@ -1,0 +1,191 @@
+{
+  "candidates": [
+    {
+      "image": "000000006012",
+      "type": "instance_merge",
+      "possible_types": [
+        "instance_merge"
+      ],
+      "reason": "Hai box cùng lớp chia phần lớn pixel của segment",
+      "detection": [
+        {
+          "class": "banana",
+          "bbox": [
+            328.15,
+            25.06,
+            220.75,
+            477.3
+          ]
+        },
+        {
+          "class": "banana",
+          "bbox": [
+            98.7,
+            23.53,
+            207.41,
+            481.02
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 2725787,
+        "class": "banana",
+        "bbox": [
+          99,
+          24,
+          450,
+          481
+        ]
+      }
+    },
+    {
+      "image": "000000009891",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 1.00, phủ mask 100%",
+      "detection": [
+        {
+          "class": "bus",
+          "bbox": [
+            284.76,
+            79.89,
+            355.24,
+            220.05
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 9210509,
+        "class": "car",
+        "bbox": [
+          285,
+          80,
+          355,
+          220
+        ]
+      }
+    },
+    {
+      "image": "000000018491",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 0.98, phủ mask 100%",
+      "detection": [
+        {
+          "class": "person",
+          "bbox": [
+            177.68,
+            77.51,
+            31.52,
+            74.51
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 5196108,
+        "class": "toilet",
+        "bbox": [
+          178,
+          78,
+          31,
+          74
+        ]
+      }
+    },
+    {
+      "image": "000000023023",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 0.99, phủ mask 100%",
+      "detection": [
+        {
+          "class": "handbag",
+          "bbox": [
+            206.29,
+            166.41,
+            203.54,
+            258.55
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 7631476,
+        "class": "suitcase",
+        "bbox": [
+          206,
+          166,
+          203,
+          259
+        ]
+      }
+    },
+    {
+      "image": "000000023781",
+      "type": "bbox_drift",
+      "possible_types": [
+        "bbox_drift"
+      ],
+      "reason": "Box cùng lớp chỉ phủ 88% pixel của segment",
+      "detection": [
+        {
+          "class": "carrot",
+          "bbox": [
+            337.83,
+            285.42,
+            122.57,
+            51.84
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 6781662,
+        "class": "carrot",
+        "bbox": [
+          338,
+          270,
+          137,
+          67
+        ]
+      }
+    },
+    {
+      "image": "000000025386",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 0.98, phủ mask 100%",
+      "detection": [
+        {
+          "class": "keyboard",
+          "bbox": [
+            0.59,
+            164.83,
+            80.62,
+            108.81
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 6912374,
+        "class": "chair",
+        "bbox": [
+          1,
+          165,
+          80,
+          108
+        ]
+      }
+    }
+  ]
+}
