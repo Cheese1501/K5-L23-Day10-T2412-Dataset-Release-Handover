@@ -20,14 +20,12 @@ from urllib.parse import parse_qs, urlsplit
 from urllib.request import urlopen
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "validator"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate import Delivery
+from split_review import auto_split, hash_targets, read_assignments, team_members
 
 ROOT = Path(__file__).resolve().parents[1]
 UI = Path(__file__).with_name("review_ui")
-ASSIGNMENTS = {
-    "000000009891": "TV1", "000000018491": "TV2", "000000006012": "TV3",
-    "000000023023": "TV4", "000000023781": "TV5", "000000025386": "TV6",
-}
 CSV_FIELDS = {
     "review_log.csv": ["image", "type", "verdict", "note"],
     "hash_review.csv": ["image", "status", "reviewer", "note"],
@@ -49,17 +47,22 @@ class Conflict(ValueError):
 
 
 class Workspace:
-    def __init__(self, run):
+    def __init__(self, run, delivery=None):
         self.run = run.resolve()
-        self.delivery = Delivery(self.run / "delivery")
+        self.delivery = Delivery(Path(delivery).resolve() if delivery else self.run / "delivery")
         self.lock = threading.RLock()
         self.token = secrets.token_urlsafe(32)
 
     def members(self):
-        rows = (ROOT / "submission" / "TEAM.md").read_text(encoding="utf-8").splitlines()
-        return {cells[0]: cells[1] for line in rows
-                if line.startswith("| TV")
-                and len(cells := [cell.strip() for cell in line.split("|")[1:-1]]) >= 2}
+        return team_members()
+
+    def assignments(self, hashes):
+        """Bảng chia của lô: assignments.csv do TV4 tạo/sửa, chưa có thì chia đều tự động."""
+        table = read_assignments(self.run / "assignments.csv")
+        if table is None:
+            rows = auto_split(self.candidates(), hashes, self.members())
+            table = {(r["kind"], r["image"]): {"owner": r["owner"], "cross": r["cross"]} for r in rows}
+        return table
 
     def candidates(self):
         return read_json(self.run / "candidates.json")["candidates"]
@@ -97,21 +100,23 @@ class Workspace:
             hashes = self.csv("hash_review.csv")
             images = {Path(row["file_name"]).stem: row
                       for row in self.delivery.read_json("panoptic.json")["images"]}
+            rules = read_json(self.run / "rules.json")["errors"]
+            hash_images = [image for image in hash_targets(rules)
+                           if image in self.delivery.manifest
+                           and self.delivery.file(self.delivery.manifest[image]["image"]).is_file()]
+            table = self.assignments(hash_images)
             cases = []
             for row in self.candidates():
                 matches = [r for r in reviews if r["image"] == row["image"]
                            and r["type"] in row["possible_types"]]
+                people = table.get(("semantic", row["image"]), {})
                 cases.append({
                     **row, "key": row["image"] + "|" + row["type"],
-                    "owner": ASSIGNMENTS.get(row["image"], ""),
+                    "owner": people.get("owner", ""), "cross": people.get("cross", ""),
                     "width": images[row["image"]]["width"], "height": images[row["image"]]["height"],
                     "review": matches[0] if len(matches) == 1 else None,
                 })
-            rules = read_json(self.run / "rules.json")["errors"]
-            hash_images = sorted({r["target"] for r in rules if r["type"] == "wrong_hash"
-                                  and r["target"] in self.delivery.manifest
-                                  and self.delivery.file(self.delivery.manifest[r["target"]]["image"]).is_file()})
-            hash_cases = [{"image": image, "owner": "TV5",
+            hash_cases = [{"image": image, "owner": table.get(("hash", image), {}).get("owner", ""),
                            "review": next((r for r in hashes if r["image"] == image), None)}
                           for image in hash_images]
             complete = sum(bool(c["review"] and c["review"]["verdict"] in {"confirmed", "rejected"}
@@ -310,11 +315,16 @@ class Handler(BaseHTTPRequestHandler):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run", type=Path, default=ROOT / "runs/r2412007")
+    for stream in (sys.stdout, sys.stderr):
+        stream.reconfigure(encoding="utf-8", errors="replace")
+    parser.add_argument("--run", type=Path, default=ROOT / "runs/r2412007",
+                        help="Thư mục làm việc có rules.json, candidates.json, review_log.csv")
+    parser.add_argument("--delivery", type=Path,
+                        help="Thư mục delivery nếu không nằm trong --run (đề ẩn: delivery ở gốc repo)")
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--open", action="store_true")
     args = parser.parse_args()
-    workspace = Workspace(args.run)
+    workspace = Workspace(args.run, args.delivery)
     try:
         server = ThreadingHTTPServer(("127.0.0.1", args.port), Handler)
     except OSError:
@@ -333,7 +343,7 @@ def main():
     server.daemon_threads = True
     server.workspace = workspace
     url = f"http://127.0.0.1:{server.server_port}/"
-    print(f"TV1 review: {url}", flush=True)
+    print(f"Review: {url}", flush=True)
     print("CSV lưu trong " + str(workspace.run), flush=True)
     if args.open:
         webbrowser.open(url)
