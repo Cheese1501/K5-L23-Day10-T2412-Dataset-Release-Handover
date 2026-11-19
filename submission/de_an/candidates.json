@@ -1,0 +1,202 @@
+{
+  "candidates": [
+    {
+      "image": "img_0003",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 1.00, phủ mask 100%",
+      "detection": [
+        {
+          "class": "cake",
+          "bbox": [
+            180.38,
+            0.96,
+            458.66,
+            343.52
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 8091175,
+        "class": "donut",
+        "bbox": [
+          180,
+          1,
+          459,
+          343
+        ]
+      }
+    },
+    {
+      "image": "img_0018",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 1.00, phủ mask 100%",
+      "detection": [
+        {
+          "class": "person",
+          "bbox": [
+            139.19,
+            67.18,
+            185.67,
+            262.34
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 9613474,
+        "class": "toilet",
+        "bbox": [
+          139,
+          67,
+          186,
+          263
+        ]
+      }
+    },
+    {
+      "image": "img_0085",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 0.99, phủ mask 100%",
+      "detection": [
+        {
+          "class": "donut",
+          "bbox": [
+            101.16,
+            112.85,
+            119.37,
+            90.32
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 4453713,
+        "class": "cake",
+        "bbox": [
+          101,
+          113,
+          120,
+          90
+        ]
+      }
+    },
+    {
+      "image": "img_0193",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 0.99, phủ mask 100%",
+      "detection": [
+        {
+          "class": "bird",
+          "bbox": [
+            131.01,
+            101.71,
+            27.99,
+            49.28
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 85938,
+        "class": "kite",
+        "bbox": [
+          131,
+          102,
+          28,
+          49
+        ]
+      }
+    },
+    {
+      "image": "img_0197",
+      "type": "missing_box",
+      "possible_types": [
+        "missing_box"
+      ],
+      "reason": "Segment thing đủ lớn, chưa tìm được box cùng lớp tương ứng",
+      "detection": [],
+      "panoptic": {
+        "id": 7885187,
+        "class": "dog",
+        "bbox": [
+          115,
+          18,
+          452,
+          403
+        ]
+      }
+    },
+    {
+      "image": "img_0235",
+      "type": "class_swap",
+      "possible_types": [
+        "class_swap",
+        "category_swap"
+      ],
+      "reason": "Hai nguồn khác lớp, IoU 1.00, phủ mask 100%",
+      "detection": [
+        {
+          "class": "dog",
+          "bbox": [
+            16.22,
+            222.8,
+            444.0,
+            147.2
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 1040193,
+        "class": "cat",
+        "bbox": [
+          17,
+          223,
+          443,
+          147
+        ]
+      }
+    },
+    {
+      "image": "img_0247",
+      "type": "bbox_drift",
+      "possible_types": [
+        "bbox_drift"
+      ],
+      "reason": "Box cùng lớp chỉ phủ 83% pixel của segment",
+      "detection": [
+        {
+          "class": "carrot",
+          "bbox": [
+            428.0,
+            228.74,
+            58.96,
+            191.84
+          ]
+        }
+      ],
+      "panoptic": {
+        "id": 12172114,
+        "class": "carrot",
+        "bbox": [
+          428,
+          181,
+          58,
+          239
+        ]
+      }
+    }
+  ]
+}

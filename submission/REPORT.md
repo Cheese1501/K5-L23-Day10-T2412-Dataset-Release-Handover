@@ -43,7 +43,7 @@ Seed 2412007 có 4 ảnh tầng A, 3 ảnh tầng B và 2 người trong danh s�
 
 ## 6. Việc còn mở
 
-Bộ kiểm mới nhất trên lô tích hợp trả 17 PASS, 0 FAIL sau xác nhận ảnh khuôn mặt của TV1. Đã đóng gói và xuất bài, v1 vẫn giữ nguyên. PASS xác nhận các yêu cầu mà bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng. Còn cần tài khoản GitHub TV3, TV6, TV7, rà commit cá nhân và làm đề ẩn khi giảng viên phát. Hướng dẫn chi tiết được lưu trong CON_LAI.md.
+Bộ kiểm mới nhất trên lô tích hợp trả 17 PASS, 0 FAIL sau xác nhận ảnh khuôn mặt của TV1. Đã đóng gói và xuất bài, v1 vẫn giữ nguyên. PASS xác nhận các yêu cầu mà bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng. Còn cần tài khoản GitHub TV3, TV6, TV7, rà commit cá nhân và chốt review đề ẩn. TV1 đã cung cấp link Drive; chọn ngẫu nhiên đề 07 từ 20 đề trước khi xem nội dung. Validator hiện có tìm 8 lỗi luật, 7 ứng viên. Trace có 2 ảnh tầng A, 9 tầng B và 4 mã người; hai công cụ của nhóm cho cùng kết quả. Bộ `submission/de_an/` đang chờ người xem; errors mới gồm lỗi luật, chưa có F1 đề ẩn. Hướng dẫn chi tiết được lưu trong CON_LAI.md.
 
 ## 7. Tích hợp hai module TV2
 
