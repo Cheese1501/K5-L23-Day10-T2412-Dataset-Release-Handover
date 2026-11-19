@@ -17,15 +17,36 @@ image,kind,owner,cross
 000000025386,semantic,TV6,
 ```
 
-| Ca | Người xem | Trạng thái |
+| Ca | Người xem | Kết luận |
 |---|---|---|
-| `000000009891` class_swap | TV1 | `confirmed` (nhận từ `submission/reviews/TV1.csv`, đã nhập vào lô) |
-| `000000018491` | TV2 | Chờ |
-| `000000006012` instance_merge | TV3 | Chờ |
-| `000000023023` | TV4, xem chéo TV7 | Chờ |
-| `000000023781` bbox_drift | TV5 | Chờ |
-| `000000025386` | TV6 | Chờ |
-| `000000004765` hash | TV5 | Chờ |
+| `000000009891` class_swap | TV1 | `confirmed` (từ `submission/reviews/TV1.csv`) |
+| `000000018491` class_swap | TV2 | `confirmed` |
+| `000000006012` instance_merge | TV3 | `confirmed` |
+| `000000023023` class_swap | TV4, xem chéo TV7 | `confirmed` |
+| `000000023781` bbox_drift | TV5 | `confirmed` (từ `submission/reviews/TV5.csv`) |
+| `000000025386` class_swap | TV6 | `confirmed` |
+| `000000004765` hash | TV5 | `intact` (từ `submission/reviews/TV5_hash.csv`) |
+
+TV2, TV3, TV6, TV7 và TV4 tự xem ảnh và nhập trên bàn làm việc review ở máy TV4. TV1 và TV5 gửi file riêng, TV4 nhập bằng `collect_reviews.py`.
+
+## Bàn giao cho TV1 và TV5
+
+Trong `submission/reviews/`: `review_log.csv`, `hash_review.csv`, `errors.json` (10 lỗi luật + 6 lỗi gán nhãn đã xác nhận), `assignments.csv`.
+
+- `rules.json` và `candidates.json` từ validator đã tích hợp TV2 trên `tv1/complete-lab` (`ffe9b03`) giống hệt bản dùng để review: 10 lỗi luật, 6 ứng viên.
+- Tự đo `score_findings.py`: F1 tổng ≈ 0,8 · lỗi luật ≈ 1,0 · lỗi gán nhãn ≈ 0,6.
+- Lô trên máy TV4 có release ID `lab250_0c34aa159f7a`. Các target trong `errors.json` là mã ảnh, nên TV1 nhập `review_log.csv` vào lô máy tích hợp và gộp lại bằng `merge_review.py` trên `lab250_ebedbc794d29`.
+
+## Cần người xem rà lại
+
+F1 lỗi gán nhãn ≈ 0,6 nên có kết luận chưa khớp ảnh. Các ghi chú dưới đây chưa đủ để đối chiếu loại lỗi. Người xem tự mở lại ảnh và sửa trên bàn làm việc. TV4 không tự đổi kết luận của người khác.
+
+| Ảnh | Điểm cần làm rõ |
+|---|---|
+| `000000018491` (TV2) | Detection ghi person, panoptic ghi toilet. Vật là người thì panoptic sai (`category_swap`). Vật là bồn cầu thì detection sai (`class_swap`). |
+| `000000025386` (TV6) | Ghi chú nói box chỉ phủ 1/3, đó là box lệch, không phải sai lớp. Cần ghi vật là ghế hay bàn phím. |
+| `000000023023` (TV4, TV7) | Cần ghi vật là vali hay túi xách. |
+| `000000006012` (TV3) | `instance_merge` là mask panoptic gộp hai vật làm một segment. Ghi chú đang nói về box. |
 
 ## Đã làm
 
@@ -48,6 +69,4 @@ Các lô `inject_release.py` không ghi vào `runs/lineage.jsonl`.
 
 ## Còn chờ
 
-1. Ảnh của TV4: `000000023023` (người thật xem).
-2. Kết luận của TV2, TV3, TV5, TV6 và ca xem chéo của TV7, gửi qua `submission/reviews/TVx.csv` hoặc nhập trực tiếp trên máy tích hợp.
-3. Khi đủ 6/6 ca và hash, bấm gộp hoặc chạy `merge_review.py`, rồi giao `errors.json` và `review_log.csv` cho TV1 và TV5.
+1. TV2, TV3, TV4/TV7, TV6 rà lại các ca ở bảng trên. Nếu kết luận đổi, TV4 gộp lại và giao `errors.json` mới cho TV1 và TV5.

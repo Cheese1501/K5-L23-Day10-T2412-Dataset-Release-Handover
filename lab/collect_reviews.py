@@ -9,7 +9,8 @@ TV4 nhập mọi file TV*.csv vào review_log.csv / hash_review.csv của lô:
     python lab/collect_reviews.py --run runs/r2412007 --import --dry-run
     python lab/collect_reviews.py --run runs/r2412007 --import
 
-Khi nhập, dòng trống được điền, dòng giống hệt được bỏ qua. Ca đã có kết luận
+Khi nhập, dòng trống được điền, dòng giống hệt được bỏ qua, dòng cũ của cùng
+một người được thay bằng bản người đó tự xuất. Ca đã có kết luận
 khác (hai người xem ra kết quả khác nhau) được báo là xung đột và giữ nguyên để
 TV4 đối chiếu với người xem; công cụ không tự chọn bên nào. Mọi lần ghi đều sao
 lưu CSV cũ vào review_backups/ của lô.
@@ -61,8 +62,18 @@ def export(workspace, member, reviews):
     return 0
 
 
+def author(row):
+    """Mã người xem ở đầu ghi chú hoặc cột reviewer, ví dụ "TV5"."""
+    text = row.get("reviewer") or row.get("note") or ""
+    return text.split(" — ", 1)[0] if " — " in text else ""
+
+
 def merge_into(current, incoming, same_case, complete, source):
-    """Gộp incoming vào current. Trả về (số dòng thêm/điền, danh sách xung đột)."""
+    """Gộp incoming vào current. Trả về (số dòng thêm/điền/cập nhật, danh sách xung đột).
+
+    Dòng trống được điền. Dòng của cùng một người được thay bằng bản người đó tự
+    xuất (họ sửa lại ghi chú). Kết luận khác của người khác là xung đột.
+    """
     changed, conflicts = 0, []
     for row in incoming:
         indices = [i for i, existing in enumerate(current) if same_case(existing, row)]
@@ -73,7 +84,8 @@ def merge_into(current, incoming, same_case, complete, source):
             conflicts.append(f"{row['image']}: CSV của lô có {len(indices)} dòng cho cùng ca ({source})")
         else:
             existing = current[indices[0]]
-            if not complete(existing):
+            same_author = author(existing) and author(existing) == author(row)
+            if not complete(existing) or (same_author and existing != row):
                 current[indices[0]] = row
                 changed += 1
             elif any(existing.get(k, "") != row.get(k, "") for k in row):
