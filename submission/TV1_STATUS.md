@@ -23,6 +23,7 @@ Chức năng lưu được kiểm bằng CSV giả lập trong thư mục tạm,
 - Đã đọc lại GUIDE, RULES, SUBMISSION, RUBRIC, CHECKPOINTS và docs/DELIVERY, fetch lại repo đề và các nhánh nhóm. Repo đề ở cùng commit gốc `1ab6ab6`. Nhánh `TV3` ở `1ab6ab6`, nhánh `hieu` ở `b1d4be0`, chưa có output review mới trên các nhánh đó tại lượt kiểm tra.
 - Gộp lỗi đã biết bằng script gốc, giữ đủ 5 dòng đang chờ. Xuất checkpoint đang chuẩn bị sang `submission/r2412007/`.
 - Thêm lệnh chuẩn bị, nhập CSV người xem, kiểm tiến độ và hoàn thiện v2. Pipeline được kiểm end-to-end trên dữ liệu tổng hợp với bộ kiểm gốc, có kiểm lượt chạy lại.
+- Đã nhận commit TV2 `b5b5c8d`, cherry-pick thành `bceccca`, tích hợp hai hàm vào `validator/validate.py` và bỏ logic kiểm trùng trước đó. Kiểm lại seed nhóm, seed 22 và lô sạch đều khớp baseline về lỗi luật. 21 kiểm thử đạt. [Chi tiết tích hợp](../validator/README.md)
 
 ## Kết quả đã kiểm
 
