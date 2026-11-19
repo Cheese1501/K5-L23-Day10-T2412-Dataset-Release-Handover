@@ -128,29 +128,87 @@ def populate(v2, delivery, errors, hashes, rid, draft):
     decision = ("Hold — vượt ngưỡng 2%" if rate > 0.02 else "Release — trong ngưỡng 2%")
     if draft:
         decision = "Hold — chờ nhóm hoàn tất QC" if rate <= 0.02 else decision
-    panoptic = [f"{image} ({', '.join(sorted(kinds & PANOPTIC))})"
-                for image, kinds in sorted(findings.items()) if kinds & PANOPTIC]
     group_versions = ", ".join(f"{version} ({', '.join(sorted(ids))})" for version, ids in sorted(guidelines.items()))
-    v2_status = ("Hold — bản nháp chờ nhóm xem ảnh và chốt hàng đợi"
-                 if draft else "Release — đã tách ảnh rework và xử lý các lỗi thuộc phạm vi detection được báo")
-    remarks = [
-        "Chia split theo đa số ảnh của toàn cảnh v1 và lấy guideline từ jobs.csv.",
-        "Manifest tính lại SHA-256 cho từng file được giữ.",
-        "File rework_queue.csv ghi người gán và người kiểm chịu trách nhiệm.",
-    ]
-    if draft:
-        remarks.append("QC v1 mới gồm lỗi luật. Ảnh sai hash được tạm tách để người xem kiểm nội dung.")
-    if hashes:
-        remarks.append("Kết luận kiểm ảnh sai hash được lưu trong hash_review.csv.")
-    if panoptic:
-        remarks.append("Báo team panoptic các ca sau, ảnh đủ điều kiện detection được giữ: " + "; ".join(panoptic) + ".")
+    kept = {row[0] for row in trace}
+    notes = remark_lines(delivery, findings, hashes, splits, kept, rework, draft)
+    fixed = sum(1 for line in notes if line.startswith(("Hash ", "Guideline ", "Split ")))
+    rework_images = len({row[0] for row in rework})
+    v2_status = (f"Hold — bản nháp chờ nhóm xem ảnh và chốt hàng đợi; tạm tách {rework_images} ảnh"
+                 if draft else
+                 f"Release — tách {rework_images} ảnh lỗi detection/ảnh hỏng sang rework_queue.csv, "
+                 f"sửa {fixed} mục hash/guideline/split ngay trong v2 (chi tiết ở Ghi chú)")
     (v2 / "README.txt").write_text(
         f"Release: {rid}_v2\nParent: {rid}\nSố ảnh: {len(trace)}\nSố nhãn: {sum(label_counts.values())}\n"
         f"Guideline: {group_versions}\nQC v1: {count}/{denominator} = {rate:.1%}\n"
-        f"Kết luận v1: {decision}\nKết luận v2: {v2_status}\nGhi chú: {' '.join(remarks)}\n",
+        f"Kết luận v1: {decision}\nKết luận v2: {v2_status}\nGhi chú:\n"
+        + "".join(f"  - {line}\n" for line in notes),
         encoding="utf-8",
     )
     return len(trace), len(rework)
+
+
+def remark_lines(delivery, findings, hashes, splits, kept, rework, draft):
+    """Ghi chú cụ thể: sửa gì trong v2, vì sao, ai nhận rework, báo team panoptic."""
+    lines = []
+    by_type = defaultdict(list)
+    for target, kinds in findings.items():
+        for kind in kinds:
+            by_type[kind].append(target)
+
+    # Hash: chỉ giữ ảnh khi người xem đã mở và ghi intact trong hash_review.csv.
+    sha_owner = {}
+    for image, item in delivery.manifest.items():
+        path = delivery.file(item["image"])
+        if path.is_file():
+            sha_owner[sha256(path.read_bytes()).hexdigest()] = image
+    for image in sorted(by_type["wrong_hash"]):
+        if image not in kept:
+            reason = ("tạm tách, chờ người xem mở ảnh" if draft and image not in hashes
+                      else "ảnh hỏng khi mở kiểm (hash_review.csv), chuyển rework")
+            lines.append(f"Hash {image}: sha256 trong manifest v1 không khớp file; {reason}.")
+            continue
+        old = delivery.manifest[image].get("image_sha256", "")
+        twin = sha_owner.get(old)
+        cause = f" (hash cũ là hash của {twin}.jpg, manifest v1 ghi nhầm)" if twin and twin != image else ""
+        lines.append(f"Hash {image}: mở ảnh kiểm thấy còn nguyên (hash_review.csv){cause}; "
+                     "giữ ảnh, manifest.csv v2 ghi sha256 tính lại từ file thật.")
+
+    # Guideline: lấy theo job trong jobs.csv, vì guideline ghi ở ảnh chính là chỗ sai.
+    for image in sorted(by_type["guideline_mismatch"]):
+        if image not in kept:
+            continue
+        meta = delivery.metadata[image]
+        job = meta["job_id"]
+        lines.append(f"Guideline {image}: metadata v1 ghi {meta.get('guideline_version', '?')}, "
+                     f"job {job} trong jobs.csv là {delivery.jobs[job]['guideline']}; "
+                     "truyvet.csv ghi theo job vì ảnh được gán theo guideline của job.")
+
+    # Split: cả cảnh về một split (đa số ảnh), tránh ảnh gần giống nhau lọt giữa train và val/test.
+    for scene in sorted(by_type["scene_leak"]):
+        moved = [image for image in sorted(delivery.manifest)
+                 if image in kept and delivery.metadata[image]["scene_id"] == scene
+                 and delivery.metadata[image]["split"] != splits[scene]]
+        detail = ", ".join(f"{image} ({delivery.metadata[image]['split']} → {splits[scene]})" for image in moved)
+        lines.append(f"Split {scene}: đưa cả cảnh về {splits[scene]} theo đa số ảnh của cảnh; "
+                     f"đổi {detail or 'không ảnh nào còn trong v2'}. Lý do: ảnh cùng cảnh nằm ở hai split làm rò dữ liệu.")
+
+    # Rework: tách khỏi v2, giao lại đúng người gán và người kiểm của job.
+    owners = Counter((row[2], row[3]) for row in rework)
+    if rework:
+        kinds = Counter(row[1] for row in rework)
+        lines.append(f"Rework: tách {len({row[0] for row in rework})} ảnh khỏi v2 ("
+                     + ", ".join(f"{kind} {n}" for kind, n in sorted(kinds.items())) + "); giao lại "
+                     + ", ".join(f"{a}/{q}: {n} ảnh" for (a, q), n in sorted(owners.items()))
+                     + " (người gán/người kiểm theo jobs.csv), xem rework_queue.csv.")
+
+    # Panoptic: nhãn detection vẫn đúng nên ảnh ở lại v2; báo team panoptic sửa mask.
+    panoptic = [f"{image} ({', '.join(sorted(kinds & PANOPTIC))})"
+                for image, kinds in sorted(findings.items()) if kinds & PANOPTIC]
+    if panoptic:
+        lines.append("Báo team panoptic (ảnh ở lại v2 vì nhãn detection không sai): " + "; ".join(panoptic) + ".")
+    if draft:
+        lines.append("Bản nháp: QC v1 mới gồm lỗi luật, chưa có lỗi gán nhãn từ review ảnh.")
+    return lines
 
 
 def main():
