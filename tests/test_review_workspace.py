@@ -101,6 +101,29 @@ class WorkspaceTest(unittest.TestCase):
         with self.assertRaises(Conflict):
             self.workspace.save(body)
 
+    def test_save_is_paused_while_finalization_uses_saved_inputs(self):
+        (self.run / ".tv1-finalizing").mkdir()
+        with self.assertRaises(Conflict):
+            self.workspace.save(self.body())
+        self.assertEqual(self.workspace.state()["review_complete"], 0)
+
+    def test_two_workspace_instances_serialize_file_writes(self):
+        other = Workspace(self.run)
+        started = threading.Event()
+        acquired = threading.Event()
+        def writer():
+            started.set()
+            with other.writing():
+                acquired.set()
+        with self.workspace.writing():
+            thread = threading.Thread(target=writer)
+            thread.start()
+            self.assertTrue(started.wait(1))
+            self.assertFalse(acquired.wait(0.05))
+        thread.join(timeout=2)
+        self.assertFalse(thread.is_alive())
+        self.assertTrue(acquired.is_set())
+
     def test_second_reviewer_must_confirm_replacement(self):
         self.workspace.save(self.body())
         body = self.body()

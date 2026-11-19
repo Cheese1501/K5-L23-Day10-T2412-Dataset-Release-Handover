@@ -195,8 +195,8 @@ function renderCase(item, isHash) {
 }
 
 function render() {
-  byId("qc").textContent = state.rules_count + "/" + state.images_count
-    + " · " + (state.rate > 0.02 ? "HOLD" : "Trong ngưỡng 2%");
+  byId("qc").textContent = state.known_count + "/" + state.images_count
+    + " · " + (state.known_rate > 0.02 ? "HOLD" : "Trong ngưỡng 2%");
   byId("review-progress").textContent = state.review_complete + "/" + state.cases.length;
   byId("hash-progress").textContent = state.hash_complete + "/" + state.hash_cases.length;
   byId("run-info").textContent = state.run + " · " + state.release_id;
@@ -219,8 +219,11 @@ function render() {
   if (state.review_complete < state.cases.length) pending.push("kết luận xem ảnh");
   if (state.hash_complete < state.hash_cases.length) pending.push("kiểm ảnh lệch hash");
   if (!state.handover_exists) pending.push("v2 từ TV5");
-  pending.push("TV6 xác nhận trace", "TV7 chốt bảo mật", "TV1 kiểm cuối");
-  byId("readiness").textContent = "Cần hoàn tất · " + pending.join(" · ") + ".";
+  if (!state.trace_exists) pending.push("trace.json");
+  if (state.security_pending) pending.push("TV7 chốt bảo mật");
+  byId("readiness").textContent = pending.length
+    ? "Cần hoàn tất · " + pending.join(" · ") + "."
+    : "Đã có các tệp cơ bản. Chạy kiểm bàn giao để xác minh chi tiết và lineage.";
   byId("merge").disabled = dirty || state.review_complete !== state.cases.length;
 }
 
