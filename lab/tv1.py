@@ -15,7 +15,7 @@ from functools import wraps
 from pathlib import Path
 
 from build_handover import audit_review, read_hash_status
-from review_server import ASSIGNMENTS, ROOT, Workspace
+from review_server import ROOT, Workspace
 from trace_ticket import trace
 from validate import write_json
 
@@ -150,7 +150,7 @@ def import_hashes(workspace, sources):
 def status(workspace):
     state = workspace.state()
     pending = [
-        {"image": case["image"], "owner": ASSIGNMENTS.get(case["image"], "TV4"),
+        {"image": case["image"], "owner": case["owner"] or "TV4",
          "possible_types": case["possible_types"]}
         for case in state["cases"] if not case["review"]
         or case["review"]["verdict"] not in {"confirmed", "rejected"}
