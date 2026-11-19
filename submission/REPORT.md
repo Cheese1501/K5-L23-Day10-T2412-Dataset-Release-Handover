@@ -36,3 +36,15 @@ Seed 2412007 có 4 ảnh tầng A, 3 ảnh tầng B và 2 người trong danh s�
 ## 6. Việc còn mở
 
 Bộ kiểm gốc trên gói nháp T2412 trả 14 PASS, 3 FAIL. Khi TV1 kiểm lại đường dẫn chính thức `runs/r2412007`, bộ kiểm trả 2 PASS, 2 FAIL rồi dừng tại H4 vì thiếu thư mục v2 trong `handover/`. H2 ghi nhận đủ 11 lỗi hiện có. H3 chờ các dòng review còn lại. Sau khi dựng v2 chính thức, cần kiểm đủ các mục còn lại. Checkpoint output thật được lưu trong `submission/r2412007/`, còn nội dung bảo mật đang chờ ví dụ khuôn mặt do người xem xác nhận. TV1 cho biết đội hình 7 người đã được đồng ý. Còn chờ tài khoản GitHub, commit và kết quả xem ảnh từ các thành viên. Đề ẩn làm khi giảng viên phát.
+
+## 7. Tích hợp hai module TV2
+
+TV1 đã cherry-pick commit `b5b5c8d` của TV2 thành `bceccca` trên nhánh `tv1/complete-lab`. Hai file `rules_detection.py`, `rules_panoptic.py` giữ nguyên nội dung và tác giả từ bản bàn giao. `validate.py` gọi `find_duplicate_boxes` và `find_thing_overlaps`, đồng thời bỏ phần kiểm tương ứng trong bản TV1 cũ.
+
+| Lô kiểm sau tích hợp | Lỗi luật | Ứng viên | So với baseline |
+|---|---:|---:|---|
+| Seed 2412007 | 10 | 6 | Cùng toàn bộ cặp lỗi và danh sách ứng viên |
+| Seed 22 | 9 | 6 | Cùng toàn bộ cặp lỗi luật, lần này chạy thêm ứng viên |
+| Lô sạch 50 ảnh | 0 | 0 | Cùng kết quả |
+
+21 kiểm thử đã đạt, gồm 4 ca mới kiểm lời gọi module, trùng box, chênh area mask, crowd và stuff. Các ca mới dùng dữ liệu tổng hợp. Kết quả chạy lô được ghi trong `runs/tv1_checks/integrated_*.json`. Review của thành viên giữ nguyên. Điểm F1 ở mục 1 thuộc lần đo baseline trước đó, lượt tích hợp này đối chiếu đầu ra đầy đủ để kiểm hồi quy.
