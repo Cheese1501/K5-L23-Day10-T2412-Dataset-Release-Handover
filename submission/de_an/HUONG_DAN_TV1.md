@@ -1,6 +1,6 @@
 # TV1 xem toàn bộ đề 07
 
-Theo yêu cầu của TV1, đã chuyển cả 8 ca sang TV1: 7 ca đối chiếu nhãn và 1 ca kiểm ảnh lệch hash. Bảng chia cũ được giữ trong lịch sử Git và sao lưu tại review_backups của thư mục làm việc. Chưa ghi kết luận thay người xem.
+Theo yêu cầu của TV1, đã chuyển cả 8 ca sang TV1: 7 ca đối chiếu nhãn và 1 ca kiểm ảnh lệch hash. Bảng chia cũ được giữ trong lịch sử Git và sao lưu tại review_backups của thư mục làm việc. Hiện đã nhận đủ 7/7 ca nhãn và 1/1 ca hash từ TV1; đã gộp 14 lỗi, gồm 8 lỗi luật và 6 lỗi semantic. Ca img_0197 được cập nhật theo xác nhận bổ sung của TV1 rằng chỉ thấy khung xanh panoptic quanh con chó.
 
 ## Cách làm
 
@@ -22,7 +22,7 @@ Các thông tin dưới đây lấy từ candidates.json, không phải kết lu
 | img_0197 | Panoptic dog; công cụ chưa tìm thấy box detection tương ứng | Nếu thấy chó thật và không có box detection bao quanh con chó đó: missing_box. Nếu đã có box hoặc segment đang gán sai vật, không xác nhận missing_box chỉ theo gợi ý máy; ghi rõ điều thấy. |
 | img_0235 | Detection dog; panoptic cat | Nếu vật là mèo: class_swap. Nếu là chó: category_swap. |
 | img_0247 | Hai nguồn cùng carrot; box detection chỉ phủ khoảng 83% pixel segment | Nếu box cắt mất phần củ cà rốt cần bao: bbox_drift. Nếu phần chênh do segment lẫn vật khác, bị che hoặc khác phạm vi hợp lý, ghi lý do rejected. |
-| img_0107 | SHA-256 ảnh không khớp manifest; chưa có kết luận người xem | Mở ảnh toàn khung và phóng to. Nếu mở được, không thấy hỏng: intact, mô tả quan sát. Nếu hỏng/mất phần dữ liệu: damaged, mô tả vị trí. Hash lệch tự nó không chứng minh ảnh hỏng. |
+| img_0107 | SHA-256 ảnh không khớp manifest; TV1 đã xác nhận intact | Mở ảnh toàn khung và phóng to. Nếu mở được, không thấy hỏng: intact, mô tả quan sát. Nếu hỏng/mất phần dữ liệu: damaged, mô tả vị trí. Hash lệch tự nó không chứng minh ảnh hỏng. |
 
 class_swap là detection sai lớp; category_swap là panoptic sai lớp. Chọn confirmed khi xác nhận lỗi đang báo. Chọn rejected nếu không thấy lỗi đó và giải thích vì sao. Nếu không phân biệt được vật, để ca chờ và mô tả điều chưa rõ; không chọn đại một loại.
 
@@ -30,7 +30,7 @@ Mẫu ghi chú theo quan sát thực tế: “Vật trong vùng là …; detecti
 
 ## Những việc còn lại ngoài 8 ca
 
-- Sau khi có quan sát: agent gộp kết quả, xuất bốn file bắt buộc, kiểm tính nhất quán và cập nhật báo cáo.
+- Đã gộp kết quả, xuất đủ bốn file bắt buộc, kiểm tính nhất quán và cập nhật báo cáo. Kết quả xem ảnh không có ca nào còn chờ.
 - TV2/TV3/TV7 cần rà yêu cầu commit cá nhân; TV3/TV6/TV7 bổ sung tài khoản GitHub. TV1 không thể thay các thành viên thực hiện yêu cầu cá nhân và vấn đáp. Mỗi thành viên vẫn cần trực tiếp xem ảnh theo RULES.
 - TV1 xác nhận nhánh được chấm, tên repo theo quy định lớp và nộp đúng kênh/hạn. Repo hiện mặc định main, bài làm nằm trên dev.
-- Commit đề 07 hiện nằm cục bộ; push bị bộ phê duyệt tự động chặn, chờ xác nhận riêng về công khai kết quả đề ẩn.
+- Theo SUBMISSION.md và GUIDE.md, kết quả đề ẩn phải được commit/push trong repo public. Nhánh làm việc theo yêu cầu TV1 là dev; không đưa ZIP hoặc delivery vào Git.

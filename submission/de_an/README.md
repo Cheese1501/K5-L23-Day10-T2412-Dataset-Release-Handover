@@ -1,18 +1,21 @@
-# Đề ẩn 07 — đang chờ kết luận xem ảnh
+# Đề ẩn 07 — đã gộp kết quả xem ảnh
 
 TV1 yêu cầu chọn ngẫu nhiên một đề từ thư mục Drive của lớp. Đã liệt kê 20 ZIP và dùng `secrets.choice` chọn **de_an_07.zip** trước khi mở nội dung. Nguồn, thời điểm chọn và SHA-256 ZIP nằm trong [source.json](source.json). Chưa có thông tin giờ bắt đầu và hạn 40 phút chính thức của giảng viên trong phiên này.
 
 ## Kết quả đã làm
 
 - Lô `lab250_3c55ac997ebf`, 250 ảnh theo manifest. Validator hiện có chạy thành công và báo 8 lỗi luật, 7 ca gán nhãn cần người xem.
-- `errors.json` hiện chỉ có 8 lỗi luật; **chưa phải kết quả chốt sau review**. Không tự coi các ứng viên là lỗi đã xác nhận.
-- `review_log.csv` có 7 dòng chờ, chưa có kết luận nào. `hash_review.csv` có một ca chờ TV5 kiểm ảnh.
+- `errors.json` có **14 lỗi: 8 lỗi luật và 6 lỗi gán nhãn do TV1 trực tiếp xác nhận**. Các lỗi semantic đều có dòng confirmed hợp lệ trong review_log.csv.
+- `review_log.csv` có đủ **7/7 ca: 6 confirmed, 1 rejected**. Ca img_0247 bị rejected vì TV1 thấy box cam detection ôm sát vật, khung panoptic bị dư.
+- img_0197 ban đầu bị rejected. Khi được hỏi, TV1 xác nhận “Chỉ có khung xanh panoptic” và trước đó đã nhận diện vật là chó; đã cập nhật thành missing_box/confirmed, giữ bản sao CSV cũ.
+- `hash_review.csv` có **1/1 ca**, img_0107 intact; TV1 ghi ảnh hoàn toàn bình thường.
+- Đã kiểm các file xuất khớp đầu vào làm việc, không đưa ca rejected vào errors, trace được đối chiếu độc lập. Bằng chứng kiểm tra trong [review_validation.json](review_validation.json).
 - `trace.json` có 2 ảnh tier_a, 9 ảnh tier_b và notify A03, A04, Q01, Q03. Chạy công cụ TV6 và đối chiếu độc lập bằng công cụ TV1 cho cùng kết quả. Lớp đổi quy tắc là chair, job guideline cũ v1.2; các cảnh báo là scene_257 và scene_985.
 - Đối chiếu 756 file trong delivery với ZIP: kích thước và CRC đều khớp. Không sửa delivery. ZIP và dữ liệu ảnh/mask/nhãn đề ẩn nằm ngoài Git.
 
 ## Chia việc xem ảnh
 
-TV1 yêu cầu tự xem toàn bộ các ca còn chờ. Đã chuyển 7 ca gán nhãn (`img_0003`, `img_0018`, `img_0085`, `img_0193`, `img_0197`, `img_0235`, `img_0247`) và ca hash `img_0107` sang TV1. Tải lại bàn review, chọn TV1 để thấy đủ 8 ca. [Gợi ý và hướng dẫn cho từng ca](HUONG_DAN_TV1.md).
+TV1 đã tự xem và lưu toàn bộ các ca. Đã chuyển 7 ca gán nhãn (`img_0003`, `img_0018`, `img_0085`, `img_0193`, `img_0197`, `img_0235`, `img_0247`) và ca hash `img_0107` sang TV1. Tải lại bàn review, chọn TV1 để thấy đủ 8 ca. [Gợi ý và hướng dẫn cho từng ca](HUONG_DAN_TV1.md).
 
 Bảng chia cho 7 người trước đó được giữ trong lịch sử Git và bản sao lưu cục bộ. Thành viên khác vẫn cần trực tiếp xem ảnh và đáp ứng yêu cầu cá nhân theo RULES.
 
@@ -48,6 +51,6 @@ Nếu có xung đột thì hỏi lại đúng người xem. Không nhập từ `
 
 ## Chốt sau khi đủ kết luận
 
-Khi 7 ca đã có kết luận và ghi chú hợp lệ, bấm **Gộp review** trên giao diện. Công cụ chỉ thêm các lỗi semantic được người xem confirmed; các ca rejected được giữ trong log làm bằng chứng. TV1 chép lại `errors.json`, `review_log.csv`, `candidates.json`, `trace.json` từ `runs/de_an_work/` sang thư mục này, cập nhật trạng thái trong README và source.json, kiểm tra rồi commit/push dev.
+Đã gộp bằng công cụ hiện có và xuất lại bốn file bắt buộc: `errors.json`, `review_log.csv`, `candidates.json`, `trace.json`. Đã cập nhật source.json và kiểm lại tính nhất quán sau khi nhận đủ kết luận của TV1. Nếu thay đổi quan sát, người xem sửa và lưu ca đó rồi gộp/xuất lại; không sửa errors.json riêng lẻ.
 
 Không chạy `lab/tv1.py finish` hoặc `check_handover.py` cho đề ẩn: đó là quy trình bàn giao v2 của seed luyện tập. Đề ẩn yêu cầu bốn file errors, candidates, review_log và trace theo SUBMISSION.md. Không có bộ đáp án của đề ẩn trong gói đã nhận; chưa có F1 cho đề này.

@@ -8,6 +8,12 @@
   "zip_bytes": 22967539,
   "release_id": "lab250_3c55ac997ebf",
   "delivery_files_matching_zip": 756,
-  "status": "pending_human_review",
-  "official_exam_start_and_deadline": "not provided by instructor in this session"
+  "status": "reviewed_outputs_validated",
+  "official_exam_start_and_deadline": "not provided by instructor in this session",
+  "reviewer": "TV1 — Lê Quang Khải",
+  "review_complete": 7,
+  "hash_complete": 1,
+  "confirmed": 6,
+  "rejected": 1,
+  "merged_errors": 14
 }

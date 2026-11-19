@@ -5,12 +5,36 @@
    "target": "img_0068"
   },
   {
+   "type": "category_swap",
+   "target": "img_0003"
+  },
+  {
+   "type": "category_swap",
+   "target": "img_0018"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0085"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0193"
+  },
+  {
+   "type": "class_swap",
+   "target": "img_0235"
+  },
+  {
    "type": "guideline_mismatch",
    "target": "img_0228"
   },
   {
    "type": "invalid_class",
    "target": "img_0083"
+  },
+  {
+   "type": "missing_box",
+   "target": "img_0197"
   },
   {
    "type": "missing_image",

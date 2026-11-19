@@ -16,7 +16,7 @@ Mỗi thành viên cần ít nhất hai commit có nội dung thuộc phần mì
 
 ## Đề ẩn
 
-TV1 đã cung cấp thư mục Drive của lớp. Đã chọn ngẫu nhiên `de_an_07.zip` từ 20 đề, tải và chạy bằng công cụ hiện có. Bộ ban đầu trong [de_an/](de_an/README.md) có 8 lỗi luật, 7 ca chờ người xem và trace 2 ảnh tầng A, 9 ảnh tầng B. Cần cả nhóm hoàn tất review rồi TV1 xuất lại bốn file và chốt. Thời gian 40 phút thực hiện theo giờ giảng viên công bố, chưa được cung cấp trong phiên này.
+TV1 đã cung cấp thư mục Drive của lớp. Đã chọn ngẫu nhiên `de_an_07.zip` từ 20 đề, tải và chạy bằng công cụ hiện có. Bộ [de_an/](de_an/README.md) đã có đủ 7/7 kết luận của TV1 (6 confirmed, 1 rejected) và 1/1 kết quả hash intact. Đã gộp 14 lỗi (8 lỗi luật, 6 lỗi gán nhãn), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace có 2 ảnh tầng A, 9 tầng B. Không còn ca chờ người xem. Chưa có F1 đề ẩn vì không có đáp án. Thời gian 40 phút thực hiện theo giờ giảng viên công bố, chưa được cung cấp trong phiên này.
 
 Giải nén theo hướng dẫn lớp để có `delivery/` ở gốc repo. Tạo thư mục `submission/de_an/` trước khi chép kết quả. Dùng validator và công cụ của nhóm.
 

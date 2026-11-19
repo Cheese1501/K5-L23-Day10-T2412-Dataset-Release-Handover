@@ -1,8 +1,8 @@
 image,type,verdict,note
-img_0003,class_swap,,
-img_0018,class_swap,,
-img_0085,class_swap,,
-img_0193,class_swap,,
-img_0197,missing_box,,
-img_0235,class_swap,,
-img_0247,bbox_drift,,
+img_0003,category_swap,confirmed,TV1 — Lê Quang Khải · tôi nhìn thấy box là cake
+img_0018,category_swap,confirmed,TV1 — Lê Quang Khải · tôi nhìn thấy box là người
+img_0085,class_swap,confirmed,TV1 — Lê Quang Khải · tôi nhìn thấy box là cake
+img_0193,class_swap,confirmed,TV1 — Lê Quang Khải · tôi nhìn thấy box là kite
+img_0197,missing_box,confirmed,"TV1 — Lê Quang Khải · Tôi nhìn thấy con chó và chỉ có khung xanh panoptic, không thấy box cam detection bao quanh con chó; thiếu box detection."
+img_0235,class_swap,confirmed,TV1 — Lê Quang Khải · tôi nhìn thấy box là cat
+img_0247,bbox_drift,rejected,"TV1 — Lê Quang Khải · tôi nhìn thấy box cam của detection ôm sát vật, panoptic bị dư box"

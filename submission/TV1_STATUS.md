@@ -42,7 +42,7 @@ Kết quả lấy từ một lượt chạy `scripts/score_findings.py --run run
 1. Đã hoàn tất xác nhận ảnh khuôn mặt và security.md bằng phản hồi trực tiếp của TV1.
 2. Đã chạy `python3 lab/tv1.py finish`, dựng lại, kiểm đạt và xuất gói cuối sang submission. Bộ kiểm đạt 17/17; log ở `r2412007/check_handover.txt`.
 3. TV3, TV6, TV7 gửi tài khoản GitHub. Cả nhóm rà yêu cầu hai commit có nội dung mỗi người.
-4. Đã nhận link Drive của lớp, chọn ngẫu nhiên đề 07 và chuẩn bị bộ ban đầu trong `submission/de_an/`: 8 lỗi luật, 7 ca gán nhãn chưa có kết luận, trace 2/9 ảnh hai tầng. Hoàn tất review bằng mắt và xuất lại kết quả. Hướng dẫn và bảng chia trong `de_an/README.md`. Thời gian 40 phút theo công bố của giảng viên.
+4. Đã hoàn tất review đề 07: 7/7 ca nhãn (6 confirmed, 1 rejected) và 1/1 ca hash intact do TV1 xem. Đã gộp 14 lỗi (8 luật, 6 semantic), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace 2/9 ảnh hai tầng; xem `de_an/README.md` và `de_an/review_validation.json`. Chưa có F1 đề ẩn; thời gian 40 phút theo công bố của giảng viên.
 5. Nộp link theo hạn và kênh lớp công bố.
 
 ## Lệnh dùng trên máy tích hợp
