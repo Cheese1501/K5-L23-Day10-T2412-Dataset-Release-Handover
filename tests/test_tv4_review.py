@@ -181,5 +181,18 @@ class CollectReviewsTest(unittest.TestCase):
         self.assertTrue(row["note"].startswith("TV4 — "))
 
 
+    def test_member_export_replaces_their_own_older_row(self):
+        lead = Workspace(self.lead_run)
+        self.save(lead, "TV5", "img_b", "bbox_drift")
+        self.reviews.mkdir()
+        better = "TV5 — Member 5 · Box misses about 15px on the top and right edges."
+        with (self.reviews / "TV5.csv").open("w", newline="", encoding="utf-8") as handle:
+            csv.writer(handle).writerows([["image", "type", "verdict", "note"],
+                                          ["img_b", "bbox_drift", "confirmed", better]])
+        code, output = self.quiet(collect_reviews.import_reviews, lead, self.reviews, False)
+        self.assertEqual(code, 0, output)
+        row = next(r for r in lead.csv("review_log.csv") if r["image"] == "img_b")
+        self.assertEqual(row["note"], better)
+
 if __name__ == "__main__":
     unittest.main()
