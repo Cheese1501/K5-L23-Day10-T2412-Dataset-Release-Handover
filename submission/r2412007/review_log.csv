@@ -1,0 +1,7 @@
+image,type,verdict,note
+000000006012,instance_merge,,
+000000009891,class_swap,confirmed,"TV1 — Lê Quang Khải · box sai lớp và chưa ôm sát vật. Detection cam ghi là bus, nhưng thực chất là car."
+000000018491,class_swap,,
+000000023023,class_swap,,
+000000023781,bbox_drift,,
+000000025386,class_swap,,

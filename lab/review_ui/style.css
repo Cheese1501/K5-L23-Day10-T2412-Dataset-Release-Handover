@@ -1,0 +1,56 @@
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17293c;background:#f1f4f7;font-size:16px;line-height:1.55;accent-color:#175bc0}
+*{box-sizing:border-box}
+body{margin:0}
+header,main,footer{max-width:1240px;margin:auto;padding:24px 32px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:38px}
+h1{font-size:2rem;line-height:1.2;margin:4px 0 10px;letter-spacing:-.04em}
+h2{font-size:1.35rem;margin:0 0 8px}
+p{margin:6px 0}
+.eyebrow{font-size:.875rem;font-weight:700;letter-spacing:.1em;color:#376084}
+.muted,small{color:#526779}
+button,select,textarea{font:inherit}
+button,select{border:1px solid #bfccd8;border-radius:7px;padding:10px 14px;background:#fff;color:inherit;cursor:pointer;min-height:44px}
+button:hover{border-color:#175bc0;background:#edf4ff}
+button:disabled{cursor:wait;opacity:.55}
+button.primary{background:#175bc0;color:white;border-color:#175bc0;font-weight:600}
+button.primary:hover{background:#0f489b}
+a{color:#175bc0;text-underline-offset:3px}
+label{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:.925rem}
+.overview{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.overview>div{background:#fff;border:1px solid #d4dfe7;border-radius:10px;padding:19px 22px}
+.overview span{display:block;color:#526779}
+.overview strong{display:block;font-size:1.6rem;margin-top:4px}
+.toolbar{display:flex;align-items:end;gap:20px;flex-wrap:wrap;margin:25px 0 12px}
+.toolbar label{min-width:220px}
+.toolbar p{margin-left:auto;font-size:.9rem;max-width:240px;overflow-wrap:anywhere}
+#notice{padding:12px 16px;border-left:4px solid #175bc0;background:#e6effa;margin:16px 0 24px;min-height:48px}
+#notice.error{border-color:#b52c32;background:#fff0f0;color:#8b2028}
+.case{border:1px solid #cbd7e1;background:white;border-radius:12px;margin:20px 0;overflow:hidden}
+.case-head{padding:20px 24px;border-bottom:1px solid #e0e7ed}
+.case-head .line{display:flex;justify-content:space-between;gap:15px;align-items:baseline}
+.case-head h2{font-variant-numeric:tabular-nums}
+.case-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,1fr)}
+.visual{padding:20px;background:#e8edf2;min-width:0}
+.legend{font-size:.875rem;color:#344d63;margin-bottom:10px}
+.controls{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.controls label{display:flex;flex-direction:row;align-items:center;font-weight:400}
+.viewer{position:relative;width:100%;line-height:0}
+.viewer img{width:100%;height:auto;display:block}
+.viewer .mask{position:absolute;inset:0;width:100%;height:100%;opacity:.4;pointer-events:none}
+.box{position:absolute;pointer-events:none;border:3px solid #ffba52}
+.box.pan{border:3px dashed #5cffe3}
+.image-actions{display:flex;gap:18px;margin-top:14px;font-size:.925rem}
+.review-form{padding:22px;display:flex;flex-direction:column;gap:18px}
+.review-form textarea{width:100%;min-height:150px;border:1px solid #b9c7d3;border-radius:7px;padding:12px;resize:vertical;background:#fff;color:#17293c}
+.review-form .seen{display:flex;flex-direction:row;font-weight:400;align-items:flex-start;gap:10px}
+input[type=checkbox]{width:18px;height:18px;flex-shrink:0;margin-top:4px}
+.review-form small{font-weight:400}
+.saved{color:#1c6a4a;font-size:.875rem;font-weight:600}
+.handover{padding:24px;background:#fff;border:1px solid #cbd7e1;border-radius:12px;margin-top:30px}
+.actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:20px 0}
+pre{background:#152638;color:#e4ecf4;border-radius:8px;padding:20px;overflow:auto;max-height:480px;white-space:pre-wrap;font-size:.875rem}
+.empty{padding:24px;border:1px solid #cbd7e1;border-radius:10px;background:#fff}
+footer{color:#526779;font-size:.875rem;padding-bottom:30px}
+:focus-visible{outline:3px solid #789ddb;outline-offset:3px}
+@media(max-width:850px){.case-body{grid-template-columns:1fr}.overview{gap:8px}.overview>div{padding:14px}.overview strong{font-size:1.25rem}header,main,footer{padding:20px}.toolbar p{margin-left:0;max-width:100%}}
+@media(max-width:480px){header{display:block}header button{margin-top:16px}.overview{grid-template-columns:1fr}.toolbar label{width:100%}.case-head,.review-form{padding:16px}}
