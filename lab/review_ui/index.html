@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>T2412 · Bàn làm việc TV1</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">DAY 10 · T2412</p><h1>Bàn làm việc TV1</h1>
+    <p class="muted">Xem ảnh, ghi bằng chứng và theo dõi bàn giao.</p></div>
+    <button id="refresh" type="button">Tải lại dữ liệu</button>
+  </header>
+  <main>
+    <section class="overview" aria-label="Tiến độ">
+      <div><span>QC lỗi luật v1</span><strong id="qc">Đang đọc…</strong></div>
+      <div><span>Ca gán nhãn đã lưu</span><strong id="review-progress">…</strong></div>
+      <div><span>Ảnh kiểm hash đã lưu</span><strong id="hash-progress">…</strong></div>
+    </section>
+    <section class="toolbar" aria-label="Chọn người và công việc">
+      <label>Người đang xem
+        <select id="reviewer"></select>
+      </label>
+      <label>Hàng đợi
+        <select id="filter"><option value="mine">Việc được giao cho tôi</option><option value="all">Cả nhóm</option></select>
+      </label>
+      <p id="run-info" class="muted"></p>
+    </section>
+    <p id="notice" role="status" aria-live="polite">Đang kết nối…</p>
+    <div id="queue"></div>
+    <section class="handover">
+      <h2>Chốt kết quả và kiểm bàn giao</h2>
+      <p id="readiness"></p>
+      <div class="actions">
+        <button id="merge" type="button">Gộp review vào errors.json</button>
+        <button id="check" type="button">Chạy kiểm bàn giao</button>
+        <a href="/download?name=review_log.csv" download>Tải review_log.csv</a>
+        <a href="/download?name=hash_review.csv" download>Tải hash_review.csv</a>
+      </div>
+      <pre id="output" aria-live="polite" hidden></pre>
+      <p class="muted">TV4 gộp khi đủ kết quả. TV1 kiểm sau khi nhận v2, trace và bảo mật.
+        Lưu ảnh tạo bản sao CSV cũ trong thư mục review_backups của lô.</p>
+    </section>
+  </main>
+  <footer>Kết luận do người trực tiếp xem ảnh ghi lại. Mọi thay đổi được lưu trên máy đang chạy công cụ.</footer>
+</body>
+</html>

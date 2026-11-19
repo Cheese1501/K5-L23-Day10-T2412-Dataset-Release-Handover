@@ -2,6 +2,12 @@
 
 Cập nhật ngày 19/11/2026. MSHV `2A202603237`. Nhóm T2412 dùng seed `2412007` và lô v1 `lab250_ebedbc794d29`.
 
+## Môi trường làm việc đã thiết lập
+
+Mở `lab/MO_LAB_TV1.command` trên macOS hoặc chạy `python3 lab/review_server.py --run runs/r2412007 --port 8765 --open`. Màn hình mở sẵn phần TV1, có ảnh gốc, box, mask, biểu mẫu ghi kết luận và nút lưu CSV. Dùng nút kiểm bàn giao để lấy báo cáo hiện tại. TV1 vẫn cần trực tiếp xem ảnh và nhập quan sát. Các kết luận hiện tại đang trống.
+
+Chức năng lưu được kiểm bằng CSV giả lập trong thư mục tạm, gồm trường hợp hai người sửa cùng file và đổi loại lỗi. Chrome đã nhập và lưu một ca thử qua giao diện. Review thật của lô được giữ nguyên trong các bước kiểm thử.
+
 ## Công việc điều phối đã thực hiện
 
 - Ghi đủ 7 thành viên, MSHV và vai trò theo ảnh TV1 cung cấp trong `submission/TEAM.md`.
@@ -68,7 +74,7 @@ Code được chia sẻ gồm `validator/validate.py`, `lab/prepare_review.py`, 
 
 ## Việc TV1 cần tự làm trên ảnh
 
-TV1 được giao ảnh `000000009891`. Mở `runs/r2412007/review.html`, phóng to vùng bất đồng, rồi gửi TV4 tên vật nhìn thấy, detection và panoptic ghi lớp gì, loại lỗi cùng kết luận. Ghi chú phải thể hiện quan sát của người xem. Dòng review hiện đang chờ TV1 cung cấp quan sát.
+TV1 được giao ảnh `000000009891`. Mở bàn làm việc bằng launcher ở trên, phóng to vùng bất đồng, rồi nhập tên vật nhìn thấy, nguồn nhãn nào sai nếu có, loại lỗi và kết luận. Ghi chú phải thể hiện quan sát của người xem. Sau khi lưu, dòng nằm trong `runs/r2412007/review_log.csv`, để TV4 gộp cùng kết quả của các thành viên. Dòng review hiện đang chờ TV1 cung cấp quan sát.
 
 Các thành viên dùng AI để phân tích code, lệnh và kế hoạch. Kết luận `confirmed` hoặc `rejected` lấy từ người đã xem ảnh theo RULES.md.
 
@@ -81,7 +87,7 @@ Các thành viên dùng AI để phân tích code, lệnh và kế hoạch. Kế
 5. Nhận v2, trace và bảo mật. Chạy `check_handover.py` trên đường dẫn chính thức.
 6. Khi nhóm chốt v2 và các mục khác đạt, ghi event release có parent một lần, rồi chạy lại bộ kiểm.
 7. Khi 0 FAIL, chạy `export_submission.py`, kiểm những file được xuất, commit và push bộ bài luyện tập.
-8. Khi giảng viên phát đề ẩn, điều phối 40 phút theo `lab/KE_HOACH_T2412.md` và nộp theo kênh lớp.
+8. Khi giảng viên phát đề ẩn, điều phối 40 phút theo bản kế hoạch lưu trong lịch sử Git và nộp theo kênh lớp. [Kế hoạch T2412](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/blob/b1d4be082fb6bd284daadc20882edf5058ce9738/lab/KE_HOACH_T2412.md)
 
 Hiện trạng bàn giao là chờ review và các đầu ra chính thức. Event release v2 và việc xuất bộ bài cuối phụ thuộc các bước 4–6.
 
@@ -89,7 +95,7 @@ Hiện trạng bàn giao là chờ review và các đầu ra chính thức. Even
 
 ```text
 T2412 dùng seed 2412007, nhánh docs/t2412-lab-plan trên fork Cheese1501.
-Mọi người fetch nhánh, ghi SHA và đọc lab/KE_HOACH_T2412.md trước khi làm.
+Mọi người fetch nhánh, ghi SHA và mở liên kết kế hoạch trong submission/TEAM.md trước khi làm.
 
 TV2 Đức Anh và TV3 Trường kiểm validator và danh sách ứng viên.
 TV4 Huy tổng hợp review của cả nhóm rồi giao errors.json.
