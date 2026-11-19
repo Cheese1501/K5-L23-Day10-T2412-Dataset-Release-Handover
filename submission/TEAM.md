@@ -5,6 +5,7 @@
 - [Kế hoạch và hướng dẫn công việc cho 7 vị trí — bản lưu trong lịch sử Git](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/blob/b1d4be082fb6bd284daadc20882edf5058ce9738/lab/KE_HOACH_T2412.md)
 - Trạng thái phân công: đã nhận danh sách 7 thành viên và MSHV từ TV1. TV1 xác nhận ngày 19/11/2026 rằng đội hình 7 người đã được đồng ý. Tài khoản GitHub từng thành viên đang chờ bổ sung.
 - [Tiến độ điều phối và danh sách đầu ra TV1 đang chờ](TV1_STATUS.md)
+- [Hướng dẫn thiết lập và chốt bài của TV1](../lab/TV1_GUIDE.md), nhánh `dev`.
 
 | Vị trí | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|---|

@@ -2,6 +2,7 @@
 """Local review workspace. Run from the repository with --run runs/r2412007."""
 
 import argparse
+import contextlib
 import csv
 import hashlib
 import json
@@ -53,7 +54,37 @@ class Workspace:
         self.run = run.resolve()
         self.delivery = Delivery(Path(delivery).resolve() if delivery else self.run / "delivery")
         self.lock = threading.RLock()
+        self._writing = False
         self.token = secrets.token_urlsafe(32)
+
+    @contextlib.contextmanager
+    def writing(self):
+        """Serialize cooperating UI/CLI writes, including across processes."""
+        with self.lock:
+            if self._writing:
+                yield
+                return
+            with (self.run / ".review-write.lock").open("a+b") as handle:
+                if os.name == "nt":
+                    import msvcrt
+                    if handle.tell() == 0:
+                        handle.write(b"0")
+                        handle.flush()
+                    handle.seek(0)
+                    msvcrt.locking(handle.fileno(), msvcrt.LK_LOCK, 1)
+                else:
+                    import fcntl
+                    fcntl.flock(handle.fileno(), fcntl.LOCK_EX)
+                self._writing = True
+                try:
+                    yield
+                finally:
+                    self._writing = False
+                    if os.name == "nt":
+                        handle.seek(0)
+                        msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+                    else:
+                        fcntl.flock(handle.fileno(), fcntl.LOCK_UN)
 
     def members(self):
         return team_members()
@@ -118,6 +149,9 @@ class Workspace:
                     "width": images[row["image"]]["width"], "height": images[row["image"]]["height"],
                     "review": matches[0] if len(matches) == 1 else None,
                 })
+            known = {(row["type"], row["target"]) for row in rules}
+            known.update((row["type"], row["image"]) for row in reviews
+                         if row["verdict"] == "confirmed" and len(row["note"].strip()) >= 20)
             hash_cases = [{"image": image, "owner": table.get(("hash", image), {}).get("owner", ""),
                            "review": next((r for r in hashes if r["image"] == image), None)}
                           for image in hash_images]
@@ -130,10 +164,14 @@ class Workspace:
             count = len({r["target"] for r in rules})
             total = len(self.delivery.manifest)
             handover = self.run / "handover" / f"{release_id}_v2"
+            security = self.run / "security.md"
+            security_text = security.read_text(encoding="utf-8") if security.exists() else ""
             return {
                 "members": self.members(), "cases": cases, "hash_cases": hash_cases,
                 "token": self.token, "run": self.run.name, "release_id": release_id,
                 "rules_count": count, "images_count": total, "rate": count / total,
+                "known_count": len({target for _, target in known}),
+                "known_rate": len({target for _, target in known}) / total,
                 "review_complete": complete, "hash_complete": hash_complete,
                 "review_revision": revision(self.run / "review_log.csv"),
                 "hash_revision": revision(self.run / "hash_review.csv"),
@@ -141,10 +179,13 @@ class Workspace:
                 "handover_exists": handover.is_dir(),
                 "trace_exists": (self.run / "trace.json").is_file(),
                 "security_exists": (self.run / "security.md").is_file(),
+                "security_pending": not security_text or "<<" in security_text,
             }
 
     def save(self, body):
-        with self.lock:
+        with self.writing():
+            if (self.run / ".tv1-finalizing").exists():
+                raise Conflict("TV1 đang đóng gói từ kết quả đã lưu. Thử lưu lại sau khi lượt hoàn thiện kết thúc.")
             if body.get("seen") is not True:
                 raise ValueError("Cần xác nhận bạn đã trực tiếp mở và xem ảnh.")
             member = body.get("reviewer", "")
@@ -205,7 +246,9 @@ class Workspace:
         return {"exit_code": result.returncode, "output": result.stdout + result.stderr}
 
     def merge(self):
-        with self.lock:
+        with self.writing():
+            if (self.run / ".tv1-finalizing").exists():
+                raise Conflict("TV1 đang hoàn thiện bộ bàn giao. Chờ lượt đó kết thúc rồi thử lại.")
             state = self.state()
             if state["review_complete"] != len(state["cases"]):
                 raise ValueError("Cần hoàn thành kết luận của mọi ứng viên trước khi gộp.")

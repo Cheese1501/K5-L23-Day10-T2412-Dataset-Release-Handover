@@ -143,7 +143,7 @@ def import_reviews(workspace, reviews, dry_run):
     print(f"Đọc {len(files)} file, {len(semantic)} dòng gán nhãn, {len(hashes)} dòng hash. "
           f"Thêm/điền {changed}, xung đột {conflicts}, bỏ qua {len(skipped)}.")
     if not dry_run and changed:
-        with workspace.lock:
+        with workspace.writing():
             workspace.replace_csv("review_log.csv", log)
             workspace.replace_csv("hash_review.csv", hash_log)
         done = workspace.state()

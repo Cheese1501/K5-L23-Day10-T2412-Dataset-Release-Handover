@@ -14,7 +14,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import pngutil
+from validator.rules_detection import find_duplicate_boxes
+from validator.rules_panoptic import find_thing_overlaps
 
 
 class Delivery:
@@ -106,16 +109,8 @@ def detection(path: Path, classes: dict, width: int, height: int) -> tuple[list[
             errors.add("bbox_out_of_bounds")
             continue
         box = Box(classes[int(category)], rect, (x * width, y * height), (w * width, h * height))
-        if any(is_duplicate(box, previous, epsilon) for previous in boxes):
-            errors.add("duplicate_box")
         boxes.append(box)
     return boxes, errors
-
-
-def is_duplicate(a: Box, b: Box, epsilon: float) -> bool:
-    return (a.name == b.name
-            and max(abs(x - y) for x, y in zip(a.size, b.size)) <= epsilon
-            and max(abs(x - y) for x, y in zip(a.center, b.center)) <= 2 + epsilon)
 
 
 def mask_runs(path: Path) -> tuple[Counter, dict]:
@@ -213,7 +208,8 @@ def validate(delivery: Delivery, candidates: bool) -> tuple[list[dict], list[dic
     categories = {c["id"]: c for c in panoptic["categories"]}
     annotations = {a["image_id"]: a["segments_info"] for a in panoptic["annotations"]}
     images = {Path(i["file_name"]).stem: i for i in panoptic["images"]}
-    errors = set()
+    errors = {(finding["type"], finding["target"])
+              for finding in find_duplicate_boxes(delivery.root) + find_thing_overlaps(delivery.root)}
     pending = []
     splits = defaultdict(set)
     for name, row in delivery.manifest.items():
@@ -242,11 +238,9 @@ def validate(delivery: Delivery, candidates: bool) -> tuple[list[dict], list[dic
             if not category["isthing"] or segment.get("iscrowd"):
                 continue
             sid = segment["id"]
-            if counts[sid] < segment["area"]:
-                errors.add(("thing_overlap", name))
             if counts[sid] and Rect.from_xywh(*segment["bbox"]).area:
                 segments.append(Segment(sid, category["name"], Rect.from_xywh(*segment["bbox"]), counts[sid]))
-        if candidates and image_ok and not box_errors:
+        if candidates and image_ok and not box_errors and ("duplicate_box", name) not in errors:
             pending.extend(shortlist(name, boxes, segments, runs))
 
     errors.update(("scene_leak", scene) for scene, values in splits.items() if len(values) > 1)
