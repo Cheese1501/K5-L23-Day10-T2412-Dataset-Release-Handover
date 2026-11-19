@@ -54,7 +54,7 @@ RUN=runs/r2412007
 open "$RUN/review.html"
 ```
 
-`rules.json` và `errors.json` trên máy này hiện chỉ có lỗi luật. `draft/` chứa gói v2 đang chờ nhóm chốt và `check-draft.txt` là kết quả kiểm gói nháp. Các lô thử trước khi chốt nhóm nằm trong `runs/practice-demo/` với lineage riêng.
+`rules.json` chứa 10 lỗi luật; `errors.json` đã gộp thêm 6 kết luận gán nhãn do thành viên xác nhận. Gói v2 hiện tại ở `handover/lab250_ebedbc794d29_v2/`, giữ HOLD trong lúc chờ hoàn tất bảo mật. `draft/` và `check-draft.txt` là bản nháp cũ; các lô thử trước khi chốt nhóm nằm trong `runs/practice-demo/` với lineage riêng.
 
 ## Tạo lại lô T2412 trên máy thành viên
 
