@@ -17,12 +17,12 @@
    "target": "000000023023"
   },
   {
-   "type": "category_swap",
-   "target": "000000025386"
+   "type": "class_swap",
+   "target": "000000009891"
   },
   {
    "type": "class_swap",
-   "target": "000000009891"
+   "target": "000000025386"
   },
   {
    "type": "duplicate_box",
