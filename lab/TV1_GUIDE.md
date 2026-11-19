@@ -29,7 +29,7 @@ python3 lab/tv1.py status
 python3 lab/tv1.py status --json-out runs/tv1_checks/readiness.json
 ```
 
-QC trên màn hình tính từ lỗi luật và các kết luận `confirmed` đã lưu. Ngày 19/11/2026, đã biết 11 target trên 250 ảnh, tương ứng 4,4%, nên HOLD v1. Đây là số đã biết trong lúc còn chờ review. Điểm F1 baseline trong báo cáo được đo trước khi gộp kết luận TV1.
+QC trên màn hình tính từ lỗi luật và các kết luận `confirmed` đã lưu. Sau khi tích hợp đủ review ngày 19/11/2026, có 16 target trên 250 ảnh, tương ứng 6,4%, nên HOLD v1. Điểm tự đo mới nhất có trong `submission/r2412007/report.md`. [Phần còn cần người thực hiện](../submission/CON_LAI.md)
 
 ## Nhận kết quả từ thành viên
 
@@ -87,16 +87,16 @@ git status --short
 
 TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit các file trong `submission/` cùng code cần nộp, rồi push nhánh `dev`. Giữ `runs/`, `data_source/`, ZIP và secret ngoài Git.
 
-## Đầu vào còn cần người thực hiện
+## Trạng thái bàn giao và việc còn lại
 
 | Người | Việc còn cần | File nhận |
 |---|---|---|
-| TV2 — Nguyễn Đức Anh | Xem ảnh `000000018491` và ghi quan sát. | CSV review cho TV4 |
-| TV3 — Hoàng Quang Trường | Xem ảnh `000000006012` và ghi quan sát. | CSV review cho TV4 |
-| TV4 — Dương Quốc Huy | Xem ảnh `000000023023`, tổng hợp các kết luận và giải quyết bất đồng. | `review_log.csv` |
-| TV5 — Đặng Trung Hiếu | Xem ảnh `000000023781` và kiểm nội dung ảnh lệch hash `000000004765`. | CSV review và `hash_review.csv` |
-| TV6 — Nguyễn Thành Thành Long | Xem ảnh `000000025386` và chuẩn bị giải thích trace. | CSV review cho TV4 |
-| TV7 — Hoàng Kim Chi | Xem chéo ca TV4 và xác nhận ví dụ khuôn mặt, hoàn tất bảo mật. | Ghi chú xem chéo và `security.md` |
+| TV2 — Nguyễn Đức Anh | Đã tích hợp hai hàm và review ảnh. Rà mốc hai commit có nội dung. | Code và CSV review đã có |
+| TV3 — Hoàng Quang Trường | Đã có review trong bảng tổng hợp. Chờ GitHub và commit cá nhân. | CSV review đã có |
+| TV4 — Dương Quốc Huy | Đã tổng hợp đủ 6/6 ca và hỗ trợ công cụ. | `review_log.csv` đã tích hợp |
+| TV5 — Đặng Trung Hiếu | Đã có code dựng v2, review ảnh và xác nhận hash intact. | V2 đã dựng, chờ kiểm cuối |
+| TV6 — Nguyễn Nhân Thành Long | Đã có review và trace, H16 đạt. Chờ xác nhận GitHub. | CSV và trace đã tích hợp |
+| TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. Chờ xác nhận ví dụ khuôn mặt, hoàn tất bảo mật và GitHub. | `security.md` còn ví dụ cần điền |
 | Cả nhóm | Cung cấp GitHub để điền TEAM, có ít nhất hai commit có nội dung dưới tên và email của mình. | Thông tin tài khoản và lịch sử Git |
 | Giảng viên hoặc coach | Phát đề ẩn, thời gian và kênh nộp. | `de_an.zip` hoặc lô tương đương |
 
@@ -110,4 +110,4 @@ Qua kiểm tra GitHub ngày 19/11/2026, cả repo đề và fork đều có 0 re
 
 ## Bản submission hiện có
 
-`submission/r2412007/` là bản đang chuẩn bị, đã xuất các file thật bằng script gốc. Nó chứa errors đã biết, candidates, review hiện có, trace và bản nháp bảo mật. Phần v2 chờ đủ đầu vào. Kết quả kiểm chính thức hiện tại là 2 PASS, 2 FAIL, dừng ở H4. Trạng thái và số liệu này cần cập nhật sau mỗi lần nhận kết quả.
+`submission/r2412007/` là bản đang chuẩn bị, đã xuất các file thật bằng script gốc. Nó chứa errors, candidates, đủ review/hash, trace, bản nháp bảo mật và gói v2 HOLD có 242 ảnh, 1.656 nhãn. Kết quả kiểm chính thức hiện tại là 16 PASS, 1 FAIL tại H17. Khi có xác nhận khuôn mặt cho bảo mật, dùng lệnh finish để hoàn tất và kiểm lại.

@@ -1,3 +1,4 @@
 {"event": "inject", "release_id": "lab250_ebedbc794d29", "seed": 2412007, "detail": "r2412007"}
 {"event": "train", "release_id": "lab250_ebedbc794d29", "run_id": "R-021"}
 {"event": "decision", "release_id": "lab250_ebedbc794d29", "decision": "HOLD", "detail": "Ít nhất 10/250 lỗi luật, vượt ngưỡng 2%; chờ review ảnh"}
+{"event": "release", "release_id": "lab250_ebedbc794d29_v2", "parent": "lab250_ebedbc794d29", "detail": "Đã đóng gói v2; README giữ HOLD trong lúc chờ hoàn tất mục bảo mật."}
