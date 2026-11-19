@@ -4,6 +4,8 @@
 
 # Day 10 Lab — Nhóm T2412
 
+Nhóm làm việc trên nhánh **`dev`**. Các công cụ và checkpoint của TV1 đã được hợp nhất vào nhánh này. Xem [hướng dẫn TV1](lab/TV1_GUIDE.md) và [tiến độ bài làm](submission/TV1_STATUS.md) để tiếp tục.
+
 <p align="center">
   <img alt="nhóm" src="https://img.shields.io/badge/lab-nhóm%205–6%20người-0b1f3a">
   <img alt="thời lượng" src="https://img.shields.io/badge/thời%20lượng-~4%20giờ-ff8a3d">

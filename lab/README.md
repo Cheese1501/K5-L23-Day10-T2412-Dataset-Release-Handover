@@ -1,18 +1,21 @@
 # Chạy bài Day 10 trên macOS
 
+[Quy trình TV1 từ thiết lập đến chốt bài](TV1_GUIDE.md). Nhánh công việc TV1 hiện là `dev`.
+
 Repo và dữ liệu COCO đã được tải vào workspace. Python yêu cầu từ 3.10 và các lệnh chạy từ thư mục gốc. Trên Windows dùng `py` thay `python3` và đặt biến bằng cú pháp PowerShell.
 
 ## Bàn làm việc TV1 có lưu kết quả
 
-Trên macOS, nhấp đúp `lab/MO_LAB_TV1.command`. Công cụ mở trình duyệt và chạy tại địa chỉ localhost được in trong Terminal. Trên các hệ điều hành khác có thể chạy lệnh dưới đây từ thư mục gốc.
+Trên macOS, nhấp đúp `lab/MO_LAB_TV1.command`. Launcher chuẩn bị các file còn thiếu, giữ kết quả đã lưu rồi mở trình duyệt tại địa chỉ localhost được in trong Terminal. Trên các hệ điều hành khác có thể chạy các lệnh dưới đây từ thư mục gốc.
 
 ```sh
+python3 lab/tv1.py prepare
 python3 lab/review_server.py --run runs/r2412007 --port 8765 --open
 ```
 
 Màn hình chọn sẵn TV1 và ảnh `000000009891`. Phóng to ảnh, bật mask khi cần, chọn loại lỗi và kết luận, viết ít nhất 20 ký tự mô tả quan sát, đánh dấu đã trực tiếp xem rồi bấm **Lưu kết quả xem ảnh**. Công cụ lưu vào `review_log.csv` của lô và sao lưu CSV cũ trong `review_backups/`. Thành viên khác chọn đúng tên ở phần người đang xem. TV5 có thêm ca kiểm ảnh lệch hash. Khi có kết quả của người khác, công cụ yêu cầu xác nhận trước khi thay kết luận và giữ bản sao cũ.
 
-TV4 dùng nút gộp khi đủ review. TV1 dùng nút kiểm bàn giao sau khi nhận các đầu ra. Dữ liệu hiện tại trên máy này còn 6 ca gán nhãn và 1 ca hash chờ người xem. Mỗi máy lưu CSV trong lô của máy đó. Người làm trên máy khác gửi CSV cho TV4 gộp và chuyển về máy tích hợp theo kế hoạch. Giữ Terminal chạy khi sử dụng màn hình này. Khi mở lại launcher, công cụ dùng lại server cùng lô nếu đang chạy.
+TV4 dùng nút gộp khi đủ review. TV1 dùng nút kiểm bàn giao sau khi nhận các đầu ra. Dữ liệu hiện tại đã có 1/6 ca gán nhãn, còn 5 ca và 1 ca hash chờ người xem. Mỗi máy lưu CSV trong lô của máy đó. Người làm trên máy khác gửi CSV cho TV4 gộp và chuyển về máy tích hợp theo hướng dẫn TV1. Giữ Terminal chạy khi sử dụng màn hình này. Khi mở lại launcher, công cụ dùng lại server cùng lô nếu đang chạy.
 
 ## Chia ảnh và gộp review (TV4)
 
