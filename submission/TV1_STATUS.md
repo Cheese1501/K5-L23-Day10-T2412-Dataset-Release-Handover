@@ -2,7 +2,7 @@
 
 Cập nhật ngày 19/11/2026. MSHV `2A202603237`. Nhóm T2412 dùng seed `2412007` và lô v1 `lab250_ebedbc794d29`.
 
-Nhánh TV1 từ lượt thiết lập lại là **`tv1/complete-lab`**. [Hướng dẫn thao tác từ chuẩn bị đến chốt bài](../lab/TV1_GUIDE.md)
+Nhánh làm việc và nhận toàn bộ cập nhật hiện tại là **`dev`**, theo yêu cầu mới của TV1. [Hướng dẫn thao tác từ chuẩn bị đến chốt bài](../lab/TV1_GUIDE.md)
 
 ## Môi trường làm việc đã thiết lập
 
@@ -24,6 +24,7 @@ Chức năng lưu được kiểm bằng CSV giả lập trong thư mục tạm,
 - Gộp lỗi đã biết bằng script gốc, giữ đủ 5 dòng đang chờ. Xuất checkpoint đang chuẩn bị sang `submission/r2412007/`.
 - Thêm lệnh chuẩn bị, nhập CSV người xem, kiểm tiến độ và hoàn thiện v2. Pipeline được kiểm end-to-end trên dữ liệu tổng hợp với bộ kiểm gốc, có kiểm lượt chạy lại.
 - Đã nhận commit TV2 `b5b5c8d`, cherry-pick thành `bceccca`, tích hợp hai hàm vào `validator/validate.py` và bỏ logic kiểm trùng trước đó. Kiểm lại seed nhóm, seed 22 và lô sạch đều khớp baseline về lỗi luật. 21 kiểm thử đạt. [Chi tiết tích hợp](../validator/README.md)
+- Đã pull và đọc `dev`, hợp nhất toàn bộ nhánh `tv1/complete-lab` vào `dev`. Các hướng dẫn lấy code và nhận cập nhật hiện dùng `dev`.
 
 ## Kết quả đã kiểm
 
@@ -62,12 +63,12 @@ Trong clone của fork nhóm, `origin` trỏ về Cheese1501, dùng các lệnh 
 
 ```sh
 git fetch origin
-git switch tv1/complete-lab
-git pull --ff-only origin tv1/complete-lab
+git switch dev
+git pull --ff-only origin dev
 git rev-parse HEAD
 ```
 
-Nếu máy đang có thay đổi chưa commit, kiểm `git status` và lưu công việc trước khi chuyển nhánh. Trên máy TV1 hiện tại, `origin` trỏ về repo đề, remote `team` mới trỏ về fork Cheese1501. Máy TV1 dùng `git fetch team` và `git pull --ff-only team tv1/complete-lab` khi cây làm việc phù hợp. Nhánh cũ `docs/t2412-lab-plan` là nền dùng chung trước lượt này.
+Nếu máy đang có thay đổi chưa commit, kiểm `git status` và lưu công việc trước khi chuyển nhánh. Trên máy TV1 hiện tại, `origin` trỏ về repo đề, remote `team` mới trỏ về fork Cheese1501. Máy TV1 dùng `git fetch team` và `git pull --ff-only team dev` khi cây làm việc phù hợp. Nhánh cũ `docs/t2412-lab-plan` là nền dùng chung trước lượt này.
 
 Code được chia sẻ gồm `validator/validate.py`, `lab/prepare_review.py`, `lab/trace_ticket.py` và `lab/build_handover.py`. Dùng hướng dẫn `lab/README.md` để tạo lại dữ liệu. Các output trong `runs/` được tạo trên máy tích hợp hoặc chuyển theo đúng seed qua kênh nội bộ nhóm.
 
@@ -108,7 +109,7 @@ Các output đang có đã được xuất thành checkpoint trong `submission/r
 ## Tin nhắn TV1 có thể gửi nhóm
 
 ```text
-T2412 dùng seed 2412007. Nhánh tích hợp TV1 hiện tại là tv1/complete-lab trên fork Cheese1501.
+T2412 dùng seed 2412007. Nhánh tích hợp hiện tại là dev trên fork Cheese1501.
 Mọi người fetch nhánh, ghi SHA và đọc lab/TV1_GUIDE.md trước khi bàn giao.
 
 TV2 Đức Anh và TV3 Trường kiểm validator và danh sách ứng viên.

@@ -1,6 +1,6 @@
 # TV1 — Thiết lập, nhận bàn giao và chốt bài T2412
 
-TV1 là Lê Quang Khải, MSHV `2A202603237`. Lô luyện tập dùng seed `2412007`, release ID `lab250_ebedbc794d29`. Công việc từ lượt này ở nhánh `tv1/complete-lab`. Các commit mới được push vào nhánh này theo yêu cầu của TV1.
+TV1 là Lê Quang Khải, MSHV `2A202603237`. Lô luyện tập dùng seed `2412007`, release ID `lab250_ebedbc794d29`. Công việc từ lượt này ở nhánh `dev`. Các commit mới được push vào nhánh này theo yêu cầu của TV1.
 
 ## Tài liệu đề cần đọc
 
@@ -12,8 +12,8 @@ Trong clone của fork nhóm, chạy từng dòng sau. Trên máy TV1 hiện t�
 
 ```sh
 git fetch origin
-git switch tv1/complete-lab
-git pull --ff-only origin tv1/complete-lab
+git switch dev
+git pull --ff-only origin dev
 python3 lab/tv1.py prepare
 python3 lab/review_server.py --run runs/r2412007 --port 8765 --open
 ```
@@ -85,7 +85,7 @@ python3 scripts/check_handover.py --run runs/r2412007
 git status --short
 ```
 
-TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit các file trong `submission/` cùng code cần nộp, rồi push nhánh `tv1/complete-lab`. Giữ `runs/`, `data_source/`, ZIP và secret ngoài Git.
+TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit các file trong `submission/` cùng code cần nộp, rồi push nhánh `dev`. Giữ `runs/`, `data_source/`, ZIP và secret ngoài Git.
 
 ## Đầu vào còn cần người thực hiện
 
