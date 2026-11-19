@@ -4,7 +4,7 @@ Cập nhật ngày 19/11/2026. MSHV `2A202603237`. Nhóm T2412 dùng seed `24120
 
 ## Môi trường làm việc đã thiết lập
 
-Mở `lab/MO_LAB_TV1.command` trên macOS hoặc chạy `python3 lab/review_server.py --run runs/r2412007 --port 8765 --open`. Màn hình mở sẵn phần TV1, có ảnh gốc, box, mask, biểu mẫu ghi kết luận và nút lưu CSV. Dùng nút kiểm bàn giao để lấy báo cáo hiện tại. TV1 vẫn cần trực tiếp xem ảnh và nhập quan sát. Các kết luận hiện tại đang trống.
+Mở `lab/MO_LAB_TV1.command` trên macOS hoặc chạy `python3 lab/review_server.py --run runs/r2412007 --port 8765 --open`. Màn hình mở sẵn phần TV1, có ảnh gốc, box, mask, biểu mẫu ghi kết luận và nút lưu CSV. Dùng nút kiểm bàn giao để lấy báo cáo hiện tại. TV1 đã lưu một kết luận. Năm ứng viên còn lại đang chờ thành viên xem ảnh.
 
 Chức năng lưu được kiểm bằng CSV giả lập trong thư mục tạm, gồm trường hợp hai người sửa cùng file và đổi loại lỗi. Chrome đã nhập và lưu một ca thử qua giao diện. Review thật của lô được giữ nguyên trong các bước kiểm thử.
 
@@ -17,13 +17,14 @@ Chức năng lưu được kiểm bằng CSV giả lập trong thư mục tạm,
 - Kiểm release ID và SHA-256 của nhãn, mask, panoptic v1. H1 và H2 của bộ kiểm gốc đạt.
 - Kiểm lineage và lưu bản sao vào `submission/lineage.jsonl`. Có đúng một event train `R-021` và một HOLD cho v1 nhóm.
 - Xác định các đầu ra còn chờ để nhóm tiếp tục theo kế hoạch.
+- Nhận kết quả xem ảnh `000000009891` của TV1, bổ sung nguyên ý quan sát người dùng cung cấp và xuất một dòng sang `submission/reviews/TV1.csv` để TV4 gộp.
 
 ## Kết quả đã kiểm
 
 | Kiểm tra | Kết quả trực tiếp |
 |---|---|
 | QC lỗi luật của lô nhóm | 10 target / 250 ảnh = 4,0%, quyết định v1 HOLD. Sau khi gộp review cần tính lại tử số. |
-| Ứng viên gán nhãn | 6 ca trên 6 ảnh, cả 6 dòng review đang chờ kết luận của thành viên. |
+| Ứng viên gán nhãn | 6 ca trên 6 ảnh, TV1 đã lưu 1 ca `class_swap/confirmed`. Còn 5 ca chờ người xem. |
 | Ảnh lệch hash | 1 ảnh, trạng thái kiểm nội dung đang trống. |
 | Lô sạch | 0 lỗi luật, 0 ứng viên. |
 | Truy vết chạy lại | 4 ảnh tầng A, 3 ảnh tầng B, 2 người cần báo. TV6 cần tự kiểm và bàn giao bản của mình. |
@@ -74,7 +75,9 @@ Code được chia sẻ gồm `validator/validate.py`, `lab/prepare_review.py`, 
 
 ## Việc TV1 cần tự làm trên ảnh
 
-TV1 được giao ảnh `000000009891`. Mở bàn làm việc bằng launcher ở trên, phóng to vùng bất đồng, rồi nhập tên vật nhìn thấy, nguồn nhãn nào sai nếu có, loại lỗi và kết luận. Ghi chú phải thể hiện quan sát của người xem. Sau khi lưu, dòng nằm trong `runs/r2412007/review_log.csv`, để TV4 gộp cùng kết quả của các thành viên. Dòng review hiện đang chờ TV1 cung cấp quan sát.
+TV1 đã xem ảnh `000000009891`, chọn `class_swap/confirmed` và cung cấp quan sát rằng detection cam ghi `bus`, nhưng vật thực tế là `car`. Dòng gốc ở `runs/r2412007/review_log.csv`. Bản bàn giao riêng có một dòng ở [reviews/TV1.csv](reviews/TV1.csv).
+
+TV4 lấy dòng trong `submission/reviews/TV1.csv` để gộp vào review của nhóm theo mã ảnh và loại lỗi, đối chiếu nếu đã có nhận xét khác cho cùng ảnh. Giữ các dòng của thành viên khác trong file tổng hợp. Sau khi đủ cả hàng đợi, chạy `merge_review.py` theo hướng dẫn của lab để tạo `errors.json` cuối. Nhận xét box chưa ôm sát trong ghi chú được giữ nguyên theo TV1, còn loại lỗi đã xác nhận của ca này là `class_swap`.
 
 Các thành viên dùng AI để phân tích code, lệnh và kế hoạch. Kết luận `confirmed` hoặc `rejected` lấy từ người đã xem ảnh theo RULES.md.
 
@@ -82,7 +85,7 @@ Các thành viên dùng AI để phân tích code, lệnh và kế hoạch. Kế
 
 1. Nhận tài khoản GitHub của cả nhóm, kiểm quyền truy cập fork để mọi người lấy code và commit phần của mình.
 2. Nhận phiên bản luật và danh sách ứng viên được TV2, TV3 xác nhận. Cho TV4 biết SHA dùng chung.
-3. Xem ảnh TV1 được giao và gửi kết quả cho TV4.
+3. Đã xuất kết quả xem ảnh TV1 vào `submission/reviews/TV1.csv`. TV4 nhận file này từ nhánh chung để gộp.
 4. Nhận `errors.json` đã gộp và `hash_review.csv`, tính lại QC v1. Chuyển tử số, mẫu số và quyết định cho TV5, TV7.
 5. Nhận v2, trace và bảo mật. Chạy `check_handover.py` trên đường dẫn chính thức.
 6. Khi nhóm chốt v2 và các mục khác đạt, ghi event release có parent một lần, rồi chạy lại bộ kiểm.
