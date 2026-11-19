@@ -1,5 +1,7 @@
 # Dùng AI
 
-| # | Ai dùng | Công cụ | Prompt (tóm tắt) | AI sai ở đâu | Nhóm kiểm lại thế nào |
+| # | Ai dùng | Công cụ | Prompt (tóm tắt) | AI sai ở đâu hoặc còn thiếu gì | Cách kiểm lại |
 |---|---|---|---|---|---|
-| 1 | <<>> | <<>> | <<>> | <<>> | <<>> |
+| 1 | Bổ sung tên khi chốt nhóm | Codex | Đọc repo Day 10, thiết lập, hoàn thành phần có thể làm và báo cáo những bước cần người thực hiện. Dùng seed tạm khi chưa chốt nhóm. | AI chọn các ngưỡng đối chiếu theo tín hiệu hình học. Độ chính xác gán nhãn chưa được xác minh bằng review ảnh. | Chạy lô sạch và hai seed bằng script tự đo gốc. Dùng bộ kiểm gốc kiểm bản nháp. Nhóm mở ảnh ứng viên và ghi nhận lỗi thực tế nếu phát hiện. |
+| 2 | Bổ sung tên khi phân công | Codex | Chia việc, lập kế hoạch và hướng dẫn cho 7 người của T2412. | Đội hình 7 người cần giảng viên hoặc coach xác nhận vì RULES.md ghi 5–6 người. | Đối chiếu phân công với các mốc lab và các mã ảnh trong hàng đợi của seed 2412007. Nhóm xác nhận người phụ trách từng vị trí. |
+| 3 | Bổ sung tên người yêu cầu | Codex | Mở rộng kế hoạch thành một file có thứ tự, việc song song, đầu vào và đầu ra cho từng người. Kiểm TEAM.md và đưa kế hoạch lên Git để thành viên lấy về. | Code triển khai còn local. Tên thành viên và xác nhận đội hình chưa có. | Đối chiếu kế hoạch với GUIDE.md, RULES.md, SUBMISSION.md và đầu ra hiện có. Kiểm phạm vi commit, liên kết và trạng thái push thực tế. |
