@@ -12,15 +12,9 @@ TV1 yêu cầu chọn ngẫu nhiên một đề từ thư mục Drive của lớ
 
 ## Chia việc xem ảnh
 
-| Người xem chính | Ca được giao | Người xem chéo |
-|---|---|---|
-| TV1 | img_0003; img_0247 | TV2 xem chéo img_0003 |
-| TV2 | img_0018 | TV3 |
-| TV3 | img_0085 | TV4 |
-| TV4 | img_0193 | TV5 |
-| TV5 | img_0107, kiểm ảnh lệch hash | — |
-| TV6 | img_0197 | — |
-| TV7 | img_0235 | TV6 |
+TV1 yêu cầu tự xem toàn bộ các ca còn chờ. Đã chuyển 7 ca gán nhãn (`img_0003`, `img_0018`, `img_0085`, `img_0193`, `img_0197`, `img_0235`, `img_0247`) và ca hash `img_0107` sang TV1. Tải lại bàn review, chọn TV1 để thấy đủ 8 ca. [Gợi ý và hướng dẫn cho từng ca](HUONG_DAN_TV1.md).
+
+Bảng chia cho 7 người trước đó được giữ trong lịch sử Git và bản sao lưu cục bộ. Thành viên khác vẫn cần trực tiếp xem ảnh và đáp ứng yêu cầu cá nhân theo RULES.
 
 Mỗi thành viên trực tiếp xem ảnh, chọn confirmed hoặc rejected và ghi rõ vật nhìn thấy, nguồn nhãn nào sai hoặc lý do không phải lỗi. Ghi chú ít nhất 20 ký tự, kèm tên người xem. Ảnh lệch hash cần mở kiểm nội dung, ghi intact hoặc damaged. Không sao chép kết luận của seed luyện tập sang đề này.
 
