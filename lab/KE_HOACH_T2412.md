@@ -4,7 +4,7 @@
 
 - **Repo nhóm** [Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover)
 - **Seed luyện tập** `2412007`, chọn theo ví dụ `2412 × 1000 + 7` trong GUIDE. **Lô v1** `lab250_ebedbc794d29`.
-- **Điều kiện đội hình** T2412 có 7 người, trong khi RULES ghi 5–6. Người 1 hỏi giảng viên hoặc coach và ghi lại câu trả lời. Cả nhóm có thể tiếp tục chuẩn bị kỹ thuật trong thời gian chờ, rồi cập nhật phân công theo quyết định của lớp. [RULES.md](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/blob/main/RULES.md)
+- **Đội hình** T2412 có 7 người. TV1 cho biết ngày 19/11/2026 rằng đội hình đã được đồng ý. Danh sách tên và MSHV có trong `submission/TEAM.md`. [RULES.md](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/blob/main/RULES.md)
 - **Hạn nộp, kênh nộp và giờ phát đề ẩn** lấy từ giảng viên. Các mốc dưới đây là thời gian làm việc tương đối.
 
 ## 1. Hiện trạng và việc bắt đầu ngay
@@ -16,7 +16,7 @@
 | Truy vết có 4 ảnh tầng A, 3 ảnh tầng B, 2 người trong `notify`. Bản nháp v2 có 244 ảnh và 1.682 box. | Người 6 kiểm lại ticket. Người 5 dựng v2 sau review. Số ảnh và số box cuối có thể đổi. |
 | Bản nháp v2 đạt 14/17. Ba mục còn mở là H3 review, H14 event release v2 và H17 ví dụ ảnh cho phần bảo mật. | Người 4, 5 và 7 bàn giao bằng chứng để người 1 chạy lại bộ kiểm gốc và xuất bài. |
 
-**Điều kiện để các máy bắt đầu dùng cùng code.** Bản triển khai trước đó nằm local, gồm `validator/validate.py` và các công cụ `lab/prepare_review.py`, `lab/trace_ticket.py`, `lab/build_handover.py`. Khi kế hoạch này được soạn, các file đó chưa được push. Người 1 kiểm tra fork, rồi phối hợp với người có quyền ghi để chia sẻ một nhánh hoặc commit chứa code và tài liệu nguồn. Gửi tên ref, SHA commit và seed cho cả nhóm. Nếu chỉ nhận file kế hoạch, thành viên có thể phân tích và chuẩn bị phần việc, còn chạy chuỗi lệnh của nhóm cần bản code chung. Dữ liệu `runs/` và `data_source/` được tạo lại trên máy làm việc.
+**Code dùng chung.** Nhánh `docs/t2412-lab-plan` tập hợp kế hoạch, danh sách thành viên, `validator/validate.py` và các công cụ `lab/prepare_review.py`, `lab/trace_ticket.py`, `lab/build_handover.py`. Thành viên lấy nhánh và ghi SHA thực tế bằng `git rev-parse HEAD` trước khi chạy. TV2 và TV3 rà code, TV4 kiểm công cụ xem ảnh và TV5 rà công cụ dựng v2 theo phân công. Dữ liệu `runs/` và `data_source/` được tạo lại trên máy làm việc. Xem `submission/TV1_STATUS.md` để biết đầu ra đã kiểm và những việc đang chờ.
 
 ## 2. Ai phụ trách việc gì
 

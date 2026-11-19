@@ -1,21 +1,36 @@
-# Báo cáo nhóm <<XX>>
+# Báo cáo Day 10 — Nhóm T2412
 
 ## 1. Số liệu luyện tập
-- F1 theo seed (rule / cross_check / overall): <<seed: ... / ... / ...>>
-- Số ứng viên trên lô sạch (`--no-faults`): <<...>>; hàng đợi trên seed luyện tập: <<... ảnh>>
-- Ngưỡng đã chọn và cách chọn (không dùng `_private`): <<...>>
 
-## 2. Vì sao báo hết ứng viên làm F1 giảm?
-<<Trả lời bằng số của nhóm.>>
+| Lô | Số lỗi luật | F1 lỗi luật | F1 tổng nếu chỉ báo lỗi luật | Ứng viên |
+|---|---:|---:|---:|---:|
+| T2412 · seed 2412007 · 250 ảnh | 10 | ≈ 1.0 | ≈ 0.7 | 6 ca trên 6 ảnh |
+| Seed 11 · 250 ảnh | 13 | ≈ 1.0 | ≈ 0.8 | 3 ca trên 3 ảnh |
+| Seed 22 · 250 ảnh | 9 | ≈ 1.0 | ≈ 0.7 | Chưa chạy chế độ ứng viên |
+| Lô sạch · 50 ảnh | 0 | | | 0 |
+
+Seed 2412007 lấy theo ví dụ `2412 × 1000 + 7` trong GUIDE.md. Điểm lấy từ script tự đo ở chế độ học viên. F1 lỗi gán nhãn còn chờ nhóm xem và xác nhận.
+
+Validator ghép lớp theo tên và dùng IoU, phần trăm pixel segment nằm trong box, cùng lớp và kích thước vật. Hai nguồn khác lớp được ưu tiên review khi IoU từ 0,56, phủ mask từ 78% và không có cặp cạnh tranh gần bằng. Segment thiếu box phải có ít nhất 170 pixel, với hai chiều bbox từ 10 px. Các ngưỡng giữ số ca ở mức nhóm có thể mở từng ảnh. Kiểm thử lô sạch cho thấy 0 ca lệch tự nhiên được đưa vào hàng đợi trên 50 ảnh. Cần đo lại nếu nhóm điều chỉnh ngưỡng.
+
+## 2. Vì sao báo hết ứng viên có thể làm F1 giảm?
+
+Ứng viên sai làm tăng FP, kéo precision và F1 xuống. Nếu chọn cả hai loại lỗi cho một bất đồng lớp, sẽ có ít nhất một báo cáo sai dù ảnh thật sự có lỗi. Sau review, bổ sung số ứng viên `confirmed` và `rejected` của seed 2412007 để minh hoạ.
 
 ## 3. Quyết định và lineage
-<<QC v1 a/b, kết luận, vì sao R-021 phải xem lại hoặc train lại.>>
 
-## 4. Hash chứng minh gì, không chứng minh gì?
-<<>>
+Lô `lab250_ebedbc794d29` có ít nhất 10/250 lỗi, tương ứng 4,0%, nên đã ghi **HOLD** cho v1. Truy vấn impact trả về `R-021: affected=True action=review_or_retrain`. Model của R-021 đã học từ v1. Nhóm cần xem lại ảnh hưởng khi đánh giá model hoặc train lại trên lô đã xử lý. Bản nháp v2 giữ 244 ảnh với 1.682 box, tạm đưa 6 ảnh vào hàng đợi xử lý. Một ảnh trong đó cần nhóm kiểm tra nội dung vì hash lệch.
+
+## 4. Vai trò của hash
+
+So SHA-256 với manifest cho biết byte của file có khớp phiên bản được bàn giao. Một nhãn sai vẫn có thể có SHA-256 khớp. Tạo v2 riêng giúp giữ bằng chứng QC và truy về dữ liệu R-021 đã dùng.
 
 ## 5. Truy vết
-<<Tiêu chí tầng a/b, vì sao lấy guideline theo job.>>
 
-## 6. Bug hoặc điểm chưa rõ trong lab (nếu có)
-<<>>
+Lấy lớp đổi quy tắc từ changelog và cảnh được báo từ ticket. Giữ các ảnh có box lớp đó thuộc job dùng guideline cũ. `tier_a` nằm trong cảnh được báo, `tier_b` là những ảnh còn lại thỏa điều kiện. `notify` là tập mã người gán và người kiểm từ các job có ảnh ở hai tầng. Dùng guideline ghi theo job vì metadata ảnh có thể bị lệch.
+
+Seed 2412007 có 4 ảnh tầng A, 3 ảnh tầng B và 2 người trong danh sách báo. F1 làm tròn của cả ba mục đều ≈ 1.0.
+
+## 6. Việc còn mở
+
+Bộ kiểm gốc trên gói nháp T2412 trả 14 PASS, 3 FAIL. Khi TV1 kiểm lại đường dẫn chính thức `runs/r2412007`, bộ kiểm trả 2 PASS, 2 FAIL rồi dừng tại H4 vì thiếu thư mục v2 trong `handover/`. H3 chờ review của thành viên. Sau khi dựng v2 chính thức, cần kiểm đủ các mục còn lại. Danh sách 7 thành viên và MSHV đã cập nhật theo ảnh TV1 cung cấp. TV1 cho biết đội hình đã được đồng ý. Còn chờ tài khoản GitHub, commit và kết quả xem ảnh từ các thành viên. Đề ẩn làm khi giảng viên phát.
