@@ -30,6 +30,8 @@ CSV_FIELDS = {
     "review_log.csv": ["image", "type", "verdict", "note"],
     "hash_review.csv": ["image", "status", "reviewer", "note"],
 }
+# Script con in tiếng Việt; trên Windows console mặc định cp1252 làm script crash.
+CHILD_ENV = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
 DOWNLOADS = {"rules.json", "candidates.json", "errors.json", "review_log.csv",
              "hash_review.csv", "trace.json", "security.md"}
 
@@ -198,7 +200,7 @@ class Workspace:
 
     def check(self):
         result = subprocess.run([sys.executable, str(ROOT / "scripts/check_handover.py"),
-                                 "--run", str(self.run)], cwd=ROOT, capture_output=True, text=True,
+                                 "--run", str(self.run)], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", env=CHILD_ENV,
                                 timeout=120)
         return {"exit_code": result.returncode, "output": result.stdout + result.stderr}
 
@@ -215,7 +217,7 @@ class Workspace:
             result = subprocess.run([sys.executable, str(ROOT / "scripts/merge_review.py"),
                                      "--rules", str(self.run / "rules.json"),
                                      "--review", str(self.run / "review_log.csv"),
-                                     "--out", str(output)], cwd=ROOT, capture_output=True, text=True,
+                                     "--out", str(output)], cwd=ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", env=CHILD_ENV,
                                     timeout=30)
             if result.returncode:
                 raise ValueError(result.stdout + result.stderr)
