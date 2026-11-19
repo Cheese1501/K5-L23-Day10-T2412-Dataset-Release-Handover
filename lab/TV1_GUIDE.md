@@ -94,9 +94,9 @@ TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit
 | TV2 — Nguyễn Đức Anh | Đã tích hợp hai hàm và review ảnh. Rà mốc hai commit có nội dung. | Code và CSV review đã có |
 | TV3 — Hoàng Quang Trường | Đã có review trong bảng tổng hợp. Chờ GitHub và commit cá nhân. | CSV review đã có |
 | TV4 — Dương Quốc Huy | Đã tổng hợp đủ 6/6 ca và hỗ trợ công cụ. | `review_log.csv` đã tích hợp |
-| TV5 — Đặng Trung Hiếu | Đã có code dựng v2, review ảnh và xác nhận hash intact. | V2 đã dựng, chờ kiểm cuối |
+| TV5 — Đặng Trung Hiếu | Đã có code dựng v2, review ảnh và xác nhận hash intact. | V2 đã đóng gói và kiểm đạt 17/17 |
 | TV6 — Nguyễn Nhân Thành Long | Đã có review và trace, H16 đạt. Chờ xác nhận GitHub. | CSV và trace đã tích hợp |
-| TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. Chờ xác nhận ví dụ khuôn mặt, hoàn tất bảo mật và GitHub. | `security.md` còn ví dụ cần điền |
+| TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. TV1 đã bổ sung xác nhận khuôn mặt và hoàn tất bảo mật. Chờ GitHub. | `security.md` đã kiểm đạt H17 |
 | Cả nhóm | Cung cấp GitHub để điền TEAM, có ít nhất hai commit có nội dung dưới tên và email của mình. | Thông tin tài khoản và lịch sử Git |
 | Giảng viên hoặc coach | Phát đề ẩn, thời gian và kênh nộp. | `de_an.zip` hoặc lô tương đương |
 
@@ -110,4 +110,4 @@ Qua kiểm tra GitHub ngày 19/11/2026, cả repo đề và fork đều có 0 re
 
 ## Bản submission hiện có
 
-`submission/r2412007/` là bản đang chuẩn bị, đã xuất các file thật bằng script gốc. Nó chứa errors, candidates, đủ review/hash, trace, bản nháp bảo mật và gói v2 HOLD có 242 ảnh, 1.656 nhãn. Kết quả kiểm chính thức hiện tại là 16 PASS, 1 FAIL tại H17. Khi có xác nhận khuôn mặt cho bảo mật, dùng lệnh finish để hoàn tất và kiểm lại.
+`submission/r2412007/` đã xuất các file thật bằng script gốc và đạt 17 PASS, 0 FAIL ngày 20/11/2026. Có errors, candidates, đủ review/hash, trace, bảo mật với xác nhận ảnh 000000004395 của TV1 và gói v2 có 242 ảnh, 1.656 nhãn. Log kiểm nằm ở `submission/r2412007/check_handover.txt`. V1 vẫn HOLD; README v2 ghi Release theo xử lý lỗi detection của bài lab. Phần bảo mật ghi HOLD và báo người phụ trách trong tình huống guideline yêu cầu làm mờ.

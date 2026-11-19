@@ -1,6 +1,6 @@
 # Tiến độ TV4 — Dương Quốc Huy
 
-Ghi nhận tích hợp trên dev ngày 19/11/2026. TV1 đã nhận đầu ra, dựng v2 và chạy bộ kiểm gốc đạt 16/17, H16 đạt. Còn H17 bảo mật. Chi tiết hiện tại ở [TV1_STATUS.md](TV1_STATUS.md).
+Ghi nhận tích hợp trên dev, cập nhật ngày 20/11/2026. TV1 đã nhận đầu ra, hoàn tất bảo mật theo xác nhận trực tiếp về ảnh 000000004395, đóng gói lại và chạy bộ kiểm gốc đạt 17/17. Chi tiết hiện tại ở [TV1_STATUS.md](TV1_STATUS.md).
 
 Cập nhật ngày 19/11/2026. MSHV `2A202603311`. Làm trên nhánh `tv4/review-tools`, tách từ `docs/t2412-lab-plan` tại `7a497fc`.
 

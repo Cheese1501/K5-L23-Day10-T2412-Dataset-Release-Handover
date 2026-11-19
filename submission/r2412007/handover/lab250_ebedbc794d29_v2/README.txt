@@ -5,7 +5,7 @@ Số nhãn: 1656
 Guideline: v1.2 (J01, J02, J03), v1.3 (J04, J05, J06, J07, J08, J09, J10)
 QC v1: 16/250 = 6.4%
 Kết luận v1: Hold — vượt ngưỡng 2%
-Kết luận v2: Hold — đã dựng gói detection, chờ hoàn tất bảo mật và kiểm cuối trước khi phát hành
+Kết luận v2: Release — tách 8 ảnh lỗi detection/ảnh hỏng sang rework_queue.csv, sửa 4 mục hash/guideline/split ngay trong v2 (chi tiết ở Ghi chú)
 Ghi chú:
   - Hash 000000004765: mở ảnh kiểm thấy còn nguyên (hash_review.csv) (hash cũ là hash của 000000006771.jpg, manifest v1 ghi nhầm); giữ ảnh, manifest.csv v2 ghi sha256 tính lại từ file thật.
   - Guideline 000000001353: metadata v1 ghi v1.3, job J01 trong jobs.csv là v1.2; truyvet.csv ghi theo job vì ảnh được gán theo guideline của job.

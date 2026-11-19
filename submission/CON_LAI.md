@@ -1,21 +1,12 @@
 # Các bước còn cần người thực hiện — T2412
 
-Nhánh làm việc là `dev`. Ngày 19/11/2026 đã có đủ 6 kết luận gán nhãn và kết quả kiểm ảnh lệch hash. Gói v2 đã dựng, giữ trạng thái HOLD trong lúc chờ bảo mật. Bộ kiểm gốc hiện đạt 16 PASS, 1 FAIL.
+Nhánh làm việc là `dev`. Ngày 20/11/2026 đã hoàn tất phần luyện tập, đủ 6 kết luận gán nhãn, kiểm hash và bảo mật. Bộ kiểm gốc hiện đạt 17 PASS, 0 FAIL.
 
-## Hoàn tất bảo mật
+## Bảo mật đã hoàn tất
 
-TV7 hoặc một thành viên trực tiếp mở ảnh trong lô và xác nhận mã ảnh có khuôn mặt nhìn rõ. Có thể dùng bàn làm việc review hoặc mở ảnh gốc trong `runs/r2412007/delivery/images/`. Gửi mã ảnh, tên người xem và chi tiết thấy trên ảnh cho TV1.
+Ngày 20/11/2026, TV1 — Lê Quang Khải xác nhận trực tiếp đã xem ảnh `000000004395.jpg` và vẫn thấy rõ mặt người. Đã ghi nguyên văn xác nhận vào `security.md`, chạy `python3 lab/tv1.py finish`, đóng gói lại và xuất bài. Bộ kiểm gốc đạt **17 PASS, 0 FAIL**; log ở `r2412007/check_handover.txt`.
 
-Trong `runs/r2412007/security.md`, thay phần ví dụ còn dấu `<<...>>` bằng mã ảnh đã xác nhận và mô tả quan sát. Giữ kết luận tình huống là HOLD và báo người phụ trách. Nhóm đã có nội dung ca USB, năm tình huống và xử lý theo thẩm quyền.
-
-Khi đã có xác nhận, chạy lệnh sau. Công cụ dựng lại v2, đóng gói, kiểm các mục còn lại, ghi release v2 có parent và xuất bài khi bộ kiểm đạt.
-
-```sh
-python3 lab/tv1.py finish
-python3 scripts/check_handover.py --run runs/r2412007
-```
-
-Event HOLD v1 và event ghi nhận phiên bản bàn giao v2 có parent đã có. H14 đạt. README v2 đang HOLD. Khi bảo mật đầy đủ, lệnh finish kiểm lại và xuất gói cuối.
+V1 vẫn HOLD vì QC 6,4%. README v2 ghi Release theo việc tách lỗi detection của bài lab. Trong tình huống bảo mật mà guideline yêu cầu làm mờ, câu trả lời vẫn là HOLD và báo người phụ trách; chưa có thao tác làm mờ ảnh hay gửi thông báo ngoài thực tế.
 
 ## Danh tính và commit cá nhân
 
@@ -47,6 +38,6 @@ Bộ bài đề ẩn có đủ `errors.json`, `candidates.json`, `review_log.csv
 
 ## Nộp bài
 
-Khi phần luyện tập đạt bộ kiểm, cập nhật báo cáo và nhật ký AI, kiểm đủ file đã xuất, rồi commit và push vào `dev` theo quy ước nhóm. Hạn và kênh nộp lấy theo giảng viên. Nếu lớp chấm nhánh cụ thể hoặc tên repo cụ thể, TV1 xác nhận thông tin đó trước khi gửi link.
+Phần luyện tập đã kiểm đạt, cập nhật báo cáo và nhật ký AI, xuất file vào `submission/`. Các thay đổi được commit và push vào `dev` theo quy ước nhóm. Hạn và kênh nộp lấy theo giảng viên. Nếu lớp chấm nhánh cụ thể hoặc tên repo cụ thể, TV1 xác nhận thông tin đó trước khi gửi link.
 
 Điểm tự đo hiện tại trên phiên bản review đã gộp là F1 tổng ≈ 0,8, lỗi luật ≈ 1,0, lỗi gán nhãn ≈ 0,6 và truy vết các tầng ≈ 1,0. Chỉ sửa kết luận nhãn dựa trên việc người xem mở lại ảnh và nêu bằng chứng.

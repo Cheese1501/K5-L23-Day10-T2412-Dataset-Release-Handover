@@ -6,7 +6,7 @@
 
 Tự đo sau khi gộp đủ review cho F1 tổng ≈ 0,8, lỗi luật ≈ 1,0, lỗi gán nhãn ≈ 0,6. Truy vết tier_a, tier_b, notify đều ≈ 1,0. Báo cáo gốc ở `r2412007/report.md`. Các lần đo ở bảng baseline bên dưới là lịch sử trước khi gộp review.
 
-V2 hiện có 242 ảnh, 1.656 nhãn và 8 ảnh rework, đã được đóng gói và xuất sang `submission/r2412007/handover/`. Bộ kiểm gốc trả 16 PASS, 1 FAIL tại H17. H14 đã đạt với event tạo phiên bản v2 có parent. V2 đang HOLD, chờ phần bảo mật có ví dụ khuôn mặt do người xem xác nhận và lần kiểm cuối. [Việc còn lại](CON_LAI.md)
+V2 hiện có 242 ảnh, 1.656 nhãn và 8 ảnh rework, đã được đóng gói và xuất sang `submission/r2412007/handover/`. Ngày 20/11/2026, TV1 xác nhận đã xem ảnh 000000004395 và còn thấy rõ mặt người. Đã hoàn tất security.md, dựng lại và xuất gói cuối. Bộ kiểm gốc trả 17 PASS, 0 FAIL; log ở `r2412007/check_handover.txt`. H14 có event v2 với parent; README v2 ghi Release theo xử lý lỗi detection, v1 vẫn HOLD. Tình huống bảo mật có yêu cầu làm mờ vẫn trả lời HOLD và báo người phụ trách. [Việc còn lại](CON_LAI.md)
 
 ## 1. Số liệu baseline luyện tập trước khi gộp review
 
@@ -43,7 +43,7 @@ Seed 2412007 có 4 ảnh tầng A, 3 ảnh tầng B và 2 người trong danh s�
 
 ## 6. Việc còn mở
 
-Bộ kiểm mới nhất trên lô tích hợp trả 16 PASS, 1 FAIL. Mục còn lại là H17, chờ ví dụ ảnh có khuôn mặt do người xem xác nhận. H14 đã đạt với event ghi nhận phiên bản bàn giao v2, README vẫn HOLD. V1 vẫn giữ nguyên. Còn cần tài khoản GitHub TV3, TV6, TV7, rà commit cá nhân và làm đề ẩn khi giảng viên phát. Hướng dẫn chi tiết được lưu trong CON_LAI.md.
+Bộ kiểm mới nhất trên lô tích hợp trả 17 PASS, 0 FAIL sau xác nhận ảnh khuôn mặt của TV1. Đã đóng gói và xuất bài, v1 vẫn giữ nguyên. PASS xác nhận các yêu cầu mà bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng. Còn cần tài khoản GitHub TV3, TV6, TV7, rà commit cá nhân và làm đề ẩn khi giảng viên phát. Hướng dẫn chi tiết được lưu trong CON_LAI.md.
 
 ## 7. Tích hợp hai module TV2
 

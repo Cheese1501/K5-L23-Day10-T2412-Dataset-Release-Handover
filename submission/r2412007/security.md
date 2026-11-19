@@ -16,4 +16,6 @@ Giữ dữ liệu trong thiết bị và hệ thống công ty. Khi hết giờ,
 
 Đặt lô ở trạng thái **Hold** và báo người phụ trách dữ liệu hoặc bảo mật theo kênh nội bộ. Gửi mã ảnh, job, phiên bản guideline và vị trí cần kiểm tra. Giữ bản gốc để truy vết, rồi để người có thẩm quyền quyết định cách làm mờ và kiểm lại trước khi phát hành. Tự xoá hay chỉnh ảnh sẽ làm mất bằng chứng hoặc thay đổi lô đã giao.
 
-Ví dụ trong lô: <<thành viên điền tên ảnh đã mở và xác nhận thấy rõ mặt người>>
+Ví dụ trong lô: ảnh `000000004395.jpg`, thuộc job `J02`, người gán `A05`, người kiểm `Q02`, guideline của job `v1.2`. Ngày 20/11/2026, TV1 — Lê Quang Khải trực tiếp xem ảnh được gửi từ lô và xác nhận: “tôi đã xem ảnh bạn gửi, và vẫn còn thấy rõ mặt người trong ảnh”.
+
+Theo tình huống của đề bài, nếu guideline yêu cầu làm mờ thì giữ **Hold**, báo người phụ trách để xử lý đúng thẩm quyền và kiểm lại trước khi phát hành. Xác nhận này là bằng chứng người trong nhóm đã xem ảnh; chưa có xác nhận đã làm mờ hoặc đã báo người phụ trách ngoài thực tế.

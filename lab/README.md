@@ -15,7 +15,7 @@ python3 lab/review_server.py --run runs/r2412007 --port 8765 --open
 
 Màn hình chọn sẵn TV1 và ảnh `000000009891`. Phóng to ảnh, bật mask khi cần, chọn loại lỗi và kết luận, viết ít nhất 20 ký tự mô tả quan sát, đánh dấu đã trực tiếp xem rồi bấm **Lưu kết quả xem ảnh**. Công cụ lưu vào `review_log.csv` của lô và sao lưu CSV cũ trong `review_backups/`. Thành viên khác chọn đúng tên ở phần người đang xem. TV5 có thêm ca kiểm ảnh lệch hash. Khi có kết quả của người khác, công cụ yêu cầu xác nhận trước khi thay kết luận và giữ bản sao cũ.
 
-TV4 dùng nút gộp khi đủ review. TV1 dùng nút kiểm bàn giao sau khi nhận các đầu ra. Lô hiện tại đã có 6/6 ca gán nhãn và 1/1 ca hash, đang chờ ví dụ khuôn mặt để chốt bảo mật. Mỗi máy lưu CSV trong lô của máy đó. Người làm trên máy khác gửi CSV cho TV4 gộp và chuyển về máy tích hợp theo hướng dẫn TV1. Giữ Terminal chạy khi sử dụng màn hình này. Khi mở lại launcher, công cụ dùng lại server cùng lô nếu đang chạy.
+TV4 dùng nút gộp khi đủ review. TV1 dùng nút kiểm bàn giao sau khi nhận các đầu ra. Lô hiện tại đã có 6/6 ca gán nhãn và 1/1 ca hash, bảo mật đã có xác nhận của TV1 ngày 20/11/2026 và bộ kiểm đạt 17/17. Mỗi máy lưu CSV trong lô của máy đó. Người làm trên máy khác gửi CSV cho TV4 gộp và chuyển về máy tích hợp theo hướng dẫn TV1. Giữ Terminal chạy khi sử dụng màn hình này. Khi mở lại launcher, công cụ dùng lại server cùng lô nếu đang chạy.
 
 ## Chia ảnh và gộp review (TV4)
 
@@ -54,7 +54,7 @@ RUN=runs/r2412007
 open "$RUN/review.html"
 ```
 
-`rules.json` chứa 10 lỗi luật; `errors.json` đã gộp thêm 6 kết luận gán nhãn do thành viên xác nhận. Gói v2 hiện tại ở `handover/lab250_ebedbc794d29_v2/`, giữ HOLD trong lúc chờ hoàn tất bảo mật. `draft/` và `check-draft.txt` là bản nháp cũ; các lô thử trước khi chốt nhóm nằm trong `runs/practice-demo/` với lineage riêng.
+`rules.json` chứa 10 lỗi luật; `errors.json` đã gộp thêm 6 kết luận gán nhãn do thành viên xác nhận. Gói v2 hiện tại ở `handover/lab250_ebedbc794d29_v2/`, đã đóng gói lại, xuất sang submission và kiểm đạt 17/17 ngày 20/11/2026. `draft/` và `check-draft.txt` là bản nháp cũ; các lô thử trước khi chốt nhóm nằm trong `runs/practice-demo/` với lineage riêng.
 
 ## Tạo lại lô T2412 trên máy thành viên
 
