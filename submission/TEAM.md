@@ -3,14 +3,15 @@
 - Seed luyện tập: `2412007` (chọn theo ví dụ `2412 × 1000 + 7` trong GUIDE.md)
 - Repo: [Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover)
 - [Kế hoạch và hướng dẫn công việc cho 7 vị trí](../lab/KE_HOACH_T2412.md)
-- Trạng thái phân công: 7 vị trí dự kiến. Nhóm cần điền họ tên, MSHV và GitHub, đồng thời xác nhận đội hình với giảng viên hoặc coach theo RULES.md.
+- Trạng thái phân công: đã nhận danh sách 7 thành viên và MSHV từ TV1. TV1 xác nhận ngày 19/11/2026 rằng đội hình 7 người đã được đồng ý. Tài khoản GitHub từng thành viên đang chờ bổ sung.
+- [Tiến độ điều phối và danh sách đầu ra TV1 đang chờ](TV1_STATUS.md)
 
 | Vị trí | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|---|
-| 1 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Điều phối, lineage, kiểm bài nộp |
-| 2 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Validator lỗi luật, kiểm thử |
-| 3 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Đối chiếu detection ↔ panoptic |
-| 4 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Công cụ xem ảnh, điều phối review |
-| 5 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Kiểm hash ảnh, dựng và đóng gói v2 |
-| 6 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Truy vết ticket, đối chiếu người phụ trách |
-| 7 | <<Họ và tên>> | <<MSHV>> | <<GitHub>> | Bảo mật, báo cáo, xem chéo ảnh |
+| TV1 | Lê Quang Khải | 2A202603237 | Chờ bổ sung | Điều phối, lineage, kiểm bài nộp |
+| TV2 | Nguyễn Đức Anh | 2A202604049 | Chờ bổ sung | Validator lỗi luật, kiểm thử |
+| TV3 | Hoàng Quang Trường | 2A202603347 | Chờ bổ sung | Đối chiếu detection ↔ panoptic |
+| TV4 | Dương Quốc Huy | 2A202603311 | Chờ bổ sung | Công cụ xem ảnh, điều phối review |
+| TV5 | Đặng Trung Hiếu | 2A202603248 | Chờ bổ sung | Kiểm hash ảnh, dựng và đóng gói v2 |
+| TV6 | Nguyễn Thành Thành Long | 2A202603310 | Chờ bổ sung | Truy vết ticket, đối chiếu người phụ trách |
+| TV7 | Hoàng Kim Chi | 2A202603172 | Chờ bổ sung | Bảo mật, báo cáo, xem chéo ảnh |
