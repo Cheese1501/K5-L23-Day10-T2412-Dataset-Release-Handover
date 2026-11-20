@@ -1,10 +1,10 @@
 # Tiến độ TV1 — Lê Quang Khải
 
-Cập nhật ngày 20/11/2026. Nhánh tích hợp và push là **dev**. Seed luyện tập **2412007**, release cha **lab250_ebedbc794d29**.
+Cập nhật ngày 20/11/2026. Nhánh tích hợp trước đây là dev; bộ bài hiện được tập hợp về **main** ngày 20/11/2026. Seed luyện tập **2412007**, release cha **lab250_ebedbc794d29**.
 
 ## Hiện trạng
 
-- Đã hợp nhất các nhánh TV4 và TV6 thông qua nhánh `TV6`, sau đó hợp nhất `hieu` của TV5. Giữ lịch sử commit và đủ nhật ký AI của các thành viên.
+- Đã hợp nhất các nhánh TV4 và TV6 thông qua nhánh `TV6`, sau đó hợp nhất `hieu` của TV5. Giữ lịch sử đóng góp của các thành viên.
 - Đã nhận 6/6 kết luận gán nhãn do người xem cung cấp. Ca TV6 dùng ghi chú mới nhất trong `submission/reviews/TV6.csv`. Giữ nguyên phân loại `class_swap` của ca này.
 - Đã nhận kết quả `intact` cho ảnh lệch hash `000000004765` từ TV5.
 - Danh sách lỗi cuối của đợt review này có 16 target trên 250 ảnh, tương ứng 6,4%, v1 HOLD.
@@ -41,9 +41,9 @@ Kết quả lấy từ một lượt chạy `scripts/score_findings.py --run run
 
 1. Đã hoàn tất xác nhận ảnh khuôn mặt và security.md bằng phản hồi trực tiếp của TV1.
 2. Đã chạy `python3 lab/tv1.py finish`, dựng lại, kiểm đạt và xuất gói cuối sang submission. Bộ kiểm đạt 17/17; log ở `r2412007/check_handover.txt`.
-3. Đã có đủ GitHub của 7 thành viên. TV2 có một đóng góp gốc và một cherry-pick cùng bản vá; TV3 hiện có một commit gốc đã tích hợp; chưa xác minh commit của TV7. Các thành viên tự bổ sung đóng góp để đạt hai commit có nội dung theo RULES.
+3. Đã có đủ GitHub của 7 thành viên. TV2 có một đóng góp gốc và một cherry-pick cùng bản vá; TV3 hiện có một commit gốc đã tích hợp; TV7 bổ sung báo cáo nhóm/cá nhân và kiểm gói trên main. Các thành viên tự bổ sung đóng góp để đạt hai commit có nội dung theo RULES.
 4. Đã hoàn tất review đề 07: 7/7 ca nhãn (6 confirmed, 1 rejected) và 1/1 ca hash intact do TV1 xem. Đã gộp 14 lỗi (8 luật, 6 semantic), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace 2/9 ảnh hai tầng; xem `de_an/README.md` và `de_an/review_validation.json`. Chưa có F1 đề ẩn; thời gian đề ẩn là 20 phút theo thông tin TV1 cung cấp ngày 20/11/2026. Chưa có giờ bắt đầu/kết thúc thực tế để xác minh thời lượng đã làm.
-5. Tiếp tục hoàn thiện và chạy thử trên dev. Theo TV1, khi nộp chính thức mới hoàn thiện main; chưa chuyển bài sang main. Chờ hạn và kênh nộp lớp công bố.
+5. Bộ bài đã tập hợp về main theo yêu cầu chốt hồ sơ. Xem CON_LAI.md về commit cá nhân, hạn/kênh và bằng chứng nộp.
 
 ## Lệnh dùng trên máy tích hợp
 
@@ -53,7 +53,7 @@ python3 scripts/check_handover.py --run runs/r2412007
 python3 lab/tv1.py finish
 ```
 
-Lệnh finish đã chạy thành công ngày 20/11/2026. Bản dựng v2 trước đó đã được giữ trong tv1_backups. Mọi kết quả review đã lưu được giữ làm đầu vào. ZIP mới có SHA-256 `f6b3baf26c2a20e58a9b2203671b3ea2ea17e2e6653a7193aaad5c577a09ec83`.
+Lệnh finish đã chạy thành công ngày 20/11/2026. Bản dựng v2 trước đó đã được giữ trong tv1_backups. Mọi kết quả review đã lưu được giữ làm đầu vào. Checksum được cập nhật theo bytes thực sự lưu trong Git khi tập hợp main; ZIP tái đóng gói có SHA-256 `f4ea0d2d3273d5355de369186ac962d7e8c304534e0d3df209900903b47a7ea5`.
 
 ## Nguồn bàn giao
 

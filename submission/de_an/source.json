@@ -18,5 +18,5 @@
   "merged_errors": 14,
   "exam_duration_minutes": 20,
   "duration_source": "TV1 confirmation in chat on 2026-11-20; overrides 40 minutes in template",
-  "branch_workflow": "dev for ongoing work and trial tests; main to be finalized for official submission, per TV1"
+  "branch_workflow": "Team outputs consolidated on main on 2026-11-20; dev retained as prior integration branch"
 }

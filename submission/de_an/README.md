@@ -23,7 +23,7 @@ Mỗi thành viên trực tiếp xem ảnh, chọn confirmed hoặc rejected và
 
 ## Mở trên máy thành viên
 
-Pull nhánh dev. Tải đúng [de_an_07.zip](https://drive.google.com/file/d/1mn27OCzswt57T-UWJfwEXCCdLhxvQqVK/view), giải nén để có `delivery/` ở gốc repo. Không chọn lại đề khác. Trên Windows có thể dùng `py -X utf8` thay `python3`.
+Lấy nhánh main. Tải đúng [de_an_07.zip](https://drive.google.com/file/d/1mn27OCzswt57T-UWJfwEXCCdLhxvQqVK/view), giải nén để có `delivery/` ở gốc repo. Không chọn lại đề khác. Trên Windows có thể dùng `py -X utf8` thay `python3`.
 
 Các lệnh sau dành cho máy mới chưa có thư mục làm việc. Máy TV1 đã được chuẩn bị và bàn review đang mở ở http://127.0.0.1:8766/.
 

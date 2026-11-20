@@ -1,6 +1,6 @@
 # TV1 — Thiết lập, nhận bàn giao và chốt bài T2412
 
-TV1 là Lê Quang Khải, MSHV `2A202603237`. Lô luyện tập dùng seed `2412007`, release ID `lab250_ebedbc794d29`. Công việc từ lượt này ở nhánh `dev`. Các commit mới được push vào nhánh này theo yêu cầu của TV1.
+TV1 là Lê Quang Khải, MSHV `2A202603237`. Lô luyện tập dùng seed `2412007`, release ID `lab250_ebedbc794d29`. Bộ bài hiện nằm trên nhánh `main`; `dev` là nhánh tích hợp trước khi chốt.
 
 ## Tài liệu đề cần đọc
 
@@ -12,8 +12,8 @@ Trong clone của fork nhóm, chạy từng dòng sau. Trên máy TV1 hiện t�
 
 ```sh
 git fetch origin
-git switch dev
-git pull --ff-only origin dev
+git switch main
+git pull --ff-only origin main
 python3 lab/tv1.py prepare
 python3 lab/review_server.py --run runs/r2412007 --port 8765 --open
 ```
@@ -85,7 +85,7 @@ python3 scripts/check_handover.py --run runs/r2412007
 git status --short
 ```
 
-TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit các file trong `submission/` cùng code cần nộp, rồi push nhánh `dev`. Giữ `runs/`, `data_source/`, ZIP và secret ngoài Git.
+TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit các file trong `submission/` cùng code cần nộp, rồi push nhánh `main`. Giữ `runs/`, `data_source/`, ZIP và secret ngoài Git.
 
 ## Trạng thái bàn giao và việc còn lại
 
@@ -100,7 +100,7 @@ TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit
 | Cả nhóm | Cung cấp GitHub để điền TEAM, có ít nhất hai commit có nội dung dưới tên và email của mình. | Thông tin tài khoản và lịch sử Git |
 | Giảng viên hoặc coach | Đã có đề 07 từ link Drive TV1 gửi. TV1 đã xác nhận 20 phút; dev để kiểm thử, main để nộp chính thức sau. Còn tên repo và kênh/hạn nộp. | Thông báo lớp |
 
-AI đã chuẩn bị code, lệnh và phần kiểm tra tự động. Mọi kết luận ảnh có tên thành viên lấy từ thông tin người đó trực tiếp cung cấp.
+Các kết luận ảnh được lưu theo thông tin thành viên trực tiếp xem và cung cấp.
 
 ## Đề ẩn và việc nộp
 

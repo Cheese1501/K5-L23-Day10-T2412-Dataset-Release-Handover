@@ -1,64 +1,56 @@
-# Báo cáo Day 10 — Nhóm T2412
+# Báo cáo nhóm T2412
 
-## Kết quả tích hợp mới nhất trên dev
+Seed luyện tập: **2412007**. Lô v1: `lab250_ebedbc794d29`. Lô bàn giao: `lab250_ebedbc794d29_v2`. Nhóm tập hợp bài làm trên nhánh **main**, ngày 20/11/2026.
 
-Đã nhận đủ 6 kết luận `confirmed` từ các thành viên qua TV4 và bản ghi cuối của TV6, cùng kết quả ảnh lệch hash `intact` của TV5. `errors.json` hiện có 16 lỗi, tương ứng 16/250 = 6,4%, v1 HOLD.
+## 1. Số liệu luyện tập
 
-Tự đo sau khi gộp đủ review cho F1 tổng ≈ 0,8, lỗi luật ≈ 1,0, lỗi gán nhãn ≈ 0,6. Truy vết tier_a, tier_b, notify đều ≈ 1,0. Báo cáo gốc ở `r2412007/report.md`. Các lần đo ở bảng baseline bên dưới là lịch sử trước khi gộp review.
+| Lô | Lỗi luật | Ứng viên | F1 luật | F1 gán nhãn | F1 tổng |
+|---|---:|---:|---:|---:|---:|
+| Seed 2412007, sau review | 10 | 6 | ≈ 1,0 | ≈ 0,6 | ≈ 0,8 |
+| Seed 11, chỉ báo lỗi luật | 13 | 3 | ≈ 1,0 | Chưa đo sau review | ≈ 0,8 |
+| Seed 22, chỉ báo lỗi luật | 9 | 6 | ≈ 1,0 | Chưa đo sau review | ≈ 0,7 |
+| Lô sạch, 50 ảnh khác bộ luyện tập | 0 | 0 | Không ghi điểm | Không có review | Không ghi điểm |
 
-V2 hiện có 242 ảnh, 1.656 nhãn và 8 ảnh rework, đã được đóng gói và xuất sang `submission/r2412007/handover/`. Ngày 20/11/2026, TV1 xác nhận đã xem ảnh 000000004395 và còn thấy rõ mặt người. Đã hoàn tất security.md, dựng lại và xuất gói cuối. Bộ kiểm gốc trả 17 PASS, 0 FAIL; log ở `r2412007/check_handover.txt`. H14 có event v2 với parent; README v2 ghi Release theo xử lý lỗi detection, v1 vẫn HOLD. Tình huống bảo mật có yêu cầu làm mờ vẫn trả lời HOLD và báo người phụ trách. [Việc còn lại](CON_LAI.md)
+F1 là số làm tròn từ chế độ học viên; báo cáo sau review ở [r2412007/report.md](r2412007/report.md). Số ứng viên seed 22 được ghi ở lượt kiểm hồi quy, tách với lần tự đo baseline chỉ báo lỗi luật.
 
-## 1. Số liệu baseline luyện tập trước khi gộp review
+Nhóm ghép lớp qua tên, chuyển box sang pixel rồi so IoU và phần pixel mask nằm trong box. Với bất đồng lớp, ngưỡng hiện dùng gồm IoU từ 0,56, phủ mask từ 78% và chênh điểm ghép ít nhất 0,08 so với cặp cạnh tranh. Segment thiếu box phải có ít nhất 170 pixel và hai chiều bbox từ 10 pixel. Nhóm chọn ngưỡng để hàng đợi có thể xem hết, kiểm trên lô sạch và seed độc lập, không dùng đáp án riêng để chỉnh ngưỡng.
 
-| Lô | Số lỗi luật | F1 lỗi luật | F1 tổng nếu chỉ báo lỗi luật | Ứng viên |
-|---|---:|---:|---:|---:|
-| T2412 · seed 2412007 · 250 ảnh | 10 | ≈ 1.0 | ≈ 0.7 | 6 ca trên 6 ảnh |
-| Seed 11 · 250 ảnh | 13 | ≈ 1.0 | ≈ 0.8 | 3 ca trên 3 ảnh |
-| Seed 22 · 250 ảnh | 9 | ≈ 1.0 | ≈ 0.7 | Chưa chạy chế độ ứng viên |
-| Lô sạch · 50 ảnh | 0 | | | 0 |
+Lô luyện tập có **6 confirmed, 0 rejected**; errors cuối gồm **10 lỗi luật + 6 lỗi gán nhãn = 16 target**. TV5 mở ảnh lệch hash 000000004765 và xác nhận intact. Bằng chứng ở [review_log.csv](r2412007/review_log.csv) và [hash_review.csv](r2412007/hash_review.csv).
 
-Seed 2412007 lấy theo ví dụ `2412 × 1000 + 7` trong GUIDE.md. Điểm lấy từ script tự đo ở chế độ học viên. F1 lỗi gán nhãn còn chờ nhóm xem và xác nhận.
+V2 có **242 ảnh, 1.656 box và 8 ảnh rework**. Nhóm giữ ảnh chỉ sai panoptic; chuyển ảnh lỗi detection sang rework đúng người theo jobs.csv; ghi hash thật, guideline theo job và split thống nhất theo cảnh. Chi tiết ở [README v2](r2412007/handover/lab250_ebedbc794d29_v2/README.txt). Kiểm lại bằng bộ kiểm gốc trên bản sao kiểm chứng ngày 20/11/2026 đạt **17 PASS, 0 FAIL**; 50 kiểm thử code nhóm đạt. PASS xác nhận các yêu cầu được bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng.
 
-Checkpoint sau review TV1 trước đó có 11 lỗi, gồm 10 lỗi luật và 1 `class_swap`. Bản mới nhất sau khi nhận đủ review có 16 lỗi, như phần kết quả tích hợp ở đầu báo cáo.
+Đề ẩn nhóm làm là **đề 07**, lô lab250_3c55ac997ebf: 8 lỗi luật, 7 ứng viên, review 6 confirmed/1 rejected; errors cuối 14 lỗi. Trace có 2 ảnh tầng A, 9 tầng B và 4 mã người. Bốn file bắt buộc ở [de_an/](de_an/README.md). Chưa có F1 đề ẩn vì nhóm chưa nhận đáp án. TV1 xác nhận thời lượng lớp áp dụng là 20 phút; hồ sơ chưa có giờ bắt đầu/kết thúc để đối chiếu thời lượng thực tế.
 
-Validator ghép lớp theo tên và dùng IoU, phần trăm pixel segment nằm trong box, cùng lớp và kích thước vật. Hai nguồn khác lớp được ưu tiên review khi IoU từ 0,56, phủ mask từ 78% và không có cặp cạnh tranh gần bằng. Segment thiếu box phải có ít nhất 170 pixel, với hai chiều bbox từ 10 px. Các ngưỡng giữ số ca ở mức nhóm có thể mở từng ảnh. Kiểm thử lô sạch cho thấy 0 ca lệch tự nhiên được đưa vào hàng đợi trên 50 ảnh. Cần đo lại nếu nhóm điều chỉnh ngưỡng.
+## 2. Vì sao báo hết ứng viên làm F1 giảm?
 
-## 2. Vì sao báo hết ứng viên có thể làm F1 giảm?
+Ứng viên là tín hiệu bất đồng giữa hai nguồn nhãn, có thể do che khuất, crowd hoặc cách gán tự nhiên khác nhau. Báo mọi ứng viên thành lỗi có thể tăng false positive, giảm precision và kéo F1 xuống. Báo cả class_swap và category_swap cho cùng một bất đồng còn có thể thêm một loại lỗi sai.
 
-Ứng viên sai làm tăng FP, kéo precision và F1 xuống. Nếu chọn cả hai loại lỗi cho một bất đồng lớp, sẽ có ít nhất một báo cáo sai dù ảnh thật sự có lỗi. Bản review cuối có 6 confirmed và 0 rejected, lô sạch tạo 0 ứng viên với ngưỡng hiện tại. F1 gán nhãn đo được ≈ 0,6 cho thấy độ khớp của kết luận người xem còn có giới hạn, nên các lần thay đổi nhãn tiếp theo cần dựa trên quan sát ảnh cụ thể.
+Lô sạch có 0 ứng viên với ngưỡng hiện tại. Lô luyện tập có 6 confirmed nhưng F1 gán nhãn chỉ ≈ 0,6; số confirmed không chứng minh mọi phân loại đều đúng. Ở đề 07, nhóm loại img_0247 khỏi errors sau khi người xem rejected vì box detection ôm sát vật, khung panoptic bị dư. Nhóm chỉ gộp confirmed có ghi chú quan sát, không sửa từng ca bằng cách dò điểm.
 
 ## 3. Quyết định và lineage
 
-Lô `lab250_ebedbc794d29` hiện có 16/250 target lỗi, tương ứng 6,4%, nên v1 tiếp tục **HOLD**. Truy vấn impact trả về `R-021: affected=True action=review_or_retrain`. Model của R-021 đã học từ v1, nên nhóm cần xem lại ảnh hưởng khi đánh giá hoặc train lại trên lô đã xử lý. V2 dựng từ review đầy đủ có 242 ảnh, 1.656 nhãn và 8 ảnh rework. Ảnh lệch hash đã được TV5 mở và xác nhận intact, nên giữ trong v2 với hash thật.
+QC v1 là **16/250 = 6,4%**, vượt ngưỡng 2%, nên **HOLD**. Mỗi target tính một lần; scene_leak tính một ca theo quy ước bài. [Lineage](lineage.jsonl) giữ train R-021, HOLD v1 và release v2 có đúng parent. HOLD được ghi từ lúc đã biết ít nhất 10 lỗi luật; QC cuối tăng lên 16 lỗi sau review.
 
-## 4. Vai trò của hash
+R-021 đã học từ v1. Thay dataset không tự thay trọng số model, nên cần xem lại đánh giá hoặc train lại run bị ảnh hưởng. Impact là `R-021: affected=True action=review_or_retrain`.
 
-So SHA-256 với manifest cho biết byte của file có khớp phiên bản được bàn giao. Một nhãn sai vẫn có thể có SHA-256 khớp. Tạo v2 riêng giúp giữ bằng chứng QC và truy về dữ liệu R-021 đã dùng.
+V2 được Release theo xử lý lỗi detection của bài lab. Trong tình huống bảo mật mà guideline yêu cầu làm mờ khuôn mặt, nhóm vẫn phải HOLD và báo người phụ trách; đạt kiểm bàn giao không thay cho phê duyệt bảo mật.
+
+## 4. Hash chứng minh gì, không chứng minh gì?
+
+SHA-256 đối chiếu bytes của file với manifest, giúp phát hiện file thay đổi. Hash khớp không chứng minh lớp/box đúng, dữ liệu được phép sử dụng hay nguồn manifest đáng tin.
+
+Ảnh 000000004765 được TV5 xác nhận nguyên vẹn nên giữ, manifest v2 ghi hash thật. Nhóm không sửa v1 hoặc sửa tay nhãn đã giao. [Checksum ZIP](r2412007/handover/lab250_ebedbc794d29_v2.sha256) được tính theo đúng các file bàn giao trên main; ZIP giữ ngoài Git. Quy tắc .gitattributes giữ nguyên bytes thư mục bàn giao khi checkout trên các hệ điều hành.
 
 ## 5. Truy vết
 
-Lấy lớp đổi quy tắc từ changelog và cảnh được báo từ ticket. Giữ các ảnh có box lớp đó thuộc job dùng guideline cũ. `tier_a` nằm trong cảnh được báo, `tier_b` là những ảnh còn lại thỏa điều kiện. `notify` là tập mã người gán và người kiểm từ các job có ảnh ở hai tầng. Dùng guideline ghi theo job vì metadata ảnh có thể bị lệch.
+Nhóm đọc ticket/changelog để xác định cảnh được báo, lớp đổi quy tắc và guideline cũ. Ảnh đủ điều kiện phải thuộc job dùng guideline cũ và có ít nhất một box detection của lớp đổi quy tắc. Tầng A gồm ảnh trong cảnh ticket nêu; tầng B gồm ảnh ở cảnh khác cùng điều kiện. Notify là tập người gán/kiểm của các job liên quan.
 
-Seed 2412007 có 4 ảnh tầng A, 3 ảnh tầng B và 2 người trong danh sách báo. F1 làm tròn của cả ba mục đều ≈ 1.0.
+Guideline lấy theo jobs.csv vì phiên bản ở metadata từng ảnh có thể chính là lỗi guideline_mismatch. Với seed 2412007, [trace.json](r2412007/trace.json) có **4 ảnh tầng A, 3 ảnh tầng B, notify A05 và Q02**; F1 làm tròn từng khóa đều ≈ 1,0. Hai công cụ truy vết cho cùng kết quả.
 
-## 6. Việc còn mở
+## 6. Bug hoặc điểm chưa rõ trong lab
 
-Bộ kiểm mới nhất trên lô tích hợp trả 17 PASS, 0 FAIL sau xác nhận ảnh khuôn mặt của TV1. Đã đóng gói và xuất bài, v1 vẫn giữ nguyên. PASS xác nhận các yêu cầu mà bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng. Đã có đủ GitHub: TV1 xác nhận TV6 longnguyen3204 và TV7 Cheese1501. Còn rà commit cá nhân và hoàn tất thủ tục nộp. TV1 xác nhận thời gian đề ẩn là 20 phút; dev dùng hoàn thiện/kiểm thử, khi nộp chính thức mới hoàn thiện main. Chưa có giờ bắt đầu/kết thúc thực tế, hạn hoặc kênh nộp. TV1 đã cung cấp link Drive; chọn ngẫu nhiên đề 07 từ 20 đề trước khi xem nội dung. Validator hiện có tìm 8 lỗi luật, 7 ứng viên. Trace có 2 ảnh tầng A, 9 tầng B và 4 mã người; hai công cụ của nhóm cho cùng kết quả. TV1 đã xem đủ 7 ca nhãn (6 confirmed, 1 rejected) và ca hash intact. Ca img_0197 được cập nhật thành missing_box sau khi TV1 xác nhận chỉ có khung xanh panoptic quanh con chó. Đã xuất `submission/de_an/` với 14 lỗi (8 luật + 6 semantic); ca bbox_drift img_0247 bị rejected được giữ trong log và không đưa vào errors. Chưa có F1 đề ẩn. Bằng chứng kiểm nhất quán ở `de_an/review_validation.json`. Hướng dẫn chi tiết được lưu trong CON_LAI.md.
+Trên Windows, run_lab.py gọi tiến trình con không kế thừa tùy chọn -X utf8 của tiến trình cha. Nhóm gặp UnicodeEncodeError khi in thông báo sau khi đã tạo delivery. Cách chạy phù hợp là đặt `$env:PYTHONUTF8 = '1'`; không sửa script gốc để vượt kiểm.
 
-## 7. Tích hợp hai module TV2
+CRLF/LF của manifest.json và metadata.json làm ID lô tạo trên Windows khác máy tích hợp dù cùng seed. Nhóm giữ nguyên v1 local, dùng bản sao riêng để kiểm tương thích lô LF. Checksum ZIP được tính lại theo bytes lưu trong Git; ảnh/nhãn và các giá trị hash trong manifest không đổi.
 
-TV1 đã cherry-pick commit `b5b5c8d` của TV2 thành `bceccca` trên nhánh `tv1/complete-lab`. Hai file `rules_detection.py`, `rules_panoptic.py` giữ nguyên nội dung và tác giả từ bản bàn giao. `validate.py` gọi `find_duplicate_boxes` và `find_thing_overlaps`, đồng thời bỏ phần kiểm tương ứng trong bản TV1 cũ.
-
-| Lô kiểm sau tích hợp | Lỗi luật | Ứng viên | So với baseline |
-|---|---:|---:|---|
-| Seed 2412007 | 10 | 6 | Cùng toàn bộ cặp lỗi và danh sách ứng viên |
-| Seed 22 | 9 | 6 | Cùng toàn bộ cặp lỗi luật, lần này chạy thêm ứng viên |
-| Lô sạch 50 ảnh | 0 | 0 | Cùng kết quả |
-
-21 kiểm thử đã đạt, gồm 4 ca mới kiểm lời gọi module, trùng box, chênh area mask, crowd và stuff. Các ca mới dùng dữ liệu tổng hợp. Kết quả chạy lô được ghi trong `runs/tv1_checks/integrated_*.json`. Review của thành viên giữ nguyên. Điểm F1 ở mục 1 thuộc lần đo baseline trước đó, lượt tích hợp này đối chiếu đầu ra đầy đủ để kiểm hồi quy.
-
-## 8. Tích hợp đóng góp TV3
-
-Đã nhận commit `0139ad5` của Hoàng Quang Trường (GitHub truonghoangg25). Bản mới kiểm tra cấu trúc delivery, xử lý dòng nhãn không phải số, thiếu tọa độ và giá trị không hữu hạn; tránh validator dừng vì lỗi chuyển kiểu. Hai module TV2 không đổi. Module `validator/crosscheck.py` là công cụ độc lập bổ sung của TV3; CLI chính giữ nguyên cách sinh ứng viên đang dùng.
-
-20 kiểm thử mới của TV3 và 30 kiểm thử hiện có đều đạt. Trước tích hợp đã chạy CLI của TV3 trong thư mục tạm: lô nhóm 10 lỗi luật/6 ứng viên, lô sạch 0/0, đề 07 8/7; toàn bộ JSON khớp bản trước. Giữ nguyên errors, review và trace đã chốt của đề 07. Không đọc đáp án hay chạy lại F1 để điều chỉnh kết luận.
+Đội hình 7 người đã được TV1 xác nhận được chấp thuận; TEAM đủ tên, MSHV và GitHub. Phần kỹ thuật TV1–TV6 đã tập hợp về main. TV2 cần đối chiếu yêu cầu hai commit có nội dung khác nhau: bản gốc và cherry-pick cùng thay đổi không tính là hai đóng góp. TV3 hiện có một commit gốc được tích hợp. Nhóm còn cần xác nhận tên repo theo quy ước lớp, hạn/kênh nộp, giờ làm đề thực tế và lưu bằng chứng nộp. Xem [CON_LAI.md](CON_LAI.md).
