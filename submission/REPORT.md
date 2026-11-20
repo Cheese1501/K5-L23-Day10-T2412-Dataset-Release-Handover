@@ -13,7 +13,7 @@ Seed luyện tập: **2412007**. Lô v1: `lab250_ebedbc794d29`. Lô bàn giao: `
 
 F1 là số làm tròn từ chế độ học viên; báo cáo sau review ở [r2412007/report.md](r2412007/report.md). Số ứng viên seed 22 được ghi ở lượt kiểm hồi quy, tách với lần tự đo baseline chỉ báo lỗi luật.
 
-Nhóm ghép lớp qua tên, chuyển box sang pixel rồi so IoU và phần pixel mask nằm trong box. Với bất đồng lớp, ngưỡng hiện dùng gồm IoU từ 0,56, phủ mask từ 78% và chênh điểm ghép ít nhất 0,08 so với cặp cạnh tranh. Segment thiếu box phải có ít nhất 170 pixel và hai chiều bbox từ 10 pixel. Nhóm chọn ngưỡng để hàng đợi có thể xem hết, kiểm trên lô sạch và seed độc lập, không dùng đáp án riêng để chỉnh ngưỡng.
+Nhóm ghép lớp qua tên, chuyển box sang pixel rồi so IoU và phần pixel mask nằm trong box. Với bất đồng lớp, ngưỡng hiện dùng gồm IoU từ 0,56, phủ mask từ 78% và chênh điểm ghép ít nhất 0,08 so với cặp cạnh tranh. Segment thiếu box phải có ít nhất 170 pixel và hai chiều bbox từ 10 pixel. Nhóm chọn ngưỡng để hàng đợi có thể xem hết, kiểm trên lô sạch và seed độc lập, không dùng đáp án riêng để chỉnh ngưỡng. Lượt chạy lại validator hiện tại trên lô sạch 50 ảnh ngày 20/11/2026 tiếp tục cho 0 lỗi luật và 0 ứng viên.
 
 Lô luyện tập có **6 confirmed, 0 rejected**; errors cuối gồm **10 lỗi luật + 6 lỗi gán nhãn = 16 target**. TV5 mở ảnh lệch hash 000000004765 và xác nhận intact. Bằng chứng ở [review_log.csv](r2412007/review_log.csv) và [hash_review.csv](r2412007/hash_review.csv).
 
@@ -54,3 +54,5 @@ Trên Windows, run_lab.py gọi tiến trình con không kế thừa tùy chọn
 CRLF/LF của manifest.json và metadata.json làm ID lô tạo trên Windows khác máy tích hợp dù cùng seed. Nhóm giữ nguyên v1 local, dùng bản sao riêng để kiểm tương thích lô LF. Checksum ZIP được tính lại theo bytes lưu trong Git; ảnh/nhãn và các giá trị hash trong manifest không đổi.
 
 Đội hình 7 người đã được TV1 xác nhận được chấp thuận; TEAM đủ tên, MSHV và GitHub. Phần kỹ thuật TV1–TV6 đã tập hợp về main. TV2 cần đối chiếu yêu cầu hai commit có nội dung khác nhau: bản gốc và cherry-pick cùng thay đổi không tính là hai đóng góp. TV3 hiện có một commit gốc được tích hợp. Nhóm còn cần xác nhận tên repo theo quy ước lớp, hạn/kênh nộp, giờ làm đề thực tế và lưu bằng chứng nộp. Xem [CON_LAI.md](CON_LAI.md).
+
+Bảng đối chiếu hồ sơ theo SUBMISSION/RUBRIC: [DOI_CHIEU_YEU_CAU.md](DOI_CHIEU_YEU_CAU.md); kết quả kiểm file: [verification.json](verification.json).

@@ -23,6 +23,10 @@ Tôi đã đối chiếu lỗi gán nhãn với confirmed, kiểm ca rejected kh
 
 Lượt chạy lại validator cho 10 lỗi luật và 6 ứng viên, khớp toàn bộ đầu ra đã bàn giao; công cụ truy vết cũng khớp trace.json. Commit `af665fe` giữ bytes gói bàn giao và cập nhật checksum tái lập. Báo cáo và hồ sơ được lưu trong commit tiếp theo của tôi trên main.
 
+## Bổ sung đối chiếu yêu cầu
+
+Đã hoàn thiện DOI_CHIEU_YEU_CAU.md và TV7_VAN_DAP.md. Validator hiện tại chạy trên lô sạch 50 ảnh trả 0 lỗi luật/0 ứng viên. Ghi chú năm ca bất đồng lớp của đề 07 được làm rõ bằng tên lớp trong candidates, giữ nguyên quan sát gốc, người xem, loại lỗi và verdict. Kết quả kiểm máy được lưu trong verification.json.
+
 ## File gửi TV1
 
 - REPORT.md và TV7_REPORT.md.

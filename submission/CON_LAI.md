@@ -12,7 +12,7 @@ Cập nhật ngày 20/11/2026. Nhóm đã tập hợp code, kết quả luyện 
 | TV4 — Dương Quốc Huy | Công cụ review, chia/gộp ca; 6 kết luận và errors cuối | Chuẩn bị vấn đáp; giữ đúng người xem trong log |
 | TV5 — Đặng Trung Hiếu | Review bbox, hash intact; dựng v2 và README | Chuẩn bị giải thích số ảnh/box, rework và hash |
 | TV6 — Nguyễn Nhân Thành Long | Công cụ truy vết, trace 4/3/2; review 000000025386 | Chuẩn bị giải thích tầng A/B và notify |
-| TV7 — Hoàng Kim Chi | Xem chéo ghi trong log TV4; kiểm hồ sơ, báo cáo nhóm/cá nhân, bảo mật; kiểm gói trên main | Chuẩn bị vấn đáp theo đóng góp của mình |
+| TV7 — Hoàng Kim Chi | Xem chéo ghi trong log TV4; kiểm hồ sơ, báo cáo nhóm/cá nhân, bảo mật; kiểm gói trên main | Đã có TV7_VAN_DAP.md; trực tiếp trả lời khi vấn đáp |
 
 ## Luyện tập
 
@@ -34,3 +34,5 @@ TV1 xác nhận thời lượng lớp là 20 phút; chưa có giờ bắt đầu
 2. TV1 xác nhận tên repo hiện tại được lớp chấp nhận hoặc theo mẫu SUBMISSION.md, cùng hạn và kênh nộp.
 3. Mỗi người chuẩn bị vấn đáp: giải thích/sửa một đoạn validator, giải thích review của mình và cách đếm một số trong README v2.
 4. Nhóm nộp link theo hướng dẫn lớp, lưu SHA main, thời điểm và xác nhận nộp. Hồ sơ hiện chưa có bằng chứng nộp LMS.
+
+Phần hồ sơ TV7 đã được đối chiếu đầy đủ tại [DOI_CHIEU_YEU_CAU.md](DOI_CHIEU_YEU_CAU.md); [TV7_VAN_DAP.md](TV7_VAN_DAP.md) chuẩn bị ba nội dung vấn đáp bắt buộc. Không còn file nội dung TV7 cần nhận thêm từ thành viên khác.

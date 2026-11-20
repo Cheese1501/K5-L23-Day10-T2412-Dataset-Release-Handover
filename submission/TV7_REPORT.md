@@ -44,6 +44,8 @@ Với dữ liệu dự án thật, tôi không tự mang lô ra USB, gửi email
 
 Các thủ tục còn lại gồm đối chiếu commit cá nhân của TV2/TV3, xác nhận tên repo, hạn/kênh nộp và lưu xác nhận nộp của nhóm. Tôi không xác nhận thay các thành viên về đóng góp hoặc giờ làm đề thực tế.
 
+Tôi đã bổ sung [bảng đối chiếu từng yêu cầu](DOI_CHIEU_YEU_CAU.md) và [chuẩn bị vấn đáp](TV7_VAN_DAP.md), gồm giải thích đoạn so SHA-256, ca xem chéo và cách đếm 242 ảnh/1.656 box. Lượt chạy lại lô sạch 50 ảnh cho 0 lỗi luật và 0 ứng viên. Hồ sơ nội dung của TV7 được hoàn thiện độc lập từ các đầu ra đã có.
+
 ## 6. Bàn giao cho TV1
 
 - Người bàn giao: Hoàng Kim Chi, TV7.
