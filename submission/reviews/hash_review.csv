@@ -1,2 +1,0 @@
-image,status,reviewer,note
-000000004765,intact,TV5 — Đặng Trung Hiếu,"TV5 — Đặng Trung Hiếu · Mở được, ảnh hiển thị bình thường, thấy rõ toàn bộ khung hình, không có sọc, vùng xám hay khối vỡ. File JPEG đủ marker đầu/cuối; sha256 ghi trong manifest trùng với hash của 000000006771.jpg nên manifest ghi nhầm, file ảnh không hỏng -> giữ trong v2, ghi lại hash đúng."

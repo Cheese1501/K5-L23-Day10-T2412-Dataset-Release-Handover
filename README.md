@@ -4,7 +4,7 @@
 
 # Day 10 Lab — Nhóm T2412
 
-Nhóm T2412 tập hợp bài nộp trên nhánh **main** ngày 20/11/2026. Luyện tập đạt **17 PASS, 0 FAIL**, v2 có **242 ảnh và 1.656 box**; đề 07 đủ bốn file bắt buộc. Xem [báo cáo nhóm](submission/REPORT.md), [TEAM](submission/TEAM.md), [báo cáo TV7](submission/TV7_REPORT.md) và [việc còn lại](submission/CON_LAI.md). Thời lượng đề ẩn được TV1 xác nhận là **20 phút**.
+Bài nộp nhóm T2412 nằm trên nhánh **main**. Luyện tập đạt **17 PASS, 0 FAIL**, v2 có **242 ảnh và 1.656 box**; đề 07 có đủ bốn file bắt buộc. Xem [báo cáo nhóm](submission/REPORT.md), [danh sách thành viên](submission/TEAM.md) và [hướng dẫn công cụ](lab/README.md).
 
 <p align="center">
   <img alt="nhóm" src="https://img.shields.io/badge/lab-nhóm%205–6%20người-0b1f3a">

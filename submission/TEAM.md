@@ -4,8 +4,6 @@
 - Repo: [Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover)
 - [Kế hoạch và hướng dẫn công việc cho 7 vị trí — bản lưu trong lịch sử Git](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/blob/b1d4be082fb6bd284daadc20882edf5058ce9738/lab/KE_HOACH_T2412.md)
 - Trạng thái phân công: đã nhận danh sách 7 thành viên và MSHV từ TV1. TV1 xác nhận ngày 19/11/2026 rằng đội hình 7 người đã được đồng ý. GitHub của TV1, TV2, TV3, TV4, TV5 được đối chiếu từ tác giả commit công khai. TV1 xác nhận ngày 20/11/2026: TV6 là longnguyen3204, TV7 là Cheese1501; hai ánh xạ này lấy từ thông tin TV1 cung cấp.
-- [Tiến độ điều phối và danh sách đầu ra TV1 đang chờ](TV1_STATUS.md)
-- [Hướng dẫn thiết lập và chốt bài của TV1](../lab/TV1_GUIDE.md), bộ bài trên nhánh `main`.
 
 | Vị trí | Họ và tên | MSHV | Tài khoản GitHub | Phần chính |
 |---|---|---|---|---|
@@ -26,5 +24,3 @@ Nguồn đối chiếu tài khoản gồm các commit của thành viên trên G
 - TV6 — tác giả Git ghi longnguyen3204, API của commit cũ chưa liên kết tài khoản; TV1 đã xác nhận tài khoản tương ứng là longnguyen3204. [bafecc9](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/commit/bafecc99ca2bb761eda666197fb6c9db0a9469a3)
 
 - TV3 — [0139ad5](https://github.com/Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover/commit/0139ad59cceb9848b0fc74221916961d8ba8b1af), tác giả GitHub truonghoangg25, email tác giả khớp tên thành viên.
-
-- [Báo cáo cá nhân TV7](TV7_REPORT.md) và [kiểm tra hoàn thành theo thành viên](CON_LAI.md).

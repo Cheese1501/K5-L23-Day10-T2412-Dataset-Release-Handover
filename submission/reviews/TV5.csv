@@ -1,2 +1,0 @@
-image,type,verdict,note
-000000023781,bbox_drift,confirmed,"TV5 — Đặng Trung Hiếu · Củ cà rốt nằm dưới chùm củ cải đỏ, đầu bên phải chếch lên luồn dưới củ cải. Box detection (carrot) trùng mép trái/dưới với segment nhưng hụt ~15px mép trên và mép phải, đoạn đầu củ phía trên bên phải nằm ngoài box. Phần chênh là thân chính củ đó, không phải lá hay củ khác."

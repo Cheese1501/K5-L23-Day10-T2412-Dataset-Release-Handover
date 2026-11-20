@@ -19,7 +19,7 @@ Lô luyện tập có **6 confirmed, 0 rejected**; errors cuối gồm **10 lỗ
 
 V2 có **242 ảnh, 1.656 box và 8 ảnh rework**. Nhóm giữ ảnh chỉ sai panoptic; chuyển ảnh lỗi detection sang rework đúng người theo jobs.csv; ghi hash thật, guideline theo job và split thống nhất theo cảnh. Chi tiết ở [README v2](r2412007/handover/lab250_ebedbc794d29_v2/README.txt). Kiểm lại bằng bộ kiểm gốc trên bản sao kiểm chứng ngày 20/11/2026 đạt **17 PASS, 0 FAIL**; 50 kiểm thử code nhóm đạt. PASS xác nhận các yêu cầu được bộ kiểm kiểm tra, không bảo đảm mọi kết luận nhãn đều đúng.
 
-Đề ẩn nhóm làm là **đề 07**, lô lab250_3c55ac997ebf: 8 lỗi luật, 7 ứng viên, review 6 confirmed/1 rejected; errors cuối 14 lỗi. Trace có 2 ảnh tầng A, 9 tầng B và 4 mã người. Bốn file bắt buộc ở [de_an/](de_an/README.md). Chưa có F1 đề ẩn vì nhóm chưa nhận đáp án. TV1 xác nhận thời lượng lớp áp dụng là 20 phút; hồ sơ chưa có giờ bắt đầu/kết thúc để đối chiếu thời lượng thực tế.
+Đề ẩn nhóm làm là **đề 07**, lô lab250_3c55ac997ebf: 8 lỗi luật, 7 ứng viên, review 6 confirmed/1 rejected; errors cuối 14 lỗi. Trace có 2 ảnh tầng A, 9 tầng B và 4 mã người. Bốn file bắt buộc ở [de_an/](de_an/). Chưa có F1 đề ẩn vì nhóm chưa nhận đáp án. TV1 xác nhận thời lượng lớp áp dụng là 20 phút; hồ sơ chưa có giờ bắt đầu/kết thúc để đối chiếu thời lượng thực tế.
 
 ## 2. Vì sao báo hết ứng viên làm F1 giảm?
 
@@ -53,6 +53,4 @@ Trên Windows, run_lab.py gọi tiến trình con không kế thừa tùy chọn
 
 CRLF/LF của manifest.json và metadata.json làm ID lô tạo trên Windows khác máy tích hợp dù cùng seed. Nhóm giữ nguyên v1 local, dùng bản sao riêng để kiểm tương thích lô LF. Checksum ZIP được tính lại theo bytes lưu trong Git; ảnh/nhãn và các giá trị hash trong manifest không đổi.
 
-Đội hình 7 người đã được TV1 xác nhận được chấp thuận; TEAM đủ tên, MSHV và GitHub. Phần kỹ thuật TV1–TV6 đã tập hợp về main. TV2 cần đối chiếu yêu cầu hai commit có nội dung khác nhau: bản gốc và cherry-pick cùng thay đổi không tính là hai đóng góp. TV3 hiện có một commit gốc được tích hợp. Nhóm còn cần xác nhận tên repo theo quy ước lớp, hạn/kênh nộp, giờ làm đề thực tế và lưu bằng chứng nộp. Xem [CON_LAI.md](CON_LAI.md).
-
-Bảng đối chiếu hồ sơ theo SUBMISSION/RUBRIC: [DOI_CHIEU_YEU_CAU.md](DOI_CHIEU_YEU_CAU.md); kết quả kiểm file: [verification.json](verification.json).
+Đội hình 7 người đã được TV1 xác nhận được chấp thuận; TEAM đủ tên, MSHV và GitHub. Phần kỹ thuật TV1–TV6 đã tập hợp về main. TV2 cần đối chiếu yêu cầu hai commit có nội dung khác nhau: bản gốc và cherry-pick cùng thay đổi không tính là hai đóng góp. TV3 hiện có một commit gốc được tích hợp. Nhóm còn cần xác nhận tên repo theo quy ước lớp, hạn/kênh nộp, giờ làm đề thực tế và lưu bằng chứng nộp.

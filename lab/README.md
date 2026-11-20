@@ -1,6 +1,5 @@
-# Chạy bài Day 10 trên macOS
+# Công cụ nhóm T2412
 
-[Quy trình TV1 từ thiết lập đến chốt bài](TV1_GUIDE.md). Nhánh công việc TV1 hiện là `dev`.
 
 Repo và dữ liệu COCO đã được tải vào workspace. Python yêu cầu từ 3.10 và các lệnh chạy từ thư mục gốc. Trên Windows dùng `py` thay `python3` và đặt biến bằng cú pháp PowerShell.
 
@@ -28,7 +27,7 @@ python3 lab/split_review.py --workdir runs/r2412007        # in bảng chia, kh�
 Thành viên xem ảnh trên máy riêng thì xuất phần của mình rồi commit hoặc gửi TV4. TV4 nhập tất cả vào lô. Ca hai người kết luận khác nhau được báo `XUNG ĐỘT` và giữ nguyên để TV4 hỏi lại người xem.
 
 ```sh
-python3 lab/collect_reviews.py --run runs/r2412007 --export TV3          # → submission/reviews/TV3.csv
+python3 lab/collect_reviews.py --run runs/r2412007 --export TV3          # → runs/reviews/TV3.csv
 python3 lab/collect_reviews.py --run runs/r2412007 --import --dry-run    # TV4 xem trước
 python3 lab/collect_reviews.py --run runs/r2412007 --import              # TV4 ghi, có sao lưu
 ```
