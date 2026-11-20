@@ -11,8 +11,8 @@ Cập nhật ngày 20/11/2026. Nhánh tích hợp và push là **dev**. Seed luy
 - Truy vết chạy lại bằng công cụ TV6 có 4 ảnh tầng A, 3 ảnh tầng B và notify `A05`, `Q02`.
 - V2 đã dựng tại `runs/r2412007/handover/lab250_ebedbc794d29_v2/`, có 242 ảnh, 1.656 nhãn, 8 ảnh rework. Đã đóng gói lại và kiểm đạt; README v2 ghi Release theo xử lý lỗi detection của bài lab. Ca bảo mật vẫn nêu HOLD theo tình huống guideline yêu cầu làm mờ.
 - Đã xuất các output đang có bằng script gốc sang `submission/r2412007/`, gồm thư mục v2 và checksum. ZIP giữ trong `runs/`.
-- 30 kiểm thử đạt sau hợp nhất, gồm validator TV2, công cụ TV4, điều phối TV1, lưu review và MetricsTest.
-- GitHub của TV1, TV2, TV4, TV5 đã được đối chiếu bằng API tác giả commit công khai. TV3, TV6, TV7 chờ xác nhận tài khoản. Tên TV6 đã cập nhật theo thông tin tự khai và ảnh TV1 gửi.
+- Đã nhận commit TV3 `0139ad5`, bổ sung kiểm tra đầu vào validator, module crosscheck độc lập và 20 kiểm thử. Tổng 50 kiểm thử đạt sau tích hợp. Đầu ra luật và ứng viên trên lô nhóm, lô sạch và đề 07 không đổi; không chạy lại tự đo F1 hay thay các kết luận xem ảnh.
+- GitHub của TV1, TV2, TV3, TV4, TV5 đã được đối chiếu bằng API tác giả commit công khai. TV6, TV7 chờ xác nhận tài khoản. Tên TV6 đã cập nhật theo thông tin tự khai và ảnh TV1 gửi.
 
 ## Bộ kiểm gốc
 
@@ -41,7 +41,7 @@ Kết quả lấy từ một lượt chạy `scripts/score_findings.py --run run
 
 1. Đã hoàn tất xác nhận ảnh khuôn mặt và security.md bằng phản hồi trực tiếp của TV1.
 2. Đã chạy `python3 lab/tv1.py finish`, dựng lại, kiểm đạt và xuất gói cuối sang submission. Bộ kiểm đạt 17/17; log ở `r2412007/check_handover.txt`.
-3. TV3, TV6, TV7 gửi tài khoản GitHub. Cả nhóm rà yêu cầu hai commit có nội dung mỗi người.
+3. TV6, TV7 gửi GitHub. TV2 có một đóng góp gốc và một cherry-pick cùng bản vá; TV3 hiện có một commit gốc đã tích hợp; chưa xác minh commit của TV7. Các thành viên tự bổ sung đóng góp để đạt hai commit có nội dung theo RULES.
 4. Đã hoàn tất review đề 07: 7/7 ca nhãn (6 confirmed, 1 rejected) và 1/1 ca hash intact do TV1 xem. Đã gộp 14 lỗi (8 luật, 6 semantic), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace 2/9 ảnh hai tầng; xem `de_an/README.md` và `de_an/review_validation.json`. Chưa có F1 đề ẩn; thời gian 40 phút theo công bố của giảng viên.
 5. Nộp link theo hạn và kênh lớp công bố.
 

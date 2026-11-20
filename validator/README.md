@@ -18,3 +18,7 @@ TV1 nhận hai module từ commit `b5b5c8d` trên nhánh `ducanh`, giữ tác gi
 `validate.py` gọi mỗi hàm một lần cho mỗi lô, gộp các cặp `(type, target)` vào tập lỗi chung. Phần kiểm hai lỗi này trong code TV1 cũ đã được thay bằng lời gọi module. Bộ đối chiếu tiếp tục dùng pixel mask để sinh ứng viên.
 
 TV1 đã chạy lại seed `2412007`, seed `22` và lô sạch 50 ảnh. Kết quả lần lượt là 10, 9 và 0 lỗi luật, khớp baseline. Lô nhóm có 6 ứng viên, seed 22 có 6 ứng viên, lô sạch có 0 ứng viên. Kết quả này xác nhận việc tích hợp trên các lô đã kiểm. Bản chấm F1 cuối được cập nhật khi có đủ review theo RULES.md.
+
+## Phần TV3 đã tích hợp
+
+Commit `0139ad5` bổ sung kiểm tra cấu trúc đầu vào, xử lý dòng YOLO thiếu/sai kiểu và giá trị không hữu hạn. `crosscheck.py` là công cụ đối chiếu độc lập; validator chính tiếp tục dùng shortlist hiện có. Không thay ngưỡng hoặc kết quả đề 07 sau review. Tổng 50 kiểm thử đạt; JSON luật/ứng viên trên lô nhóm, lô sạch và đề 07 khớp bản trước tích hợp.

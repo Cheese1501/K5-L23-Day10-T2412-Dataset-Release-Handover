@@ -92,13 +92,13 @@ TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit
 | Người | Việc còn cần | File nhận |
 |---|---|---|
 | TV2 — Nguyễn Đức Anh | Đã tích hợp hai hàm và review ảnh. Rà mốc hai commit có nội dung. | Code và CSV review đã có |
-| TV3 — Hoàng Quang Trường | Đã có review trong bảng tổng hợp. Chờ GitHub và commit cá nhân. | CSV review đã có |
+| TV3 — Hoàng Quang Trường | Đã có review và commit code 0139ad5; GitHub truonghoangg25. Cần thêm một commit có nội dung. | Code, 20 test và review đã tích hợp |
 | TV4 — Dương Quốc Huy | Đã tổng hợp đủ 6/6 ca và hỗ trợ công cụ. | `review_log.csv` đã tích hợp |
 | TV5 — Đặng Trung Hiếu | Đã có code dựng v2, review ảnh và xác nhận hash intact. | V2 đã đóng gói và kiểm đạt 17/17 |
 | TV6 — Nguyễn Nhân Thành Long | Đã có review và trace, H16 đạt. Chờ xác nhận GitHub. | CSV và trace đã tích hợp |
 | TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. TV1 đã bổ sung xác nhận khuôn mặt và hoàn tất bảo mật. Chờ GitHub. | `security.md` đã kiểm đạt H17 |
 | Cả nhóm | Cung cấp GitHub để điền TEAM, có ít nhất hai commit có nội dung dưới tên và email của mình. | Thông tin tài khoản và lịch sử Git |
-| Giảng viên hoặc coach | Phát đề ẩn, thời gian và kênh nộp. | `de_an.zip` hoặc lô tương đương |
+| Giảng viên hoặc coach | Đã có đề 07 từ link Drive TV1 gửi. Cần xác nhận thời gian, tên repo, nhánh chấm và kênh/hạn nộp. | Thông báo lớp |
 
 AI đã chuẩn bị code, lệnh và phần kiểm tra tự động. Mọi kết luận ảnh có tên thành viên lấy từ thông tin người đó trực tiếp cung cấp.
 

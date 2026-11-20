@@ -23,15 +23,60 @@ from validator.rules_panoptic import find_thing_overlaps
 class Delivery:
     def __init__(self, root: Path):
         self.root = root.resolve()
-        self.manifest = self.read_json("manifest.json")["items"]
-        self.metadata = {m["image"]: m for m in self.read_json("metadata.json")["items"]}
+
+        manifest_doc = self.read_json("manifest.json")
+        if not isinstance(manifest_doc, dict) or not isinstance(manifest_doc.get("items"), dict):
+            raise ValueError("manifest.json phải có trường items dạng object")
+        self.manifest = manifest_doc["items"]
+
+        metadata_doc = self.read_json("metadata.json")
+        if not isinstance(metadata_doc, dict) or not isinstance(metadata_doc.get("items"), list):
+            raise ValueError("metadata.json phải có trường items dạng array")
+        self.metadata = {}
+        for index, item in enumerate(metadata_doc["items"]):
+            if not isinstance(item, dict) or not isinstance(item.get("image"), str) or not item["image"]:
+                raise ValueError(f"metadata.json: items[{index}] thiếu image hợp lệ")
+            if item["image"] in self.metadata:
+                raise ValueError(f"metadata.json có image trùng: {item['image']}")
+            self.metadata[item["image"]] = item
+
         with self.file("jobs.csv").open(encoding="utf-8-sig", newline="") as handle:
-            self.jobs = {row["job_id"]: row for row in csv.DictReader(handle)}
+            reader = csv.DictReader(handle)
+            if not reader.fieldnames or not {"job_id", "guideline"}.issubset(reader.fieldnames):
+                raise ValueError("jobs.csv phải có cột job_id và guideline")
+            self.jobs = {}
+            for index, row in enumerate(reader, 2):
+                job_id = row.get("job_id")
+                if not job_id:
+                    raise ValueError(f"jobs.csv: dòng {index} thiếu job_id")
+                if job_id in self.jobs:
+                    raise ValueError(f"jobs.csv có job_id trùng: {job_id}")
+                self.jobs[job_id] = row
+
         self.classes = {}
-        for line in self.file("classes.txt").read_text(encoding="utf-8").splitlines():
-            if line.strip():
-                number, name = line.split(maxsplit=1)
-                self.classes[int(number)] = name.strip()
+        for line_number, line in enumerate(
+            self.file("classes.txt").read_text(encoding="utf-8").splitlines(), 1
+        ):
+            if not line.strip():
+                continue
+            fields = line.split(maxsplit=1)
+            if len(fields) != 2 or not fields[1].strip():
+                raise ValueError(f"classes.txt: dòng {line_number} không đúng định dạng '<id> <name>'")
+            try:
+                class_id = int(fields[0])
+            except ValueError as exc:
+                raise ValueError(f"classes.txt: class id không hợp lệ ở dòng {line_number}") from exc
+            if class_id in self.classes:
+                raise ValueError(f"classes.txt có class id trùng: {class_id}")
+            self.classes[class_id] = fields[1].strip()
+
+        if not self.classes:
+            raise ValueError("classes.txt không có class nào")
+        if not isinstance(self.manifest, dict):
+            raise ValueError("manifest.json items không hợp lệ")
+        for name, row in self.manifest.items():
+            if not isinstance(name, str) or not name or not isinstance(row, dict):
+                raise ValueError("manifest.json có tên ảnh hoặc item không hợp lệ")
 
     def file(self, name: str) -> Path:
         path = (self.root / name).resolve()
@@ -91,25 +136,60 @@ class Segment:
 def detection(path: Path, classes: dict, width: int, height: int) -> tuple[list[Box], set[str]]:
     boxes = []
     errors = set()
+
     for line in path.read_text(encoding="utf-8").splitlines():
         if not line.strip():
             continue
+
         fields = line.split()
-        category, x, y, w, h = map(float, fields[:5])
-        if not category.is_integer() or int(category) not in classes:
+        try:
+            category = float(fields[0])
+        except (ValueError, IndexError):
             errors.add("invalid_class")
             continue
-        rect = Rect((x - w / 2) * width, (y - h / 2) * height,
-                    (x + w / 2) * width, (y + h / 2) * height)
-        # The label rounds normalized coordinates to six decimals.
-        epsilon = max(width, height) * 0.000001
-        if (not all(map(math.isfinite, (x, y, w, h))) or min(w, h) <= 0
-                or min(rect.left, rect.top) < -epsilon
-                or rect.right > width + epsilon or rect.bottom > height + epsilon):
+
+        if (not math.isfinite(category)
+                or not category.is_integer()
+                or int(category) not in classes):
+            errors.add("invalid_class")
+            continue
+
+        if len(fields) < 5:
             errors.add("bbox_out_of_bounds")
             continue
-        box = Box(classes[int(category)], rect, (x * width, y * height), (w * width, h * height))
-        boxes.append(box)
+
+        try:
+            x, y, w, h = map(float, fields[1:5])
+        except ValueError:
+            errors.add("bbox_out_of_bounds")
+            continue
+
+        if not all(map(math.isfinite, (x, y, w, h))):
+            errors.add("bbox_out_of_bounds")
+            continue
+
+        rect = Rect(
+            (x - w / 2) * width,
+            (y - h / 2) * height,
+            (x + w / 2) * width,
+            (y + h / 2) * height,
+        )
+
+        epsilon = max(width, height) * 0.000001
+        if (min(w, h) <= 0
+                or min(rect.left, rect.top) < -epsilon
+                or rect.right > width + epsilon
+                or rect.bottom > height + epsilon):
+            errors.add("bbox_out_of_bounds")
+            continue
+
+        boxes.append(Box(
+            classes[int(category)],
+            rect,
+            (x * width, y * height),
+            (w * width, h * height),
+        ))
+
     return boxes, errors
 
 
