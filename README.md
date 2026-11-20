@@ -4,7 +4,7 @@
 
 # Day 10 Lab — Nhóm T2412
 
-Nhóm làm việc trên nhánh **`dev`**. Các công cụ và checkpoint của TV1 đã được hợp nhất vào nhánh này. Xem [hướng dẫn TV1](lab/TV1_GUIDE.md) và [tiến độ bài làm](submission/TV1_STATUS.md) để tiếp tục.
+Nhóm hoàn thiện và kiểm thử trên nhánh **`dev`**; theo TV1, khi nộp chính thức mới hoàn thiện nhánh **`main`**. Thời gian đề ẩn là **20 phút** theo thông tin TV1 cung cấp ngày 20/11/2026. Các công cụ và checkpoint của TV1 đã được hợp nhất vào nhánh này. Xem [hướng dẫn TV1](lab/TV1_GUIDE.md) và [tiến độ bài làm](submission/TV1_STATUS.md) để tiếp tục.
 
 <p align="center">
   <img alt="nhóm" src="https://img.shields.io/badge/lab-nhóm%205–6%20người-0b1f3a">

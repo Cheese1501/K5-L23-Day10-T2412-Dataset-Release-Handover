@@ -10,13 +10,13 @@ V1 vẫn HOLD vì QC 6,4%. README v2 ghi Release theo việc tách lỗi detecti
 
 ## Danh tính và commit cá nhân
 
-GitHub đã đối chiếu từ tác giả commit của TV1, TV2, TV3, TV4 và TV5. TV3 là truonghoangg25. TV6, TV7 cần gửi tên tài khoản để điền `submission/TEAM.md`. TV6 dùng tên Nguyễn Nhân Thành Long theo bản tự khai trong CSV và thông tin TV1 đã gửi.
+GitHub đã đối chiếu từ tác giả commit của TV1, TV2, TV3, TV4 và TV5. TV3 là truonghoangg25. TV1 đã xác nhận ngày 20/11/2026: TV6 longnguyen3204, TV7 Cheese1501; TEAM.md đã cập nhật đủ tài khoản của 7 người. TV6 dùng tên Nguyễn Nhân Thành Long theo bản tự khai trong CSV và thông tin TV1 đã gửi.
 
 Mỗi thành viên cần ít nhất hai commit có nội dung thuộc phần mình thực hiện, mang tên và email của mình theo RULES. Nhánh TV2 hiện có một commit đóng góp gốc, nên cần rà lại mốc này. Kết quả review cá nhân có thể được chính thành viên bàn giao và commit bằng tài khoản của họ, kèm phần code hoặc kiểm thử họ thực hiện. Chỉ ghi nhận công việc thực tế.
 
 ## Đề ẩn
 
-TV1 đã cung cấp thư mục Drive của lớp. Đã chọn ngẫu nhiên `de_an_07.zip` từ 20 đề, tải và chạy bằng công cụ hiện có. Bộ [de_an/](de_an/README.md) đã có đủ 7/7 kết luận của TV1 (6 confirmed, 1 rejected) và 1/1 kết quả hash intact. Đã gộp 14 lỗi (8 lỗi luật, 6 lỗi gán nhãn), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace có 2 ảnh tầng A, 9 tầng B. Không còn ca chờ người xem. Chưa có F1 đề ẩn vì không có đáp án. Thời gian 40 phút thực hiện theo giờ giảng viên công bố, chưa được cung cấp trong phiên này.
+TV1 đã cung cấp thư mục Drive của lớp. Đã chọn ngẫu nhiên `de_an_07.zip` từ 20 đề, tải và chạy bằng công cụ hiện có. Bộ [de_an/](de_an/README.md) đã có đủ 7/7 kết luận của TV1 (6 confirmed, 1 rejected) và 1/1 kết quả hash intact. Đã gộp 14 lỗi (8 lỗi luật, 6 lỗi gán nhãn), xuất đủ bốn file bắt buộc và kiểm tính nhất quán. Trace có 2 ảnh tầng A, 9 tầng B. Không còn ca chờ người xem. Chưa có F1 đề ẩn vì không có đáp án. Thời gian đề ẩn là **20 phút** theo thông tin TV1 cung cấp ngày 20/11/2026, áp dụng thay thời lượng 40 phút trong tài liệu mẫu. Chưa được cung cấp giờ bắt đầu/kết thúc thực tế nên chưa xác minh thời lượng đã làm.
 
 Giải nén theo hướng dẫn lớp để có `delivery/` ở gốc repo. Tạo thư mục `submission/de_an/` trước khi chép kết quả. Dùng validator và công cụ của nhóm.
 
@@ -38,7 +38,7 @@ Bộ bài đề ẩn có đủ `errors.json`, `candidates.json`, `review_log.csv
 
 ## Nộp bài
 
-Phần luyện tập đã kiểm đạt, cập nhật báo cáo và nhật ký AI, xuất file vào `submission/`. Các thay đổi được commit và push vào `dev` theo quy ước nhóm. Hạn và kênh nộp lấy theo giảng viên. Nếu lớp chấm nhánh cụ thể hoặc tên repo cụ thể, TV1 xác nhận thông tin đó trước khi gửi link.
+Phần luyện tập đã kiểm đạt, cập nhật báo cáo và nhật ký AI, xuất file vào `submission/`. Các thay đổi được commit và push vào `dev` theo quy ước nhóm. Hạn và kênh nộp lấy theo giảng viên. Theo TV1, dev dùng hoàn thiện/kiểm thử; khi nộp chính thức sẽ hoàn thiện main. Cần chốt tên repo, hạn/kênh nộp và lưu xác nhận nộp.
 
 Điểm tự đo hiện tại trên phiên bản review đã gộp là F1 tổng ≈ 0,8, lỗi luật ≈ 1,0, lỗi gán nhãn ≈ 0,6 và truy vết các tầng ≈ 1,0. Chỉ sửa kết luận nhãn dựa trên việc người xem mở lại ảnh và nêu bằng chứng.
 
@@ -47,9 +47,9 @@ Phần luyện tập đã kiểm đạt, cập nhật báo cáo và nhật ký A
 1. **Đồng bộ dev mới:** lịch sử dev đã sửa danh tính TV1 thành kasdie. Thành viên có công việc chưa push giữ lại bản riêng trước khi đồng bộ; không merge lại dev cũ. Có thể clone nhánh dev vào thư mục mới để làm tiếp mà không xóa thư mục cũ.
 2. **TV2:** bổ sung một đóng góp độc lập có nội dung; hai SHA hiện thấy là bản gốc và cherry-pick cùng một bản vá, không nên xem là hai việc khác nhau.
 3. **TV3:** commit `0139ad5` đã được kiểm tra và tích hợp; cần thêm một commit có nội dung của chính thành viên để đủ hai. Không tạo commit rỗng để đủ số.
-4. **TV7:** xác nhận GitHub và gửi các commit thực tế của mình. Chưa đối chiếu được tác giả commit trên lịch sử dev; TV1 đã làm bảo mật không thay cho yêu cầu đóng góp cá nhân của TV7.
-5. **TV6:** xác nhận tài khoản GitHub. Ba commit gốc đã có, không cần tạo thêm chỉ để tăng số lượng. TV1/TV4/TV5 cũng đã đủ mốc số lượng.
-6. **TV1:** xác nhận tên repo hiện tại có được chấp nhận, chấm nhánh dev hay nhánh khác, điều kiện 40 phút và hạn/kênh nộp. Theo yêu cầu hiện tại chỉ push dev, chưa thay đổi main hoặc đổi tên repo.
+4. **TV7 — Cheese1501:** gửi các commit thực tế của mình. Chưa đối chiếu được tác giả commit trên lịch sử dev; TV1 đã làm bảo mật không thay cho yêu cầu đóng góp cá nhân của TV7.
+5. **TV6 — longnguyen3204:** đã xác nhận tài khoản qua TV1. Ba commit gốc đã có, không cần tạo thêm chỉ để tăng số lượng. TV1/TV4/TV5 cũng đã đủ mốc số lượng.
+6. **TV1:** đã xác nhận dev dùng hoàn thiện/kiểm thử; khi nộp chính thức sẽ hoàn thiện main. Thời gian đề ẩn là 20 phút. Còn xác nhận tên repo hiện tại có được chấp nhận và hạn/kênh nộp. Hiện chỉ push dev; chưa chuyển bài sang main hoặc đổi tên repo.
 7. **Cả nhóm:** chuẩn bị vấn đáp ba nội dung ở RUBRIC: giải thích/sửa một đoạn validator, giải thích dòng review và một số liệu README v2. Dựa trên quan sát và đóng góp thật của từng người.
 8. **TV1:** sau khi nhận đủ hồ sơ và commit cá nhân, nộp link đúng nhánh theo hướng dẫn lớp; lưu mã commit, thời điểm và xác nhận nộp. Chưa có bằng chứng nộp LMS trong phiên này.
 

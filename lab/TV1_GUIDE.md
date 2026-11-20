@@ -95,16 +95,16 @@ TV1 đối chiếu số liệu báo cáo với README v2 và file thật. Commit
 | TV3 — Hoàng Quang Trường | Đã có review và commit code 0139ad5; GitHub truonghoangg25. Cần thêm một commit có nội dung. | Code, 20 test và review đã tích hợp |
 | TV4 — Dương Quốc Huy | Đã tổng hợp đủ 6/6 ca và hỗ trợ công cụ. | `review_log.csv` đã tích hợp |
 | TV5 — Đặng Trung Hiếu | Đã có code dựng v2, review ảnh và xác nhận hash intact. | V2 đã đóng gói và kiểm đạt 17/17 |
-| TV6 — Nguyễn Nhân Thành Long | Đã có review và trace, H16 đạt. Chờ xác nhận GitHub. | CSV và trace đã tích hợp |
-| TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. TV1 đã bổ sung xác nhận khuôn mặt và hoàn tất bảo mật. Chờ GitHub. | `security.md` đã kiểm đạt H17 |
+| TV6 — Nguyễn Nhân Thành Long | Đã có review và trace, H16 đạt. TV1 xác nhận GitHub longnguyen3204. | CSV và trace đã tích hợp |
+| TV7 — Hoàng Kim Chi | Đã xem chéo ca TV4 theo log. TV1 đã bổ sung xác nhận khuôn mặt và hoàn tất bảo mật. TV1 xác nhận GitHub Cheese1501. | `security.md` đã kiểm đạt H17 |
 | Cả nhóm | Cung cấp GitHub để điền TEAM, có ít nhất hai commit có nội dung dưới tên và email của mình. | Thông tin tài khoản và lịch sử Git |
-| Giảng viên hoặc coach | Đã có đề 07 từ link Drive TV1 gửi. Cần xác nhận thời gian, tên repo, nhánh chấm và kênh/hạn nộp. | Thông báo lớp |
+| Giảng viên hoặc coach | Đã có đề 07 từ link Drive TV1 gửi. TV1 đã xác nhận 20 phút; dev để kiểm thử, main để nộp chính thức sau. Còn tên repo và kênh/hạn nộp. | Thông báo lớp |
 
 AI đã chuẩn bị code, lệnh và phần kiểm tra tự động. Mọi kết luận ảnh có tên thành viên lấy từ thông tin người đó trực tiếp cung cấp.
 
 ## Đề ẩn và việc nộp
 
-Khi nhận đề, làm 40 phút theo Pha 6 trong GUIDE. Dùng validator và công cụ xem ảnh của nhóm theo quy định của lớp. Bốn file đầu ra nằm ở `submission/de_an/`. Ghi rõ ngày giờ, mã commit và đường dẫn đã nộp sau khi hoàn thành.
+Theo thông tin TV1 cung cấp ngày 20/11/2026, nhóm làm đề ẩn trong 20 phút, thay thời lượng 40 phút trong GUIDE mẫu. Dùng validator và công cụ xem ảnh của nhóm theo quy định của lớp. Bốn file đầu ra nằm ở `submission/de_an/`. Ghi rõ ngày giờ, mã commit và đường dẫn đã nộp sau khi hoàn thành.
 
 Qua kiểm tra GitHub ngày 19/11/2026, cả repo đề và fork đều có 0 release công khai. Nhóm cần theo dõi kênh giảng viên công bố.
 

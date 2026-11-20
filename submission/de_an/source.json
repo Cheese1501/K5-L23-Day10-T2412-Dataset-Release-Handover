@@ -9,11 +9,14 @@
   "release_id": "lab250_3c55ac997ebf",
   "delivery_files_matching_zip": 756,
   "status": "reviewed_outputs_validated",
-  "official_exam_start_and_deadline": "not provided by instructor in this session",
+  "official_exam_start_and_deadline": "actual start/end timestamps and submission deadline not provided",
   "reviewer": "TV1 — Lê Quang Khải",
   "review_complete": 7,
   "hash_complete": 1,
   "confirmed": 6,
   "rejected": 1,
-  "merged_errors": 14
+  "merged_errors": 14,
+  "exam_duration_minutes": 20,
+  "duration_source": "TV1 confirmation in chat on 2026-11-20; overrides 40 minutes in template",
+  "branch_workflow": "dev for ongoing work and trial tests; main to be finalized for official submission, per TV1"
 }

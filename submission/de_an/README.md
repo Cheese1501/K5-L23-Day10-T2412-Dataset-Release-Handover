@@ -1,6 +1,6 @@
 # Đề ẩn 07 — đã gộp kết quả xem ảnh
 
-TV1 yêu cầu chọn ngẫu nhiên một đề từ thư mục Drive của lớp. Đã liệt kê 20 ZIP và dùng `secrets.choice` chọn **de_an_07.zip** trước khi mở nội dung. Nguồn, thời điểm chọn và SHA-256 ZIP nằm trong [source.json](source.json). Chưa có thông tin giờ bắt đầu và hạn 40 phút chính thức của giảng viên trong phiên này.
+TV1 yêu cầu chọn ngẫu nhiên một đề từ thư mục Drive của lớp. Đã liệt kê 20 ZIP và dùng `secrets.choice` chọn **de_an_07.zip** trước khi mở nội dung. Nguồn, thời điểm chọn và SHA-256 ZIP nằm trong [source.json](source.json). TV1 xác nhận ngày 20/11/2026 thời gian làm đề ẩn là **20 phút**, thay thời lượng 40 phút trong tài liệu mẫu. Chưa có giờ bắt đầu/kết thúc thực tế để xác minh thời lượng đã làm.
 
 ## Kết quả đã làm
 

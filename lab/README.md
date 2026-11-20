@@ -107,4 +107,4 @@ python3 scripts/check_handover.py --run "$RUN"
 
 Fork public của nhóm là `Cheese1501/K5-L23-Day10-T2412-Dataset-Release-Handover`. Đối chiếu tên repo với quy ước giảng viên công bố trước khi nộp. Điền danh sách thành viên trong [TEAM.md](../submission/TEAM.md), cập nhật [REPORT.md](../submission/REPORT.md) sau review và bổ sung [prompts.md](../submission/prompts.md) sau khi nhóm kiểm lại. Khi bộ kiểm đạt, xuất lô chính thức bằng `python3 scripts/export_submission.py --run "$RUN"`. Mỗi thành viên cần ít nhất hai commit mang danh tính của mình.
 
-Khi giảng viên phát `de_an.zip`, làm trong thời gian 40 phút theo Pha 6 và nộp `errors.json`, `candidates.json`, `review_log.csv`, `trace.json` trong `submission/de_an/`. Push lên repo nhóm và nộp link theo hướng dẫn của lớp. [Yêu cầu nộp bài](../SUBMISSION.md)
+Khi giảng viên phát `de_an.zip`, làm trong thời gian 20 phút theo thông tin TV1 cung cấp (thay 40 phút của tài liệu mẫu) và nộp `errors.json`, `candidates.json`, `review_log.csv`, `trace.json` trong `submission/de_an/`. Push lên repo nhóm và nộp link theo hướng dẫn của lớp. [Yêu cầu nộp bài](../SUBMISSION.md)

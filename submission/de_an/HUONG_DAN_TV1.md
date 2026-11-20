@@ -31,6 +31,6 @@ Mẫu ghi chú theo quan sát thực tế: “Vật trong vùng là …; detecti
 ## Những việc còn lại ngoài 8 ca
 
 - Đã gộp kết quả, xuất đủ bốn file bắt buộc, kiểm tính nhất quán và cập nhật báo cáo. Kết quả xem ảnh không có ca nào còn chờ.
-- TV2/TV3/TV7 cần rà yêu cầu commit cá nhân; TV3/TV6/TV7 bổ sung tài khoản GitHub. TV1 không thể thay các thành viên thực hiện yêu cầu cá nhân và vấn đáp. Mỗi thành viên vẫn cần trực tiếp xem ảnh theo RULES.
-- TV1 xác nhận nhánh được chấm, tên repo theo quy định lớp và nộp đúng kênh/hạn. Repo hiện mặc định main, bài làm nằm trên dev.
+- TV2/TV3/TV7 cần rà yêu cầu commit cá nhân; Tài khoản GitHub đã đủ: TV3 truonghoangg25, TV6 longnguyen3204, TV7 Cheese1501. TV1 không thể thay các thành viên thực hiện yêu cầu cá nhân và vấn đáp. Mỗi thành viên vẫn cần trực tiếp xem ảnh theo RULES.
+- TV1 xác nhận nhánh được chấm, tên repo theo quy định lớp và nộp đúng kênh/hạn. Theo TV1, dev dùng hoàn thiện/kiểm thử; khi nộp chính thức mới hoàn thiện main. Thời gian đề ẩn là 20 phút theo thông tin TV1 cung cấp.
 - Theo SUBMISSION.md và GUIDE.md, kết quả đề ẩn phải được commit/push trong repo public. Nhánh làm việc theo yêu cầu TV1 là dev; không đưa ZIP hoặc delivery vào Git.
